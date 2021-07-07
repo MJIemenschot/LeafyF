@@ -1,0 +1,56 @@
+.add-item-container{
+    width:100%;
+
+    display: flex;
+    justify-content: center;
+}
+.add-items{
+    width:40%;
+    text-align: center;
+    background-color: #eeeeee;
+}
+
+
+.add-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.add-item-field{
+    width: 80%;
+    padding: 10px;
+    margin: 10px 20px;
+    border-bottom: lightgray 1px solid;
+}
+.upload {
+    width: 80%;
+    height: auto;
+    background-color: white;
+    border: #595959 dashed 2px;
+    padding: 20px;
+
+}
+.form-btn{
+    width:80%;
+    margin: 20px 0;
+    background-color: darkseagreen;
+}
+.form-btn:hover{
+    cursor: pointer;
+    background: #00828e;
+    transition: all 0.4s ease-out;
+}
+fieldset.categories {
+    background-color: white;
+    margin-top: 10px;
+}
+@media (max-width: 754px) {
+    .add-items {
+
+        width:80%;
+    }
+    /*.form-content-right {*/
+    /*    width: 100%;*/
+
+    /*}*/
+}
