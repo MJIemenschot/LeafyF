@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, {useContext, useState} from 'react';
 import { useForm } from 'react-hook-form';
 import axios from "axios";
 import './ItemAdd.css';
 
+import {GrUpload} from "react-icons/gr";
+
 function AddItem () {
 
+
     const { handleSubmit, formState: { errors }, register } = useForm();
-    // const [buttonPopup, toggleButtonPopup] = useState(false);
+    //const { items, setItems} = useState([])
     const [isSeed, toggleIsSeed] = useState(false);
     const [isEnt, toggleIsEnt] = useState(true);
+
 
     async function sendInfo (data) {
 
@@ -26,24 +30,22 @@ function AddItem () {
         console.log("ik zit in de formsubmit!")
         formData.append("description", data.description)
         formData.append("name", data.name)
-        formData.append("seed", isSeed)
-        formData.append("ent", isEnt)
-        formData.append("plant", false)
+        formData.append("isSeed", true)
+        formData.append("isEnt", false)
+        formData.append("isPlant", false)
         formData.append("toPicture", data.toPicture[0])
 
         sendInfo(formData)
     }
 
     return (
-        <form onSubmit={handleSubmit(formSubmit)}  className="add-item">
-            <div className="pictureDisplay">
-                <input type="file" {...register("picturePath", {
-                    required:true
-                })}
-                />
-            </div >
+        <div className="add-item-container">
             <div className="add-items">
-                <h1>Voeg een plant toe</h1>
+            <h1>Voeg jouw plant toe</h1>
+        <form onSubmit={handleSubmit(formSubmit)}  className="add-item">
+
+            <div className="add-items">
+
                 <input  type="text"
                         className="add-item-field"
                         placeholder="Voeg hier de plantnaam toe:"
@@ -55,23 +57,31 @@ function AddItem () {
             <textarea   className="add-item-field"
                         cols="30" rows="10"
                         placeholder="Voeg hier de omschrijving toe:"
-                        {...register("textAboutTheTip")}
+                        {...register("description")}
             />
-            <div className="checkboxTipInMakingOne">
+            <div className="upload">
+                <input type="file" {...register("picturePath", {
+                    required:true
+                })}
+                />
+                <GrUpload/>
+            </div >
+            <div className="checkboxItem">
                 <input  type="checkbox"
                         checked={isSeed}
                         onChange={(e)=> isSeed?toggleIsSeed(false) && toggleIsSeed(e.target.checked):toggleIsSeed(e.target.checked)}
-                />Prive
+                />Zaden
             </div>
-            <div className="checkboxTipInMakingTwo">
+            <div className="checkboxItem">
                 <input  type="checkbox"
                         checked={isEnt}
                         onChange={(e)=> isEnt?toggleIsEnt(false) && toggleIsEnt(e.target.checked):toggleIsEnt(e.target.checked)}
-                />Publiek
+                />Stekken
             </div>
-            <button id="plusButton">Voeg aanbod toe</button>
+            <button className="form-btn">Voeg aanbod toe</button>
         </form>
-
+            </div>
+        </div>
     )
 }
 
