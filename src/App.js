@@ -12,6 +12,7 @@ import Profile from "./pages/Profile";
 import AddItem from "./components/AddItem";
 import ItemsList from "./components/ItemsList";
 import ItemOvervieuw from "./components/ItemOvervieuw";
+import MessageOvervieuw from "./components/MessageOvervieuw";
 
 
 
@@ -32,7 +33,8 @@ function App() {
            <AddItem />
           {/*</Route>*/}
           < ItemOvervieuw />
-
+          <MessageOvervieuw />
+        <image />
           {/*<ItemsList />*/}
 
 
@@ -44,7 +46,7 @@ function App() {
 
 
        {/*</ItemProvider>*/}
-</>
+          </>
   );
 }
 

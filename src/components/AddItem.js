@@ -9,15 +9,15 @@ function AddItem () {
 
 
     const { handleSubmit, formState: { errors }, register } = useForm();
-    //const { items, setItems} = useState([])
-    const [isSeed, toggleIsSeed] = useState(false);
-    const [isEnt, toggleIsEnt] = useState(true);
+    const { posts, setPosts} = useState([])
+    //const [isSeed, toggleIsSeed] = useState(false);
+    //const [isEnt, toggleIsEnt] = useState(true);
 
 
-    async function sendInfo (data) {
+    async function sendInfo (formData) {
 
         try {
-            await axios.post('http://localhost:8089/api/v1/items', formData)
+            await axios.post('http://localhost:8089/api/v1/messages/files', formData)
         } catch (e) {
             console.log(console.error(e))
         }
@@ -27,13 +27,13 @@ function AddItem () {
 
     const formSubmit = (data) => {
 
-        console.log("ik zit in de formsubmit!")
+        console.log("ik gaat in het formuliertje!")
         formData.append("description", data.description)
-        formData.append("name", data.name)
-        formData.append("isSeed", true)
-        formData.append("isEnt", false)
-        formData.append("isPlant", false)
-        formData.append("toPicture", data.toPicture[0])
+        formData.append("title", data.title)
+        // formData.append("isSeed", true)
+        // formData.append("isEnt", false)
+        // formData.append("isPlant", false)
+        formData.append("file", data.file[0])
 
         sendInfo(formData)
     }
@@ -42,17 +42,17 @@ function AddItem () {
         <div className="add-item-container">
             <div className="add-items">
             <h1>Voeg jouw plant toe</h1>
-        <form onSubmit={handleSubmit(formSubmit)}  className="add-item">
+        <form onSubmit={handleSubmit(formSubmit)} className="add-item">
 
             <div className="add-items">
 
                 <input  type="text"
                         className="add-item-field"
                         placeholder="Voeg hier de plantnaam toe:"
-                        {...register("name", {
+                        {...register("title", {
                             required:true
                         })}
-                />{errors.address && <p className="errorMessage">Het adres veld is niet ingevuld</p>}
+                />{errors.address && <p className="errorMessage">Het veld is niet ingevuld</p>}
             </div>
             <textarea   className="add-item-field"
                         cols="30" rows="10"
@@ -60,24 +60,24 @@ function AddItem () {
                         {...register("description")}
             />
             <div className="upload">
-                <input type="file" {...register("picturePath", {
+                <input type="file" {...register("file", {
                     required:true
                 })}
                 />
                 <GrUpload/>
             </div >
-            <div className="checkboxItem">
-                <input  type="checkbox"
-                        checked={isSeed}
-                        onChange={(e)=> isSeed?toggleIsSeed(false) && toggleIsSeed(e.target.checked):toggleIsSeed(e.target.checked)}
-                />Zaden
-            </div>
-            <div className="checkboxItem">
-                <input  type="checkbox"
-                        checked={isEnt}
-                        onChange={(e)=> isEnt?toggleIsEnt(false) && toggleIsEnt(e.target.checked):toggleIsEnt(e.target.checked)}
-                />Stekken
-            </div>
+            {/*<div className="checkboxItem">*/}
+            {/*    <input  type="checkbox"*/}
+            {/*            checked={isSeed}*/}
+            {/*            onChange={(e)=> isSeed?toggleIsSeed(false) && toggleIsSeed(e.target.checked):toggleIsSeed(e.target.checked)}*/}
+            {/*    />Zaden*/}
+            {/*</div>*/}
+            {/*<div className="checkboxItem">*/}
+            {/*    <input  type="checkbox"*/}
+            {/*            checked={isEnt}*/}
+            {/*            onChange={(e)=> isEnt?toggleIsEnt(false) && toggleIsEnt(e.target.checked):toggleIsEnt(e.target.checked)}*/}
+            {/*    />Stekken*/}
+            {/*</div>*/}
             <button className="form-btn">Voeg aanbod toe</button>
         </form>
             </div>
