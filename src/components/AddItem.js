@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React, {useContext, useState} from 'react';
 import { useForm } from 'react-hook-form';
 import axios from "axios";
 import './ItemAdd.css';
 
+import {GrUpload} from "react-icons/gr";
+
 function AddItem () {
 
-    const { handleSubmit, formState: { errors }, register } = useForm();
-    // const [buttonPopup, toggleButtonPopup] = useState(false);
-    const [isSeed, toggleIsSeed] = useState(false);
-    const [isEnt, toggleIsEnt] = useState(true);
 
-    async function sendInfo (data) {
+    const { handleSubmit, formState: { errors }, register } = useForm();
+    const { posts, setPosts} = useState([])
+    //const [isSeed, toggleIsSeed] = useState(false);
+    //const [isEnt, toggleIsEnt] = useState(true);
+
+
+    async function sendInfo (formData) {
 
         try {
-            await axios.post('http://localhost:8089/api/v1/items', formData)
+            await axios.post('http://localhost:8080/api/v1/messages/files', formData)
         } catch (e) {
             console.log(console.error(e))
         }
@@ -23,55 +27,61 @@ function AddItem () {
 
     const formSubmit = (data) => {
 
-        console.log("ik zit in de formsubmit!")
+        console.log("ik gaat in het formuliertje!")
         formData.append("description", data.description)
-        formData.append("name", data.name)
-        formData.append("seed", isSeed)
-        formData.append("ent", isEnt)
-        formData.append("plant", false)
-        formData.append("toPicture", data.toPicture[0])
+        formData.append("title", data.title)
+        // formData.append("isSeed", true)
+        // formData.append("isEnt", false)
+        // formData.append("isPlant", false)
+        formData.append("file", data.file[0])
 
         sendInfo(formData)
     }
 
     return (
-        <form onSubmit={handleSubmit(formSubmit)}  className="add-item">
-            <div className="pictureDisplay">
-                <input type="file" {...register("picturePath", {
-                    required:true
-                })}
-                />
-            </div >
+        <div className="add-item-container">
             <div className="add-items">
-                <h1>Voeg een plant toe</h1>
+            <h1>Voeg jouw messageplant toe</h1>
+        <form onSubmit={handleSubmit(formSubmit)} className="add-item">
+
+            <div className="add-items">
+
                 <input  type="text"
                         className="add-item-field"
                         placeholder="Voeg hier de plantnaam toe:"
-                        {...register("name", {
+                        {...register("title", {
                             required:true
                         })}
-                />{errors.address && <p className="errorMessage">Het adres veld is niet ingevuld</p>}
+                />{errors.address && <p className="errorMessage">Het veld is niet ingevuld</p>}
             </div>
             <textarea   className="add-item-field"
                         cols="30" rows="10"
                         placeholder="Voeg hier de omschrijving toe:"
-                        {...register("textAboutTheTip")}
+                        {...register("description")}
             />
-            <div className="checkboxTipInMakingOne">
-                <input  type="checkbox"
-                        checked={isSeed}
-                        onChange={(e)=> isSeed?toggleIsSeed(false) && toggleIsSeed(e.target.checked):toggleIsSeed(e.target.checked)}
-                />Prive
-            </div>
-            <div className="checkboxTipInMakingTwo">
-                <input  type="checkbox"
-                        checked={isEnt}
-                        onChange={(e)=> isEnt?toggleIsEnt(false) && toggleIsEnt(e.target.checked):toggleIsEnt(e.target.checked)}
-                />Publiek
-            </div>
-            <button id="plusButton">Voeg aanbod toe</button>
+            <div className="upload">
+                <input type="file" {...register("file", {
+                    required:true
+                })}
+                />
+                <GrUpload/>
+            </div >
+            {/*<div className="checkboxItem">*/}
+            {/*    <input  type="checkbox"*/}
+            {/*            checked={isSeed}*/}
+            {/*            onChange={(e)=> isSeed?toggleIsSeed(false) && toggleIsSeed(e.target.checked):toggleIsSeed(e.target.checked)}*/}
+            {/*    />Zaden*/}
+            {/*</div>*/}
+            {/*<div className="checkboxItem">*/}
+            {/*    <input  type="checkbox"*/}
+            {/*            checked={isEnt}*/}
+            {/*            onChange={(e)=> isEnt?toggleIsEnt(false) && toggleIsEnt(e.target.checked):toggleIsEnt(e.target.checked)}*/}
+            {/*    />Stekken*/}
+            {/*</div>*/}
+            <button className="form-btn">Voeg aanbod toe</button>
         </form>
-
+            </div>
+        </div>
     )
 }
 

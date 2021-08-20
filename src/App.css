@@ -365,6 +365,11 @@ form .formContainer label {
   word-wrap: break-word;
 }
 
+#footer{
+  height: 150px;
+  background-color: #00828e;
+}
+
 /* Media Queries */
 
 /*@media (max-width: 754px) {*/

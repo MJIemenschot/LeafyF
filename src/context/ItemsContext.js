@@ -1,40 +1,43 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from "axios";
-import img from "../assets/img1.jpg";
+import imago from "../assets/img1.jpg";
 
 export const ItemsContext = createContext({});
 
-function ItemsContextProvider ({children}) {
-    const [items, setItems] = useState([])
-    const [url, setUrl] = useState(img);
+function ItemsProvider ({children}) {
+    const [contents, setContents] = useState([])
+    const [url, setUrl] = useState(imago);
 
     async function fetchData () {
         try {
-            const result = await axios.get("http://localhost:8089/api/v1/items")
-            const blob = new Blob([result.data.config], {
-                type: 'image/jpg',
-            });
-            const objectUrl = URL.createObjectURL(blob);
-            setUrl(objectUrl);
-            setItems(result.data)
+            const res = await axios.get("http://localhost:8080/api/v1/items")
+            console.log("items van backend", res)
+            const data = res.data;
+            setContents(res.data);
+            // const blob = new Blob([result.data.config], {
+            //     type: 'image/jpg',
+            // });
+            // const objectUrl = URL.createObjectURL(blob);
+            // setUrl(objectUrl);
+
         } catch (e) {
             console.log("het is niet gelukt, error: " + e)
         }
     }
 
-    console.log()
+    console.log("wat zit hierin?", contents)
 
-    const data = {
-        items:items,
-        picturePath: url
-    }
+    // const data = {
+    //     items.items,
+    //     toPicture: url
+    // }
 
     useEffect(()=>{
         fetchData()
     },[])
 
     return (
-        <ItemsContext.Provider value={data}>
+        <ItemsContext.Provider value={contents}>
             {children}
         </ItemsContext.Provider>
     )
@@ -47,23 +50,7 @@ export default ItemsContext;
 // export const ItemsContext = createContext();
 //
 // export const ItemsState = (props) => {
-//     const [items, setItems] = useState([
-//         {
-//             id:1,
-//             name:'een plant',
-//             description: 'ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proiden',
-//             fav: true},
-//         {
-//             id:2,
-//             name:'twee plant',
-//             description:'ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proiden',
-//             fav: true},
-//         {
-//             id:3,
-//             name:'drie plant',
-//             description:'ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proiden',
-//             fav: true},
-//     ]);
+
 //     const [search, setSearch ] = useState('');
 //     //const [firstItem, setFirstItem] = useState(0);
 //     //const [lastItem, setLastItem]  = useState(9);

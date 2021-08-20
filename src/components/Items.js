@@ -1,13 +1,14 @@
 import React, {useContext} from 'react';
 import {ItemContext} from "../context/Itemcontext";
-//import {ItemsContext} from "../context/ItemsContext";
 import { GrNext, GrClose, GrEdit, GrTrash  } from "react-icons/gr";
+
 
 import {Link} from 'react-router-dom';
 //import Item from "./Item";
 
 const Items = () => {
     const [items, setItems] = useContext(ItemContext);
+    console.log(items)
 
 
     return (
@@ -16,7 +17,7 @@ const Items = () => {
                <h2>Itemlijst</h2>
                {items.map(item =>{
                    return (
-                       /*<div style={{background: 'url(./plaatje2) no repeat center/cover'}} className='itemBg'>*/
+                      <div style={{background: 'url(./item.img) no repeat center/cover'}} className='itemBg'>
                            <div className='itemInfo'>
                                <h3>{item.name}</h3>
                                <p>{item.description}</p>
@@ -25,7 +26,7 @@ const Items = () => {
                            />
                                <Link to='#'>Details</Link>
                            </div>
-                       /*</div>*/
+                       </div>
                    );
                })};
 

@@ -15,7 +15,7 @@ const Profile = () => {
                 const token = localStorage.getItem("token");
                 console.log(token);
                 const response = await axios.get(
-                    "http://localhost:8089/api/v1/authenticated",
+                    "http://localhost:8080/api/v1/authenticated",
                     {
                         headers: {
                             //"Content-Type": "application/json",
