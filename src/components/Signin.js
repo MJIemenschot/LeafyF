@@ -16,7 +16,7 @@ const Signin = () => {
     async function sendInfo(data) {
         console.log(data);
         try {
-            const result = await axios.post('http://localhost:8089/api/v1/authenticate', data);
+            const result = await axios.post('http://localhost:8080/api/v1/authenticate', data);
             console.log(result)
             login(result.data.jwt)
         } catch (e) {
@@ -28,26 +28,24 @@ const Signin = () => {
         <div className="form-content-right">
             <form onSubmit={handleSubmit(sendInfo)}>
                 <div className="form-inputs">
-                    {/*<NavLink exact to="/" id="loginPageIdOne" className="logInRegister">Login</NavLink>*/}
-                    {/*<NavLink to="/register" id="registerPageIdOne" className="logInRegister">Registreer</NavLink>*/}
+
                     <h2>
                         Heb je al een account? Log hier in.
                     </h2>
-
                     <label className="form-label" htmlFor="e-mail">e-mail:
                         <input
-                            className="inputFieldRegister"
+                            className="form-input"
                             type="text"
-                            placeholder="➡ type hier uw e-mail adres:"
+                            placeholder="Je mail adres..."
                             {...register("username")}
                         />
                     </label>
                 </div>
                 <div className="form-inputs">
                     <label className="form-label" htmlFor="wachtwoord">wachtwoord:
-                        <input className="inputFieldRegister"
+                        <input className="form-input"
                                type="text"
-                               placeholder="➡ type hier uw wachtwoord:"
+                               placeholder="Je wachtwoord..."
                                {...register("password")}
                         />
                     </label>
