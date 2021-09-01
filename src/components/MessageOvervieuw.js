@@ -13,12 +13,14 @@ import Image from "./Image";
 const MessageOvervieuw = () => {
     const [messages, setMessages] = useState([])
 
+
     async function fetchData(){
         try{
-            const res = await axios.get("http://localhost:8080/api/v1/messages/files");
+            const res = await axios.get("http://localhost:8080/messages");
             console.log("de data van messages api",res);
             const data = res.data;
             setMessages(res.data);
+
 
         } catch (e) {
             console.error("Er zijn helaas geen items gevonden, error: " + e)
@@ -36,8 +38,8 @@ const MessageOvervieuw = () => {
                     <h2>message</h2>
                     <h1>{message.title}</h1>
                     <p>{message.description}</p>
-                    {/*<img src={message.fileName}/>*/}
-                    <Image props={message.id} />
+                    {/*<img src="http://localhost:8080/divers.jpg" width="100px"/>*/}
+                    <Image file={message.fileName} />
                     <GrEdit style={{ color:'white', cursor:'pointer'}}/><GrTrash style={{ color:'white', cursor:'pointer'}}/>
                     {/*onClick={() => onDelete(item.id)}*/}
                 </div>

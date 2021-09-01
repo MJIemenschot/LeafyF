@@ -41,8 +41,8 @@ const Profile = () => {
                 <h2>Gegevens</h2>
                 <p>
                     Hallo <strong>{user && user.username}</strong>
-                </p><p>klik <Link id="add-link" to="/add-item">hier</Link> om je aanbod toe te voegen.</p>
-            <p>Mijn aanbiedingen (bewerk)</p>//todo
+                </p><p>klik <Link id="add-link" to="/add-item">hier</Link> om je plant toe te voegen.</p>
+            <p>Mijn planten (bewerk)</p>//todo
             </section>
             {/*<section>*/}
             {/*    <h2>{content?.title}</h2>*/}

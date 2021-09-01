@@ -7,6 +7,7 @@ import {IoPersonOutline} from "react-icons/io5";
 import axios from "axios";
 
 import { GrNext, GrClose, GrEdit, GrTrash  } from "react-icons/gr";
+import Img from "./Img";
 
 const ItemOvervieuw = () => {
     const [items, setItems] = useState([])
@@ -34,6 +35,7 @@ const ItemOvervieuw = () => {
                    <h2>item</h2>
                    <h1>{item.name}</h1>
                    <p>{item.description}</p>
+                   <Img pic={item.picture}/>
                    <GrEdit style={{ color:'white', cursor:'pointer'}}/><GrTrash style={{ color:'white', cursor:'pointer'}}/>
                     {/*onClick={() => onDelete(item.id)}*/}
                </div>

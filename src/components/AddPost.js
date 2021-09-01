@@ -9,15 +9,17 @@ function AddPost () {
 
 
     const { handleSubmit, formState: { errors }, register } = useForm();
-    const { posts, setPosts} = useState([])
-    //const [isSeed, toggleIsSeed] = useState(false);
-    //const [isEnt, toggleIsEnt] = useState(true);
+    const { posts, setPosts} = useState([]);
+    //const {difficulty, setDifficulty} = useState("makkelijk")
+    const [easy, toggleEasy] = useState(true);
+    const [moderate, toggleModerate] = useState(false);
+    const [hard, toggleHard] = useState(false);
 
 
     async function sendInfo (formData) {
 
         try {
-            await axios.post('http://localhost:8080/product/save', formData)
+            await axios.post('http://localhost:8080/savepost', formData)
         } catch (e) {
             console.log(console.error(e))
         }
@@ -30,9 +32,10 @@ function AddPost () {
         console.log("dit gaat in het formuliertje!")
         formData.append("description", data.description)
         formData.append("name", data.name)
-        // formData.append("isSeed", true)
-        // formData.append("isEnt", false)
-        // formData.append("isPlant", false)
+        //formData.append("difficulty", data.difficulty[0])
+         formData.append("easy", true)
+         formData.append("moderate", false)
+         formData.append("hard", false)
         formData.append("image", data.image[0])
 
         sendInfo(formData)
@@ -54,11 +57,18 @@ function AddPost () {
                                 })}
                         />{errors.address && <p className="errorMessage">Het veld is niet ingevuld</p>}
                     </div>
-                    <textarea   className="add-item-field"
+                    <textarea className="add-item-field"
                                 cols="30" rows="10"
                                 placeholder="Voeg hier de omschrijving toe:"
                                 {...register("description")}
                     />
+                    <div>
+                        {/*<select th:field="*{difficulty}">*/}
+                        {/*<option th:each="difficulty : ${Difficulty}"*/}
+                        {/*th:text="difficulty.name"></option>*/}
+                        {/*</select>*/}
+
+                    </div>
                     <div className="upload">
                         <input type="file" {...register("image", {
                             required:true
@@ -66,18 +76,18 @@ function AddPost () {
                         />
                         <GrUpload/>
                     </div >
-                    {/*<div className="checkboxItem">*/}
-                    {/*    <input  type="checkbox"*/}
-                    {/*            checked={isSeed}*/}
-                    {/*            onChange={(e)=> isSeed?toggleIsSeed(false) && toggleIsSeed(e.target.checked):toggleIsSeed(e.target.checked)}*/}
-                    {/*    />Zaden*/}
-                    {/*</div>*/}
-                    {/*<div className="checkboxItem">*/}
-                    {/*    <input  type="checkbox"*/}
-                    {/*            checked={isEnt}*/}
-                    {/*            onChange={(e)=> isEnt?toggleIsEnt(false) && toggleIsEnt(e.target.checked):toggleIsEnt(e.target.checked)}*/}
-                    {/*    />Stekken*/}
-                    {/*</div>*/}
+                    <div className="checkboxItem">
+                        <input  type="checkbox"
+                                checked={easy}
+                                onChange={(e)=> easy?toggleEasy(false) && toggleEasy(e.target.checked):toggleEasy(e.target.checked)}
+                        />Makkelijk
+                    </div>
+                    <div className="checkboxItem">
+                        <input  type="checkbox"
+                                checked={moderate}
+                                onChange={(e)=> moderate?toggleModerate(false) && toggleModerate(e.target.checked):toggleModerate(e.target.checked)}
+                        />Gemiddeld
+                    </div>
                     <button className="form-btn">Voeg aanbod toe</button>
                 </form>
             </div>

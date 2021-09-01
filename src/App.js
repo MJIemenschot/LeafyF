@@ -15,6 +15,8 @@ import ItemOvervieuw from "./components/ItemOvervieuw";
 import MessageOvervieuw from "./components/MessageOvervieuw";
 import AddPost from "./components/AddPost";
 import PostOvervieuw from "./components/PostOvervieuw";
+import POvervieuw from "./components/POvervieuw";
+import AddProduct from "./components/AddProduct";
 // import Image from "./components/Image";
 
 
@@ -31,19 +33,18 @@ function App() {
           <UserPortal />
 
           <Profile />
+           <AddItem />
           {/*<Switch>*/}
           {/*<Route path='/add-item'>*/}
            <AddPost />
+          {/*<AddProduct />*/}
           {/*</Route>*/}
-          <ItemOvervieuw />
-          <PostOvervieuw />
-          <MessageOvervieuw />
+          {/*<POvervieuw />*/}
 
+          <PostOvervieuw />
+          <ItemOvervieuw />
 
           {/*<ItemsList />*/}
-
-
-
 
           {/*</Switch>*/}
           {/* eslint-disable-next-line react/jsx-no-undef */}
