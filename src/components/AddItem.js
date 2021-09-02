@@ -9,7 +9,7 @@ function AddItem () {
 
 
     const { handleSubmit, formState: { errors }, register } = useForm();
-    const { posts, setPosts} = useState([])
+    //const { items, setItems} = useState([])
     //const [isSeed, toggleIsSeed] = useState(false);
     //const [isEnt, toggleIsEnt] = useState(true);
 
@@ -17,7 +17,7 @@ function AddItem () {
     async function sendInfo (formData) {
 
         try {
-            await axios.post('http://localhost:8080/ap1/v1/items/add', formData)
+            await axios.post('http://localhost:8080/api/v1/items/add', formData)
         } catch (e) {
             console.log(console.error(e))
         }
@@ -29,11 +29,11 @@ function AddItem () {
 
 
         formData.append("description", data.description)
-        formData.append("title", data.name)
+        formData.append("name", data.name)
         // formData.append("isSeed", true)
         // formData.append("isEnt", false)
         // formData.append("isPlant", false)
-        formData.append("file", data.picture[0])
+        formData.append("file", data.file[0])
 
         sendInfo(formData)
     }
@@ -60,7 +60,7 @@ function AddItem () {
                         {...register("description")}
             />
             <div className="upload">
-                <input type="file" {...register("picture", {
+                <input type="file" {...register("file", {
                     required:true
                 })}
                 />
