@@ -34,6 +34,7 @@ const ItemOvervieuw = () => {
                    <h2>item</h2>
                    <h1>{item.name}</h1>
                    <p>{item.description}</p>
+                   <img src={item.toPicture} alt={item.name} width="80px"/>
                    <GrEdit style={{ color:'white', cursor:'pointer'}}/><GrTrash style={{ color:'white', cursor:'pointer'}}/>
                     {/*onClick={() => onDelete(item.id)}*/}
                </div>

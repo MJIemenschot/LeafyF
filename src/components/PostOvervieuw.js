@@ -15,8 +15,8 @@ const PostOvervieuw = () => {
 
     async function fetchData(){
         try{
-            const res = await axios.get("http://localhost:8080/products");
-            console.log("de data van products api",res);
+            const res = await axios.get("http://localhost:8080/posts");
+            console.log("de data van posts api",res);
             const data = res.data;
             setPosts(res.data);
 
@@ -33,7 +33,7 @@ const PostOvervieuw = () => {
         return(
             <div className='container'>
                 <div className='itemInfo'>
-                    <h2>Product</h2>
+                    <h2>Post</h2>
                     <h1>{post.name}</h1>
                     <p>{post.description}</p>
                     <Imago id={post.id}/>
