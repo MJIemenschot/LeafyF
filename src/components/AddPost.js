@@ -17,7 +17,7 @@ function AddPost () {
     async function sendInfo (formData) {
 
         try {
-            await axios.post('http://localhost:8080/product/save', formData)
+            await axios.post('http://localhost:8080/savepost', formData)
         } catch (e) {
             console.log(console.error(e))
         }

@@ -8,7 +8,7 @@ export default function Imago(props) {
     useEffect(()=>{
         async function fetchImag() {
             try {
-                const result = await axios.get(`http://localhost:8080/product/display/${props.id}`, {
+                const result = await axios.get(`http://localhost:8080/post/display/${props.id}`, {
                     responseType: 'blob',
                 });
                 console.log("de result uit imago display", result.config.url)
@@ -25,7 +25,7 @@ export default function Imago(props) {
 
     return (
         <>
-            {blobImag && <img src={blobImag} alt={props.name} />}
+            {blobImag && <img src={blobImag} alt="het plaatje" width="80px"/>}
         </>
     )
 }

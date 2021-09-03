@@ -17,7 +17,7 @@ function AddItem () {
     async function sendInfo (formData) {
 
         try {
-            await axios.post('http://localhost:8080/api/v1/messages/files', formData)
+            await axios.post('http://localhost:8080/api/v1/items/add', formData)
         } catch (e) {
             console.log(console.error(e))
         }
@@ -27,9 +27,9 @@ function AddItem () {
 
     const formSubmit = (data) => {
 
-        console.log("ik gaat in het formuliertje!")
+        console.log("ik ga in het formuliertje!")
         formData.append("description", data.description)
-        formData.append("title", data.title)
+        formData.append("name", data.name)
         // formData.append("isSeed", true)
         // formData.append("isEnt", false)
         // formData.append("isPlant", false)
@@ -41,7 +41,7 @@ function AddItem () {
     return (
         <div className="add-item-container">
             <div className="add-items">
-            <h1>Voeg jouw messageplant toe</h1>
+            <h1>Voeg jouw itemplant toe</h1>
         <form onSubmit={handleSubmit(formSubmit)} className="add-item">
 
             <div className="add-items">
@@ -49,7 +49,7 @@ function AddItem () {
                 <input  type="text"
                         className="add-item-field"
                         placeholder="Voeg hier de plantnaam toe:"
-                        {...register("title", {
+                        {...register("name", {
                             required:true
                         })}
                 />{errors.address && <p className="errorMessage">Het veld is niet ingevuld</p>}

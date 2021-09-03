@@ -34,6 +34,7 @@ function App() {
           {/*<Switch>*/}
           {/*<Route path='/add-item'>*/}
            <AddPost />
+          <AddItem />
           {/*</Route>*/}
           <ItemOvervieuw />
           <PostOvervieuw />
