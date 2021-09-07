@@ -31,7 +31,7 @@ const ItemOvervieuw = () => {
        return(
            <div className='container'>
                <div className='itemInfo'>
-                   <h2>item</h2>
+                   {/*<h2>item</h2>*/}
                    <h1>{item.name}</h1>
                    <p>{item.description}</p>
                    <img src={item.toPicture} alt={item.name} width="80px"/>

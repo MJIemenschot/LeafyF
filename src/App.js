@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import {ItemProvider} from "./context/Itemcontext";
+
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {AuthContext} from "./context/AuthContext";
 import Nav from "./components/Nav";
@@ -12,10 +14,12 @@ import Profile from "./pages/Profile";
 import AddItem from "./components/AddItem";
 import ItemsList from "./components/ItemsList";
 import ItemOvervieuw from "./components/ItemOvervieuw";
-import MessageOvervieuw from "./components/MessageOvervieuw";
+
 import AddPost from "./components/AddPost";
 import PostOvervieuw from "./components/PostOvervieuw";
+import Items from "./components/Items";
 // import Image from "./components/Image";
+
 
 
 
@@ -24,7 +28,7 @@ function App() {
     console.log("wat zijn de authData", authData);
 
   return (
-      // <ItemProvider>
+       <ItemProvider>
       <>
 
         <Nav />
@@ -33,26 +37,20 @@ function App() {
           <Profile />
           {/*<Switch>*/}
           {/*<Route path='/add-item'>*/}
-           <AddPost />
+
           <AddItem />
           {/*</Route>*/}
           <ItemOvervieuw />
-          <PostOvervieuw />
-          <MessageOvervieuw />
-
-
-          {/*<ItemsList />*/}
-
-
-
-
+          {/*<PostOvervieuw />*/}
+          <ItemsList />
+          {/*<Items />*/}
           {/*</Switch>*/}
           {/* eslint-disable-next-line react/jsx-no-undef */}
           <Footer />
+      </>
 
+       </ItemProvider>
 
-       {/*</ItemProvider>*/}
-</>
   );
 }
 

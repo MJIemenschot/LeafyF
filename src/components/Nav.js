@@ -33,18 +33,18 @@ const Nav = () => {
                         </NavLink>
                     </li>
                     <li className='nav-links'>
-                        <NavLink exact to='/zaden-en-bollen'>
-                        zaden en bollen
+                        <NavLink exact to='/makkelijk'>
+                        Makkelijk
                         </NavLink>
                     </li>
                     <li className='nav-links'>
-                        <NavLink exact to='/stekken'>
-                        stekken
+                        <NavLink exact to='/gemiddeld'>
+                        Gemiddeld
                         </NavLink>
                     </li>
                     <li className='nav-links'>
-                        <NavLink exact to='/planten'>
-                        planten
+                        <NavLink exact to='/moeilijk'>
+                        Moeilijk
                         </NavLink>
                     </li>
                     <li className='nav-links'>

@@ -8,10 +8,11 @@ import {GrUpload} from "react-icons/gr";
 function AddItem () {
 
 
-    const { handleSubmit, formState: { errors }, register } = useForm();
+    const { handleSubmit, formState: { errors }, register, reset } = useForm();
     const { posts, setPosts} = useState([])
-    //const [isSeed, toggleIsSeed] = useState(false);
-    //const [isEnt, toggleIsEnt] = useState(true);
+
+    const [result, setResult] = useState("");
+    const onSubmit = (data) => setResult(JSON.stringify(data));
 
 
     async function sendInfo (formData) {
@@ -27,13 +28,11 @@ function AddItem () {
 
     const formSubmit = (data) => {
 
-        console.log("ik ga in het formuliertje!")
         formData.append("description", data.description)
         formData.append("name", data.name)
-        // formData.append("isSeed", true)
-        // formData.append("isEnt", false)
-        // formData.append("isPlant", false)
+        formData.append("difficulty", data.difficulty)
         formData.append("file", data.file[0])
+
 
         sendInfo(formData)
     }
@@ -41,8 +40,8 @@ function AddItem () {
     return (
         <div className="add-item-container">
             <div className="add-items">
-            <h1>Voeg jouw itemplant toe</h1>
-        <form onSubmit={handleSubmit(formSubmit)} className="add-item">
+            <h1>Voeg jouw plant toe</h1>
+        <form onSubmit={handleSubmit(formSubmit)} onReset={reset} className="add-item">
 
             <div className="add-items">
 
@@ -56,28 +55,40 @@ function AddItem () {
             </div>
             <textarea   className="add-item-field"
                         cols="30" rows="10"
-                        placeholder="Voeg hier de omschrijving toe:"
+                        placeholder="Voeg hier de verzorgingshandleiding van jouw plant toe:"
                         {...register("description")}
             />
+            {errors.address && <p className="errorMessage">Vergeet niet de verzorgingshandleiding in te vullen</p>}
+            {/*<select {...register("difficulty")}>*/}
+            {/*    <option value="EASY">Makkelijk</option>*/}
+            {/*    <option value="MODERATE">Gemiddeld</option>*/}
+            {/*    <option value="HARD">Moeilijk</option>*/}
+            {/*</select>*/}
+            <input  type="radio"
+                    id="easy"
+                    value="EASY" {...register("difficulty")}/>
+                <label htmlFor="easy">Makkelijk</label>
+            <input  type="radio"
+                    id="moderate"
+                    value="MODERATE" {...register("difficulty")}/>
+            <label htmlFor="moderate">Gemiddeld</label>
+            <input  type="radio"
+                    id="hard"
+                    value="HARD" {...register("difficulty")}/>
+            <label htmlFor="hard">Moeilijk</label>
+
+
+            <p>{result}</p>
+
             <div className="upload">
                 <input type="file" {...register("file", {
                     required:true
                 })}
                 />
+                {errors.address && <p className="errorMessage">Er ging iets mis met uploaden. Probeer het opnieuw.</p>}
                 <GrUpload/>
             </div >
-            {/*<div className="checkboxItem">*/}
-            {/*    <input  type="checkbox"*/}
-            {/*            checked={isSeed}*/}
-            {/*            onChange={(e)=> isSeed?toggleIsSeed(false) && toggleIsSeed(e.target.checked):toggleIsSeed(e.target.checked)}*/}
-            {/*    />Zaden*/}
-            {/*</div>*/}
-            {/*<div className="checkboxItem">*/}
-            {/*    <input  type="checkbox"*/}
-            {/*            checked={isEnt}*/}
-            {/*            onChange={(e)=> isEnt?toggleIsEnt(false) && toggleIsEnt(e.target.checked):toggleIsEnt(e.target.checked)}*/}
-            {/*    />Stekken*/}
-            {/*</div>*/}
+
             <button className="form-btn">Voeg aanbod toe</button>
         </form>
             </div>

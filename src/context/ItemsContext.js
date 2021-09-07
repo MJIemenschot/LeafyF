@@ -1,17 +1,19 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from "axios";
-import imago from "../assets/img1.jpg";
+import pic from "../assets/img1.jpg";
 
 export const ItemsContext = createContext({});
 
 function ItemsProvider ({children}) {
     const [contents, setContents] = useState([])
-    const [url, setUrl] = useState(imago);
+    // const [imgUrl, setImgUrl] = useState(pic);
+    // const [error, setError] = useState(false);
+    // const [loading, setLoading] = useState(false);
 
     async function fetchData () {
         try {
             const res = await axios.get("http://localhost:8080/api/v1/items")
-            console.log("items van backend", res)
+            console.log("items van backend", res);
             const data = res.data;
             setContents(res.data);
             // const blob = new Blob([result.data.config], {
@@ -37,7 +39,7 @@ function ItemsProvider ({children}) {
     },[])
 
     return (
-        <ItemsContext.Provider value={contents}>
+        <ItemsContext.Provider value={{contents, setContents}}>
             {children}
         </ItemsContext.Provider>
     )
