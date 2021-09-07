@@ -18,6 +18,7 @@ import ItemOvervieuw from "./components/ItemOvervieuw";
 import AddPost from "./components/AddPost";
 import PostOvervieuw from "./components/PostOvervieuw";
 import Items from "./components/Items";
+import ItemsProvider from "./context/ItemsContext";
 // import Image from "./components/Image";
 
 
@@ -28,7 +29,7 @@ function App() {
     console.log("wat zijn de authData", authData);
 
   return (
-       <ItemProvider>
+       <ItemsProvider>
       <>
 
         <Nav />
@@ -40,8 +41,7 @@ function App() {
 
           <AddItem />
           {/*</Route>*/}
-          <ItemOvervieuw />
-          {/*<PostOvervieuw />*/}
+          {/*<ItemOvervieuw />*/}
           <ItemsList />
           {/*<Items />*/}
           {/*</Switch>*/}
@@ -49,7 +49,7 @@ function App() {
           <Footer />
       </>
 
-       </ItemProvider>
+       </ItemsProvider>
 
   );
 }

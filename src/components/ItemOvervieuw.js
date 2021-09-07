@@ -30,11 +30,10 @@ const ItemOvervieuw = () => {
    return items.map((item,index)=>{
        return(
            <div className='container'>
-               <div className='itemInfo'>
-                   {/*<h2>item</h2>*/}
+               <div className='itemInfo' >
                    <h1>{item.name}</h1>
                    <p>{item.description}</p>
-                   <img src={item.toPicture} alt={item.name} width="80px"/>
+                   <img key={item.id} src={item.toPicture} alt={item.name} width="80px" />
                    <GrEdit style={{ color:'white', cursor:'pointer'}}/><GrTrash style={{ color:'white', cursor:'pointer'}}/>
                     {/*onClick={() => onDelete(item.id)}*/}
                </div>

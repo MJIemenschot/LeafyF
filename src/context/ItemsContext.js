@@ -4,7 +4,7 @@ import pic from "../assets/img1.jpg";
 
 export const ItemsContext = createContext({});
 
-function ItemsProvider ({children}) {
+function ItemsProvider (props) {
     const [contents, setContents] = useState([])
     // const [imgUrl, setImgUrl] = useState(pic);
     // const [error, setError] = useState(false);
@@ -39,13 +39,13 @@ function ItemsProvider ({children}) {
     },[])
 
     return (
-        <ItemsContext.Provider value={{contents, setContents}}>
-            {children}
+        <ItemsContext.Provider value={[contents, setContents]}>
+            {props.children}
         </ItemsContext.Provider>
     )
 }
 
-export default ItemsContext;
+export default ItemsProvider;
 // import React, { useState, useEffect, createContext } from "react";
 //
 //
