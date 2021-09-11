@@ -9,24 +9,10 @@ import {Link} from 'react-router-dom';
 
 const ItemsList = () => {
     const[contents, setContents] = useContext(ItemsContext);
-    //const [itemId, setItemId] = useState();
-    // // const [items, setItems] = useContext(ItemsContext);
-    //console.log("De props in itemslist")
-    //
+
     // useEffect(()=>{
     // }, [])
 
-//     return (
-//         <>
-//             <div className='itemInfo'>
-//                <h1>{item.name}</h1>
-//                <p>{item.description}</p>
-//                <GrEdit style={{ color:'white', cursor:'pointer'}}/><GrTrash style={{ color:'white', cursor:'pointer'}}/>
-//                 {/*onClick={() => onDelete(item.id)}*/}
-//            </div>
-//         </>
-//     )
-// }
     return (
 
         <div className='container'>

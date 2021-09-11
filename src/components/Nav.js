@@ -8,6 +8,7 @@ import { IoPerson, IoPersonOutline } from "react-icons/io5";
 import { FaBars, FaTimes, FaRegUser, FaUser, FaHeart, FaHome } from 'react-icons/fa';
 import Searchbar from "./Searchbar";
 import {AuthContext} from "../context/AuthContext";
+import {ItemsContext} from "../context/ItemsContext"
 
 
 const Nav = () => {
@@ -17,6 +18,7 @@ const Nav = () => {
         logout,
          user ,
     } = useContext(AuthContext);
+    const[contents, setContents] = useContext(ItemsContext);
 
     return (
         <nav>

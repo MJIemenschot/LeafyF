@@ -41,7 +41,7 @@ function App() {
 
           <AddItem />
           {/*</Route>*/}
-          {/*<ItemOvervieuw />*/}
+          {/*<PostOvervieuw />*/}
           <ItemsList />
           {/*<Items />*/}
           {/*</Switch>*/}

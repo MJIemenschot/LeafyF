@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import { useForm } from 'react-hook-form';
 import axios from "axios";
-import './ItemAdd.css';
+import './AddItem.css';
 
 import {GrUpload} from "react-icons/gr";
 

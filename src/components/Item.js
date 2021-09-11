@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
 import {useParams} from 'react-router-dom';
-import {ItemContext} from "../context/Itemcontext";
+import {ItemsContext} from "../context/Itemscontext";
 import Container from './reusableComponents/Container';
 
 const Item = () => {
-    const [items] = useContext(ItemContext);
+    const [contents] = useContext(ItemsContext);
 
     return (
         <section>
