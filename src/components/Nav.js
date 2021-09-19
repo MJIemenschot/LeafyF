@@ -20,6 +20,7 @@ const Nav = () => {
     } = useContext(AuthContext);
     const[contents, setContents] = useContext(ItemsContext);
 
+
     return (
         <nav>
             {/*<div className='navbar'>*/}

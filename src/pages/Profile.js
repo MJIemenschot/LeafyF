@@ -2,8 +2,10 @@ import React, {useContext, useEffect, useState} from 'react'
 import {AuthContext} from "../context/AuthContext";
 import {Link} from "react-router-dom";
 import axios from "axios";
+import ItemsList from "../components/ItemsList";
 
 const Profile = () => {
+    //authState: ipv const?
     const  { user } = useContext(AuthContext);
     const [content, setContent] = useState(null);
    // console.log("USER STUFF IN PROFILE:", user);
@@ -23,7 +25,7 @@ const Profile = () => {
                         },
                     }
                 );
-                console.log("WAT IS IN THIS RESPONSE?", response);
+                console.log("WAT IS IN THIS RESPONSE in profile?", response);
                 setContent(response.data);
             } catch (e) {
                 console.log("Helaas het is niet gelukt ", e)
@@ -40,9 +42,12 @@ const Profile = () => {
             <section>
                 <h2>Gegevens</h2>
                 <p>
-                    Hallo <strong>{user && user.username}</strong>
+                    Hallo <strong>
+                    {/*TODO een functie om het mailadres eraf te halen*/}
+                    {user && user.username}</strong>
                 </p><p>klik <Link id="add-link" to="/add-item">hier</Link> om je aanbod toe te voegen.</p>
             <p>Mijn aanbiedingen (bewerk)</p>//todo
+                <ItemsList />
             </section>
             {/*<section>*/}
             {/*    <h2>{content?.title}</h2>*/}

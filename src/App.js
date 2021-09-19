@@ -7,11 +7,12 @@ import {AuthContext} from "./context/AuthContext";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import './App.css';
-import ItemAdd from "./components/ItemAdd";
+ import ItemAdd from "./components/ItemAdd";
 
 import UserPortal from "./pages/UserPortal";
 import Profile from "./pages/Profile";
 import AddItem from "./components/AddItem";
+
 import ItemsList from "./components/ItemsList";
 import ItemOvervieuw from "./components/ItemOvervieuw";
 
@@ -19,6 +20,11 @@ import AddPost from "./components/AddPost";
 import PostOvervieuw from "./components/PostOvervieuw";
 import Items from "./components/Items";
 import ItemsProvider from "./context/ItemsContext";
+import ItemDetails from "./components/ItemDetails";
+import Item from "./components/Item";
+import ItemUpdate from "./components/reusableComponents/ItemUpdate";
+import About from "./pages/About";
+//import Item from "./components/Item";
 // import Image from "./components/Image";
 
 
@@ -33,16 +39,16 @@ function App() {
       <>
 
         <Nav />
-          <UserPortal />
-
-          <Profile />
+          <Route exact path='/' component={ItemsList}/>
+          <Route exact path='/user-portal' component={UserPortal}/>
+          <Route exact path='/profile' component={Profile}/>
           {/*<Switch>*/}
-          {/*<Route path='/add-item'>*/}
+          <Route path='/add-item' component={AddItem}/>
 
-          <AddItem />
-          {/*</Route>*/}
-          {/*<PostOvervieuw />*/}
-          <ItemsList />
+          <Route exact path='/item/:id' component={Item}/>
+          <Route exact path='/update-item' component={ItemUpdate}/>
+          <Route exact path='/over-leafy' component={About}/>
+
           {/*<Items />*/}
           {/*</Switch>*/}
           {/* eslint-disable-next-line react/jsx-no-undef */}

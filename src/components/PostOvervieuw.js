@@ -5,9 +5,7 @@ import Logo from "./Logo";
 import {FaBars, FaHome, FaTimes } from "react-icons/fa";
 import {IoPersonOutline} from "react-icons/io5";
 import axios from "axios";
-
 import { GrNext, GrClose, GrEdit, GrTrash  } from "react-icons/gr";
-
 import Imago from "./Imago";
 
 const PostOvervieuw = () => {

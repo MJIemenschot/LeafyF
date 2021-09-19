@@ -5,15 +5,17 @@ import pic from "../assets/img1.jpg";
 export const ItemsContext = createContext({});
 
 function ItemsProvider (props) {
+
     const [contents, setContents] = useState([])
+
     // const [imgUrl, setImgUrl] = useState(pic);
-    // const [error, setError] = useState(false);
-    // const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     async function fetchData () {
         try {
             const res = await axios.get("http://localhost:8080/api/v1/items")
-            console.log("items van backend", res);
+            console.log("items van backend vanuit Context", res);
             const data = res.data;
             setContents(res.data);
             // const blob = new Blob([result.data.config], {
@@ -27,16 +29,32 @@ function ItemsProvider (props) {
         }
     }
 
-    console.log("wat zit hierin?", contents)
-
-    // const data = {
-    //     items.items,
-    //     toPicture: url
-    // }
-
     useEffect(()=>{
         fetchData()
     },[])
+
+    // async function fetchDifficulty () {
+    //     try {
+    //         const resd = await axios.get("http://localhost:8080/api/v1/items/byD/{difficulty}")
+    //         console.log("items van backend", resd);
+    //         const data = resd.data;
+    //         setByDifficulty(resd.data);
+    //         // const blob = new Blob([result.data.config], {
+    //         //     type: 'image/jpg',
+    //         // });
+    //         // const objectUrl = URL.createObjectURL(blob);
+    //         // setUrl(objectUrl);
+    //
+    //     } catch (e) {
+    //         console.log("het is niet gelukt, error: " + e)
+    //     }
+    // }
+    //
+    // useEffect(()=>{
+    //     fetchDifficulty()
+    // },[])
+
+
 
     return (
         <ItemsContext.Provider value={[contents, setContents]}>

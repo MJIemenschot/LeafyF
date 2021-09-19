@@ -6,21 +6,24 @@ import './AddItem.css';
 import {GrUpload} from "react-icons/gr";
 
 function AddItem () {
-
-
     const { handleSubmit, formState: { errors }, register, reset } = useForm();
-    const { posts, setPosts} = useState([])
-
+    const [loading, toggleLoading] = useState(false);
+    const [error, setError] = useState('');
+    const [Success, toggleSuccess] = useState(false);
     const [result, setResult] = useState("");
     const onSubmit = (data) => setResult(JSON.stringify(data));
 
 
     async function sendInfo (formData) {
+        setError('');
+        toggleLoading(true);
 
         try {
             await axios.post('http://localhost:8080/api/v1/items/add', formData)
+            toggleSuccess(true);
         } catch (e) {
             console.log(console.error(e))
+            setError(`Het toevoegen is mislukt. Probeer het opnieuw (${e.message})`);
         }
     }
 
@@ -43,11 +46,8 @@ function AddItem () {
     return (
         <div className="add-item-container">
             <div className="add-items">
-            <h1>Voeg jouw plant toe</h1>
+            <h1>Voeg een plant toe</h1>
         <form onSubmit={handleSubmit(formSubmit)} onReset={reset} className="add-item">
-
-
-
                 <input  type="text"
                         className="add-item-field"
                         placeholder="Voeg hier de plantnaam toe:"
@@ -61,7 +61,7 @@ function AddItem () {
                         placeholder="Voeg hier een beschrijving en/of verzorgingshandleiding van jouw plant toe:"
                         {...register("description")}
             />
-            {errors.address && <p className="errorMessage">Vergeet niet de verzorgingshandleiding in te vullen</p>}
+            {errors.address && <p className="errorMessage">Vergeet niet een verzorgingshandleiding of beschrijving in te vullen</p>}
             {/*<select {...register("difficulty")}>*/}
             {/*    <option value="EASY">Makkelijk</option>*/}
             {/*    <option value="MODERATE">Gemiddeld</option>*/}
@@ -69,15 +69,18 @@ function AddItem () {
             {/*</select>*/}
             <div className="selectField">
                 <h3>Verzorging</h3>
-                <input  type="checkbox"
+                <input  className="choose"
+                        type="radio"
                         id="easy"
                         value="EASY" {...register("difficulty")}/>
                 <label htmlFor="easy">Makkelijk</label>
-                <input  type="checkbox"
+                <input  className="choose"
+                        type="radio"
                         id="moderate"
                         value="MODERATE" {...register("difficulty")}/>
                 <label htmlFor="moderate">Gemiddeld</label>
-                <input  type="checkbox"
+                <input  className="choose"
+                        type="radio"
                         id="hard"
                         value="HARD" {...register("difficulty")}/>
                 <label htmlFor="hard">Moeilijk</label>
@@ -86,61 +89,75 @@ function AddItem () {
 
             <div className="selectField">
                 <h3>Standplaats</h3>
-                <input  type="checkbox"
+                <input  className="choose"
+                        type="radio"
                         id="directsun"
                         value="DIRECTSUN" {...register("light")}/>
                 <label htmlFor="directsun">Direct Zonlicht</label>
-                <input  type="checkbox"
+                <input  className="choose"
+                        type="radio"
                         id="halfsunny"
                         value="HALFSUNNY" {...register("light")}/>
                 <label htmlFor="halfsunny">Half zonnig</label>
-                <input  type="checkbox"
+                <input  className="choose"
+                        type="radio"
                         id="sunny"
                         value="SUNNY" {...register("light")}/>
                 <label htmlFor="sunny">Half zonnig</label>
-                <input  type="checkbox"
+                <input  className="choose"
+                        type="radio"
                         id="shadow"
                         value="SHADOW" {...register("light")}/>
                 <label htmlFor="shadow">Schaduw</label>
             </div>
             <div className="selectField">
                 <h3>Waterbehoefte</h3>
-                <input  type="radio"
+                <input  className="choose"
+                        type="radio"
                         id="day"
                         value="DAY" {...register("watering")}/>
                 <label htmlFor="day">Iedere dag</label>
-                <input  type="radio"
+                <input  className="choose"
+                        type="radio"
                         id="twodays"
                         value="TWODAYS" {...register("watering")}/>
                 <label htmlFor="twodays">Om de dag</label>
-                <input  type="radio"
-                        id="threedays"
-                        value="THREEDAYS" {...register("watering")}/>
+                <input
+                    className="choose"
+                    type="radio"
+                    id="threedays"
+                    value="THREEDAYS" {...register("watering")}/>
                 <label htmlFor="threedays">Eens in de 3 dagen</label>
-                <input  type="radio"
+                <input  className="choose"
+                        type="radio"
                         id="week"
                         value="WEEK" {...register("watering")}/>
                 <label htmlFor="week">Elke week</label>
-                <input  type="radio"
+                <input  className="choose"
+                        type="radio"
                         id="month"
                         value="MONTH" {...register("watering")}/>
                 <label htmlFor="month">Elke maand</label>
             </div>
             <div className="selectField">
                 <h3>Bijmesten</h3>
-                <input  type="radio"
+                <input  className="choose"
+                        type="radio"
                         id="week"
                         value="WEEK" {...register("food")}/>
                 <label htmlFor="week">Iedere week</label>
-                <input  type="radio"
+                <input  className="choose"
+                        type="radio"
                         id="twoweeks"
                         value="TWOWEEKS" {...register("food")}/>
                 <label htmlFor="twoweeks">Om de week</label>
-                <input  type="radio"
+                <input  className="choose"
+                        type="radio"
                         id="month"
                         value="MONTH" {...register("food")}/>
                 <label htmlFor="month">Iedere maand</label>
-                <input  type="radio"
+                <input  className="choose"
+                        type="radio"
                         id="never_special"
                         value="NEVER_SPECIAL" {...register("food")}/>
                 <label htmlFor="never_special">Nooit/speciaal</label>
@@ -155,8 +172,9 @@ function AddItem () {
                 {errors.address && <p className="errorMessage">Er ging iets mis met uploaden. Probeer het opnieuw.</p>}
                 <GrUpload/>
             </div >
-
-            <button className="form-btn">Voeg aanbod toe</button>
+            <button className="form-btn">Voeg de plant toe</button>
+            {Success === true && <p>De plant is succesvol toegevoegd!</p> }
+            {error && <p className="error-message">{error}</p>}
         </form>
             </div>
         </div>
