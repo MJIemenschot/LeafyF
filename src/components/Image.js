@@ -9,7 +9,7 @@ export default function Image(props) {
    useEffect(()=>{
         async function fetchImage() {
             try {
-                const result = await axios.get(`http://localhost:8080/api/v1/messages/files.${props}.fileName`, {
+                const result = await axios.get(`http://localhost:8080/api/v1/items/${props}.fileName`, {
                     responseType: 'blob',
                 });
                 console.log("de result", result)

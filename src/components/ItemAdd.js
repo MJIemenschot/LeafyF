@@ -2,7 +2,7 @@ import React, {useState, useContext} from "react";
 
 import { GrUpload } from "react-icons/gr";
 import {ItemContext} from "../context/Itemcontext";
-import './ItemAdd.css';
+import './AddItem.css';
 
 const ItemAdd = () => {
     const [name, setName] = useState('');

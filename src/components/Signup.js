@@ -18,7 +18,7 @@ const Signup = () => {
         setError('');
         toggleLoading(true);
 
-        console.log(data);
+        console.log("dit gaat in user registratie",data);
 
         try {
             const result = await axios.post('http://localhost:8080/api/v1/users', {
@@ -33,7 +33,7 @@ const Signup = () => {
                 ]
             });
             toggleRegisterSuccess(true);
-
+            {/* hier kan ik in het history push path kan ik het doorverwijzen naar het inlogpagina als ik het registreerformulier wil laten verdwijnen*/}
             setTimeout(() => {
                 history.push('/');
             }, 2000);
@@ -53,7 +53,7 @@ const Signup = () => {
         <div className="form-content-right">
             <form className="form" onSubmit={handleSubmit(sendInfo)}>
                 <h1>
-                    Join the club!
+                    Word lid van de club!
                 </h1>
                 <div className="form-inputs">
                     <label className="form-label" htmlFor="e-mail">e-mail:
@@ -95,6 +95,8 @@ const Signup = () => {
                 <button disable={loading} type="submit" className="form-input-btn"
                         disabled={loading}>{loading ? "Versturen.." : "Registreer"}</button>
                 {registerSuccess === true && <p>Registeren is gelukt! Je kan nu inloggen!</p>}
+                {/*{loading && <p>Een moment geduld aub!</p>}*/}
+
                 {error && <p className="error-message">{error}</p>}
 
             </form>

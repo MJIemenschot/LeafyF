@@ -14,13 +14,13 @@ const Signin = () => {
     const {login} = useContext(AuthContext);
 
     async function sendInfo(data) {
-        console.log(data);
         try {
+            console.log("data uit formulier?",data);
             const result = await axios.post('http://localhost:8080/api/v1/authenticate', data);
-            console.log(result)
+            console.log("result in signin formulier", result)
             login(result.data.jwt)
         } catch (e) {
-            console.error(e);
+            console.error("Foutje bedankt",e);
         }
     }
 

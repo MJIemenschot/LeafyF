@@ -13,8 +13,6 @@ function AuthContextProvider({ children }) {
         status: 'pending',
     })
 
-    // const history = useHistory();
-
     function isTokenValid(jwtToken) {
         const decodedToken = jwt_decode(jwtToken);
         const expirationUnix = decodedToken.exp;
@@ -35,6 +33,7 @@ function AuthContextProvider({ children }) {
                 user: null,
                 status: 'done'
             })
+            //history.push("/");
         }
     }, []);
 
@@ -58,12 +57,12 @@ function AuthContextProvider({ children }) {
                 user: {
                     username: result.data.username,
                     email: result.data.email,
-                    // sla hier nog rollen op
+                    // sla hier nog rollen op bijv de data waar toegang toe is
                 },
                 status: 'done',
             });
 
-            // history.push('/profile');
+            history.push('/profile');
         } catch(e) {
             console.error(e);
         }
@@ -71,9 +70,9 @@ function AuthContextProvider({ children }) {
 
     function logout() {
         console.log('logout!');
-        localStorage.removeItem("token");
-        setAuthState({ user: null, status: "done" });
-        history.push("/");
+        localStorage.removeItem('token');
+        setAuthState({ user: null, status: 'done' });
+        history.push('/');
     }
 
     const data = {

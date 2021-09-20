@@ -1,21 +1,32 @@
 import React, { useContext } from 'react';
 import {ItemProvider} from "./context/Itemcontext";
+
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {AuthContext} from "./context/AuthContext";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import './App.css';
-import ItemAdd from "./components/ItemAdd";
+ import ItemAdd from "./components/ItemAdd";
 
 import UserPortal from "./pages/UserPortal";
 import Profile from "./pages/Profile";
 import AddItem from "./components/AddItem";
+
 import ItemsList from "./components/ItemsList";
 import ItemOvervieuw from "./components/ItemOvervieuw";
-import MessageOvervieuw from "./components/MessageOvervieuw";
+
 import AddPost from "./components/AddPost";
 import PostOvervieuw from "./components/PostOvervieuw";
+import Items from "./components/Items";
+import ItemsProvider from "./context/ItemsContext";
+import ItemDetails from "./components/ItemDetails";
+import Item from "./components/Item";
+import ItemUpdate from "./components/reusableComponents/ItemUpdate";
+import About from "./pages/About";
+//import Item from "./components/Item";
 // import Image from "./components/Image";
+
 
 
 
@@ -24,35 +35,28 @@ function App() {
     console.log("wat zijn de authData", authData);
 
   return (
-      // <ItemProvider>
+       <ItemsProvider>
       <>
 
         <Nav />
-          <UserPortal />
-
-          <Profile />
+          <Route exact path='/' component={ItemsList}/>
+          <Route exact path='/user-portal' component={UserPortal}/>
+          <Route exact path='/profile' component={Profile}/>
           {/*<Switch>*/}
-          {/*<Route path='/add-item'>*/}
-           <AddPost />
-          <AddItem />
-          {/*</Route>*/}
-          <ItemOvervieuw />
-          <PostOvervieuw />
-          <MessageOvervieuw />
+          <Route path='/add-item' component={AddItem}/>
 
+          <Route exact path='/item/:id' component={Item}/>
+          <Route exact path='/update-item' component={ItemUpdate}/>
+          <Route exact path='/over-leafy' component={About}/>
 
-          {/*<ItemsList />*/}
-
-
-
-
+          {/*<Items />*/}
           {/*</Switch>*/}
           {/* eslint-disable-next-line react/jsx-no-undef */}
           <Footer />
+      </>
 
+       </ItemsProvider>
 
-       {/*</ItemProvider>*/}
-</>
   );
 }
 

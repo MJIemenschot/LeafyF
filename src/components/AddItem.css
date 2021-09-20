@@ -7,22 +7,25 @@
     padding: 10px 0px 10px 0px;
 }
 .add-items{
-    width:40%;
+    width:60%;
     text-align: center;
     background-color: #eeeeee;
 }
-
 
 .add-item{
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 5px;
 }
 .add-item-field{
-    width: 80%;
+    min-width: 80%;
     padding: 10px;
-    margin: 10px 20px;
+    margin: 10px;
     border-bottom: lightgray 1px solid;
+}
+.choose{
+    margin-left: 15px;
 }
 .upload {
     width: 80%;
@@ -47,9 +50,11 @@ fieldset.categories {
     margin-top: 10px;
 }
 @media (max-width: 754px) {
-    .add-items {
-
-        width:80%;
+    /*.add-items {*/
+    /*}*/
+    .itemInfo {
+        width:90%;
+        margin: 10px auto;
     }
     /*.form-content-right {*/
     /*    width: 100%;*/

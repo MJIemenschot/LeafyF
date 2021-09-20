@@ -19,6 +19,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
   font-family: "Poppins", sans-serif;
 }
 
+h1 h2 h3 h4 h5{
+  margin-top: 10px;
+}
+
 /* Loader */
 
 .loader {
@@ -84,6 +88,9 @@ button {
 #root{
   background-color: lightgray;
 }
+.page-header{
+  text-align: center;
+}
 /* Container */
 
 .container {
@@ -96,7 +103,12 @@ button {
   display:flex;
   flex-direction: row;
   justify-content: center;
-
+}
+.content{
+  width: 70%;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #eeeeee;
 }
 
 /* Nav Styles */
@@ -243,7 +255,15 @@ form .formContainer label {
   height: 280px;
 }*/
 /*eigen stukje*/
+.item-container{
+  width:90%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+
+}
 .itemInfo{
+  width: 250px;
   background-color: white;
   margin: 10px;
   padding:10px;
@@ -298,7 +318,7 @@ form .formContainer label {
   margin: 18px 0 0 0;
 }
 
-/* Full Recipe Styles */
+/* Full PLANT Styles */
 
 .fullItem {
   width: 100%;

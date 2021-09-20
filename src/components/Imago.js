@@ -12,7 +12,7 @@ export default function Imago(props) {
                     responseType: 'blob',
                 });
                 console.log("de result uit imago display", result.config.url)
-                // const imageUrl = result;
+
                  setBlobImag(result.config.url);
                 console.log("controle uit setBlobImag",blobImag)
             } catch (e) {
