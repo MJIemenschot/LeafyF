@@ -271,8 +271,11 @@ form .formContainer label {
   background-color: white;
   margin: 10px;
   padding:10px;
-/**/
-
+}
+.care {
+  background-color: lightgray;
+  padding: 5px;
+  margin: 5px 0px 5px 0px;
 }
 /*.item .itemInfo {*/
 /*  background: #202342;*/
