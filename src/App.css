@@ -81,7 +81,7 @@ button {
   padding: 10px 0;
   color: #fff;
   background: darkseagreen;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 1px;
   cursor: pointer;
 }
@@ -89,6 +89,10 @@ button {
   background-color: lightgray;
 }
 .page-header{
+  text-align: center;
+  color: #00828e;
+}
+.page-text{
   text-align: center;
 }
 /* Container */
@@ -270,31 +274,31 @@ form .formContainer label {
 /**/
 
 }
-.item .itemInfo {
-  background: #202342;
-  padding: 24px 34px;
-}
+/*.item .itemInfo {*/
+/*  background: #202342;*/
+/*  padding: 24px 34px;*/
+/*}*/
 
-.item .itemInfo p {
-  color: #fafafa;
-}
+/*.item .itemInfo p {*/
+/*  color: #fafafa;*/
+/*}*/
 
-.item .itemInfo p:last-of-type {
-  margin: 6px 0;
-}
+/*.item .itemInfo p:last-of-type {*/
+/*  margin: 6px 0;*/
+/*}*/
 
-.Item .itemInfo a {
-  display: inline-block;
-  margin: 4px 0 0 0;
-  padding: 8px;
-  border: none;
-  outline: none;
-  color: #fff;
-  background: #353b80;
-  font-weight: 600;
-  letter-spacing: 1px;
-  cursor: pointer;
-}
+/*.Item .itemInfo a {*/
+/*  display: inline-block;*/
+/*  margin: 4px 0 0 0;*/
+/*  padding: 8px;*/
+/*  border: none;*/
+/*  outline: none;*/
+/*  color: #fff;*/
+/*  background: #353b80;*/
+/*  font-weight: 600;*/
+/*  letter-spacing: 1px;*/
+/*  cursor: pointer;*/
+/*}*/
 
 /* Pagination Styles */
 
@@ -388,6 +392,9 @@ form .formContainer label {
 #footer{
   height: 150px;
   background-color: #00828e;
+  color: #eeeeee;
+  text-align: center;
+  margin-top: auto;
 }
 
 /* Media Queries */

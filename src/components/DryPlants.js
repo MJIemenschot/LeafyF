@@ -9,32 +9,33 @@ import axios from "axios";
 import { GrNext, GrClose, GrEdit, GrTrash  } from "react-icons/gr";
 import Button from "./reusableComponents/Button";
 
-const ItemOvervieuw = () => {
-    const [items, setItems] = useState([])
+const ShadowPlants = () => {
+    const [dry, setDry] = useState([])
 
-    async function fetchData(){
+    async function fetchEasy(){
         try{
-            const res = await axios.get("http://localhost:8080/api/v1/items");
-            console.log("de data van items api",res);
+            const res = await axios.get("http://localhost:8080/api/v1/items/byW/MONTH");
+            console.log("de data van byD easy api",res);
             const data = res.data;
-            setItems(res.data);
+            setDry(res.data);
 
         } catch (e) {
-            console.error("Er zijn helaas geen items gevonden, error: " + e)
+            console.error("Er zijn helaas geen planten die nauwelijks water nodig hebben gevonden gevonden, error: " + e)
         }
 
     }
     useEffect(()=>{
-        fetchData()
+        fetchEasy()
     },[])
 
     return (
         <>
-            <h1 className='page-header'>Planten</h1>
+            <h1 className='page-header'>Vergeet deze</h1>
+            <p className='page-text'>Deze planten hoef je nauwelijks water te geven</p>
 
             <div className='item-container'>
 
-                {items.map(item =>{
+                {dry.map(item =>{
                     return (
                         //<div style={{background: 'url({item.toPicture}) no repeat center/cover'}} className='itemBg'>
                         <div key ={item.id} className='itemInfo'>
@@ -87,4 +88,4 @@ const ItemOvervieuw = () => {
 
     );
 };
-export default ItemOvervieuw
+export default ShadowPlants

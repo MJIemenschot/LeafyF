@@ -7,12 +7,16 @@ export const ItemsContext = createContext({});
 function ItemsProvider (props) {
 
     const [contents, setContents] = useState([])
+    const [deleted, setDeleted] = useState([])
+    const [update, setUpdate] = useState([])
+    const [difficulty, setDifficulty] = useState([])
 
     // const [imgUrl, setImgUrl] = useState(pic);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
 
     async function fetchData () {
+        setLoading(true);
         try {
             const res = await axios.get("http://localhost:8080/api/v1/items")
             console.log("items van backend vanuit Context", res);
@@ -27,34 +31,40 @@ function ItemsProvider (props) {
         } catch (e) {
             console.log("het is niet gelukt, error: " + e)
         }
+        setLoading(false);
     }
 
     useEffect(()=>{
         fetchData()
     },[])
 
-    // async function fetchDifficulty () {
-    //     try {
-    //         const resd = await axios.get("http://localhost:8080/api/v1/items/byD/{difficulty}")
-    //         console.log("items van backend", resd);
-    //         const data = resd.data;
-    //         setByDifficulty(resd.data);
-    //         // const blob = new Blob([result.data.config], {
-    //         //     type: 'image/jpg',
-    //         // });
-    //         // const objectUrl = URL.createObjectURL(blob);
-    //         // setUrl(objectUrl);
+
+    // useEffect(()=>{
     //
-    //     } catch (e) {
+    //     async function deleteIt  (id) {
+    //     try{
+    //         await axios.delete(`http://localhost:8080/api/v1/items/${id}`)
+    //         setDeleted(contents.filter((item)=>item.id !==id));
+    //         console.log('id in deleteit in context',id)
+    //     }catch (e) {
     //         console.log("het is niet gelukt, error: " + e)
     //     }
+    //
     // }
     //
-    // useEffect(()=>{
-    //     fetchDifficulty()
     // },[])
 
 
+    // function deleteItemHandler(itemId){
+    //     setDeleted(prevItems =>{
+    //         return prevItems.filter(item => item.id !== item.id)
+    //     });
+    // }
+    function updateItemHandler(itemId){
+        setUpdate(prevItems =>{
+            return prevItems.filter(item => item.id !== item.id)
+        });
+    }
 
     return (
         <ItemsContext.Provider value={[contents, setContents]}>

@@ -41,13 +41,13 @@ const Nav = () => {
                         </NavLink>
                     </li>
                     <li className='nav-links'>
-                        <NavLink exact to='/gemiddeld'>
-                        Gemiddeld
+                        <NavLink exact to='/shadow'>
+                        Schaduw
                         </NavLink>
                     </li>
                     <li className='nav-links'>
-                        <NavLink exact to='/moeilijk'>
-                        Moeilijk
+                        <NavLink exact to='/vergeet-deze'>
+                        Vergeet deze..
                         </NavLink>
                     </li>
                     <li className='nav-links'>

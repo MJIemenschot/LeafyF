@@ -15,7 +15,7 @@ function ItemDelete (props) {
     const itemId = props.id;
 
 
-    useEffect(() => {
+    useEffect((itemId) => {
         async function deleteItem() {
             console.log("Hebben we hier een itemId in component deleteItem?",itemId)
             try {

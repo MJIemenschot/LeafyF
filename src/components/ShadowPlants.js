@@ -9,32 +9,33 @@ import axios from "axios";
 import { GrNext, GrClose, GrEdit, GrTrash  } from "react-icons/gr";
 import Button from "./reusableComponents/Button";
 
-const ItemOvervieuw = () => {
-    const [items, setItems] = useState([])
+const ShadowPlants = () => {
+    const [shadow, setShadow] = useState([])
 
-    async function fetchData(){
+    async function fetchEasy(){
         try{
-            const res = await axios.get("http://localhost:8080/api/v1/items");
-            console.log("de data van items api",res);
+            const res = await axios.get("http://localhost:8080/api/v1/items/byL/SHADOW");
+            console.log("de data van byD easy api",res);
             const data = res.data;
-            setItems(res.data);
+            setShadow(res.data);
 
         } catch (e) {
-            console.error("Er zijn helaas geen items gevonden, error: " + e)
+            console.error("Er zijn helaas geen planten gevonden gevonden die je in het donker kan zetten, error: " + e)
         }
 
     }
     useEffect(()=>{
-        fetchData()
+        fetchEasy()
     },[])
 
     return (
         <>
-            <h1 className='page-header'>Planten</h1>
+            <h1 className='page-header'>Schaduw Planten</h1>
+            <p className='page-text'>Deze planten kunnen op donkere plakken staan. Heb je een lege hoek in je kamer maar er komt niet zoveel daglicht? Er zijn planten die niet veel licht nodig hebben.</p>
 
             <div className='item-container'>
 
-                {items.map(item =>{
+                {shadow.map(item =>{
                     return (
                         //<div style={{background: 'url({item.toPicture}) no repeat center/cover'}} className='itemBg'>
                         <div key ={item.id} className='itemInfo'>
@@ -87,4 +88,4 @@ const ItemOvervieuw = () => {
 
     );
 };
-export default ItemOvervieuw
+export default ShadowPlants

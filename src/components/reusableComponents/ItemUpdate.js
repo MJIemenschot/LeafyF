@@ -33,18 +33,16 @@ function ItemUpdate () {
     },[]);
 
 
-
-
     async function sendInfo (formData) {
         setError('');
         toggleLoading(true);
 
         try {
-            await axios.put('http://localhost:8080/api/v1/items/', formData)
+            await axios.put('http://localhost:8080/api/v1/items/update/sjaak', formData)
             toggleSuccess(true);
         } catch (e) {
             console.log(console.error(e))
-            setError(`Het toevoegen is mislukt. Probeer het opnieuw (${e.message})`);
+            setError(`Het updaten is mislukt. Probeer het opnieuw (${e.message})`);
         }
     }
 
@@ -83,11 +81,7 @@ function ItemUpdate () {
                                 {...register("description")}
                     />
                     {errors.address && <p className="errorMessage">Vergeet niet een verzorgingshandleiding of beschrijving in te vullen</p>}
-                    {/*<select {...register("difficulty")}>*/}
-                    {/*    <option value="EASY">Makkelijk</option>*/}
-                    {/*    <option value="MODERATE">Gemiddeld</option>*/}
-                    {/*    <option value="HARD">Moeilijk</option>*/}
-                    {/*</select>*/}
+
                     <div className="selectField">
                         <h3>Verzorging</h3>
                         <input  className="choose"
