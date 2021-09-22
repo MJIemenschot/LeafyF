@@ -8,6 +8,8 @@ import axios from "axios";
 
 import { GrNext, GrClose, GrEdit, GrTrash  } from "react-icons/gr";
 import Button from "./reusableComponents/Button";
+import ItemDelete from "./reusableComponents/ItemDelete";
+import ItemUpdate from "./reusableComponents/ItemUpdate";
 
 const ItemOvervieuw = () => {
     const [items, setItems] = useState([])
@@ -28,6 +30,11 @@ const ItemOvervieuw = () => {
         fetchData()
     },[])
 
+    // function selectItem(){
+    //     console.log("selectItem called", [items.id -1])
+    //     let post=[items.id-1];
+    // }
+
     return (
         <>
             <h1 className='page-header'>Planten</h1>
@@ -46,32 +53,38 @@ const ItemOvervieuw = () => {
                             <p>standplaats: {item.light}</p>
                             <p>bijmesten: {item.food}</p>
                             <div className='tools'>
-                                <div className='tools'>
-                                    {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
-                                    (<Button
-                                    type="submit"
-                                    buttonTitle={<GrTrash/>}
-                                    classNameButton="btn delete-post"
-                                />)
-                                    {/*}*/}
-                                    {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
-                                    (<Button
-                                    type="submit"
-                                    buttonTitle={<GrEdit/>}
-                                    classNameButton="btn edit-post"
-                                />)
-                                    {/*}*/}
-                                    <Button
-                                        type="submit"
-                                        buttonTitle="Details"
-                                        classNameButton="btn to-post"
-                                    />
-                                </div>
+                                {/*<div className='tools'>*/}
+                                {/*    /!*{user && user.authority === "ADMIN" && isTokenValid() &&*!/*/}
+                                {/*    (<Button*/}
+                                {/*    type="submit"*/}
+                                {/*    buttonTitle={<GrTrash/>}*/}
+                                {/*    classNameButton="btn delete-post"*/}
+                                {/*/>)*/}
+                                {/*    /!*}*!/*/}
+                                {/*    /!*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*!/*/}
+                                {/*    (<Button*/}
+                                {/*    type="submit"*/}
+                                {/*    buttonTitle={<GrEdit/>}*/}
+                                {/*    classNameButton="btn edit-post"*/}
+                                {/*/>)*/}
+                                {/*    /!*}*!/*/}
+                                {/*    <Button*/}
+                                {/*        type="submit"*/}
+                                {/*        buttonTitle="Details"*/}
+                                {/*        classNameButton="btn to-post"*/}
+                                {/*    />*/}
+                                {/*</div>*/}
+                                <ItemDelete
+                                    id ={item.id}
+                                />
+                                <ItemUpdate
+                                    id={item.id}
+                                />
                                 {/*<GrEdit style={{ color:'white', cursor:'pointer'}}/>*/}
                                 {/*/!*<ItemDelete id={item.id} />*!/*/}
                                 {/*/!*<button onClick={() => delete(item.id)}>Delete</button>*!/*/}
                                 {/*<button*/}
-                                {/*     onClick={() => this.editItem(item.id)}*/}
+                                {/*     onClick={selectItem}*/}
                                 {/*>Bewerk</button>*/}
                                 {/*/!*<button onClick={()=> history.push(`/item/item.id`)}></button>*!/*/}
                                 {/*<Link  to='/item/:id}'>Details</Link>*/}

@@ -7,12 +7,14 @@ import {GrEdit, GrUpload} from "react-icons/gr";
 import {ItemsContext} from "../../context/ItemsContext";
 
 
-function ItemUpdate () {
+function ItemUpdate (props) {
+    console.log("props in update", props.id)
+    const itemId = props.id;
 
     const { handleSubmit, formState: { errors }, register, reset } = useForm();
-    const[contents] = useContext(ItemsContext);
+    const {contents} = useContext(ItemsContext);
     console.log('contents in itemUpdate',contents);
-    const itemId = contents;
+
     const [currentItem,setCurrentItem ] = useState([])
      const [loading, toggleLoading] = useState(false);
      const [error, setError] = useState('');
@@ -21,9 +23,10 @@ function ItemUpdate () {
     const onSubmit = (data) => setResult(JSON.stringify(data));
 
     useEffect(()=>{
-        async function getDetails(){
+        async function getCurrent(ItemId){
             try{
-              const res =  await axios.get(`http://localhost:8080/api/v1/items/${itemId}`)
+              const res =  await axios.get(`http://localhost:8080/api/v1/items/${ItemId}`)
+                console.log("res from getCurrent",res)
             } catch (e){
                 console.log(console.error(e))
                 setError(`Het ophalen is mislukt. probeer het opnieuw(${e.message}`);
@@ -33,12 +36,13 @@ function ItemUpdate () {
     },[]);
 
 
-    async function sendInfo (formData) {
+    async function updateIt (contents) {
         setError('');
         toggleLoading(true);
 
         try {
-            await axios.put('http://localhost:8080/api/v1/items/update/sjaak', formData)
+            const res = await axios.put('http://localhost:8080/api/v1/items/update/sjaak', contents, contents)
+            console.log('res in update',res)
             toggleSuccess(true);
         } catch (e) {
             console.log(console.error(e))
@@ -49,6 +53,7 @@ function ItemUpdate () {
     const formData = new FormData();
 
     const formSubmit = (data) => {
+        formData.append("id", data.id)
 
         formData.append("description", data.description)
         formData.append("name", data.name)
@@ -59,7 +64,7 @@ function ItemUpdate () {
         formData.append("file", data.file[0])
 
 
-        sendInfo(formData)
+        updateIt(formData)
     }
 
     return (
@@ -69,15 +74,22 @@ function ItemUpdate () {
                 <form onSubmit={handleSubmit(formSubmit)} onReset={reset} className="add-item">
                     <input  type="text"
                             className="add-item-field"
-                            placeholder="Voeg hier de plantnaam toe:"
+                            // placeholder="Voeg hier de plantnaam toe:"
+                            {...register("id", {
+
+                            })}
+                    />
+                    <input  type="text"
+                            className="add-item-field"
+                            // placeholder="Voeg hier de plantnaam toe:"
                             {...register("name", {
-                                required:true
+
                             })}
                     />{errors.address && <p className="errorMessage">Het veld is niet ingevuld</p>}
 
                     <textarea   className="add-item-field"
                                 cols="30" rows="10"
-                                placeholder="Voeg hier een beschrijving en/of verzorgingshandleiding van jouw plant toe:"
+                                // placeholder="Voeg hier een beschrijving en/of verzorgingshandleiding van jouw plant toe:"
                                 {...register("description")}
                     />
                     {errors.address && <p className="errorMessage">Vergeet niet een verzorgingshandleiding of beschrijving in te vullen</p>}
@@ -181,7 +193,7 @@ function ItemUpdate () {
 
                     <div className="upload">
                         <input type="file" {...register("file", {
-                            required:true
+
                         })} accept="image/jpeg"
                         />
                         {errors.address && <p className="errorMessage">Er ging iets mis met uploaden. Probeer het opnieuw.</p>}

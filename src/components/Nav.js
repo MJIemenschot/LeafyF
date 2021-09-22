@@ -18,7 +18,7 @@ const Nav = () => {
         logout,
          user ,
     } = useContext(AuthContext);
-    const[contents, setContents] = useContext(ItemsContext);
+    //const[contents] = useContext(ItemsContext);
 
 
     return (

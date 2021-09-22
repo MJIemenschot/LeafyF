@@ -9,25 +9,31 @@ import axios from "axios";
 import {GrNext, GrClose, GrEdit, GrTrash, GrCafeteria} from "react-icons/gr";
 import Button from "./reusableComponents/Button";
 import {CgDrop, CgSun, GiWateringCan} from "react-icons/all";
+import {ItemsContext} from "../context/ItemsContext";
+
+
 
 const EasyPlants = () => {
-    const [easy, setEasy] = useState([])
+    const [index, setIndex] = useState([])
+    const {easy} = useContext(ItemsContext);
+    //console.log('from context in easy', easy)
 
-    async function fetchEasy(){
-        try{
-            const res = await axios.get("http://localhost:8080/api/v1/items/byD/EASY");
-            console.log("de data van byD easy api",res);
-            const data = res.data;
-            setEasy(res.data);
 
-        } catch (e) {
-            console.error("Er zijn helaas geen makkelijke planten gevonden gevonden, error: " + e)
-        }
-
-    }
-    useEffect(()=>{
-        fetchEasy()
-    },[])
+    // useEffect(()=>{
+    //     async function fetchEasy(){
+    //         try{
+    //             const res = await axios.get("http://localhost:8080/api/v1/items/byD/EASY");
+    //             console.log("de data van byD easy api",res);
+    //             const data = res.data;
+    //             setIndex(res.data);
+    //
+    //         } catch (e) {
+    //             console.error("Er zijn helaas geen makkelijke planten gevonden gevonden, error: " + e)
+    //         }
+    //
+    //     }
+    //     fetchEasy()
+    // },[])
 
     return (
         <>
@@ -48,7 +54,7 @@ const EasyPlants = () => {
                                 buttonTitle="Details"
                                 classNameButton="btn to-post"
                             />
-                            <div className='care'>
+                            <div className='water-care'>
                                 <CgDrop/>
                                 {item.watering==="DAY" &&(<p>Elke dag (zomer)</p>)}
                                 {item.watering==="TWODAYS" &&(<p>Om de dag (zomer)</p>)}
@@ -62,14 +68,14 @@ const EasyPlants = () => {
                                 {item.difficulty==="MODERATE" &&(<p>Redelijk makkelijk</p>)}
                                 {item.difficulty==="HARD" &&(<p>Vergt wat extra zorg</p>)}
                             </div>
-                            <div className='care'>
+                            <div className='light-care'>
                                 <CgSun/>
                                 {item.light==="DIRECTSUN" &&(<p>Kan tegen direct zonlicht</p>)}
                                 {item.light==="SUNNY" &&(<p>Verdraagt geen direct zonlicht</p>)}
                                 {item.light==="HALFSUNNY" &&(<p>Heeft niet zoveel licht nodig</p>)}
                                 {item.light==="SHADOW" &&(<p>Kan op een donker plekje</p>)}
                             </div>
-                            <div className='care'>
+                            <div className='food-care'>
                                 <GrCafeteria/>
                                 {item.food==="WEEK" &&(<p>Elke week (zomer)</p>)}
                                 {item.food==="TWOWEEKS" &&(<p>Om de week (zomer)</p>)}
@@ -94,14 +100,6 @@ const EasyPlants = () => {
                                     {/*}*/}
 
                                 </div>
-                                {/*<GrEdit style={{ color:'white', cursor:'pointer'}}/>*/}
-                                {/*/!*<ItemDelete id={item.id} />*!/*/}
-                                {/*/!*<button onClick={() => delete(item.id)}>Delete</button>*!/*/}
-                                {/*<button*/}
-                                {/*     onClick={() => this.editItem(item.id)}*/}
-                                {/*>Bewerk</button>*/}
-                                {/*/!*<button onClick={()=> history.push(`/item/item.id`)}></button>*!/*/}
-                                {/*<Link  to='/item/:id}'>Details</Link>*/}
 
                             </div>
 

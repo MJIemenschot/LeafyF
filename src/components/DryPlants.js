@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import {NavLink, useHistory} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext";
+import {ItemsContext} from "../context/ItemsContext";
 import Logo from "./Logo";
 import {FaBars, FaHome, FaTimes } from "react-icons/fa";
 import {IoPersonOutline} from "react-icons/io5";
@@ -10,24 +11,27 @@ import {GrNext, GrClose, GrEdit, GrTrash, GrCafeteria} from "react-icons/gr";
 import Button from "./reusableComponents/Button";
 import {CgDrop, CgSun, GiWateringCan} from "react-icons/all";
 
-const ShadowPlants = () => {
-    const [dry, setDry] = useState([])
+const DryPlants = () => {
+    const {easy} = useContext(ItemsContext);
 
-    async function fetchEasy(){
-        try{
-            const res = await axios.get("http://localhost:8080/api/v1/items/byW/MONTH");
-            console.log("de data van byD easy api",res);
-            const data = res.data;
-            setDry(res.data);
+    // const [index, setIndex] = useState([])
 
-        } catch (e) {
-            console.error("Er zijn helaas geen planten die nauwelijks water nodig hebben gevonden gevonden, error: " + e)
-        }
 
-    }
-    useEffect(()=>{
-        fetchEasy()
-    },[])
+    // useEffect(()=>{
+    //     async function fetchEasy(){
+    //         try{
+    //             const res = await axios.get("http://localhost:8080/api/v1/items/byW/MONTH");
+    //             console.log("de data van byD easy api",res);
+    //             const data = res.data;
+    //             setIndex(res.data);
+    //
+    //         } catch (e) {
+    //             console.error("Er zijn helaas geen planten die nauwelijks water nodig hebben gevonden gevonden, error: " + e)
+    //         }
+    //
+    //     }
+    //     fetchEasy();
+    // },[])
 
     return (
         <>
@@ -36,7 +40,7 @@ const ShadowPlants = () => {
 
             <div className='item-container'>
 
-                {dry.map(item =>{
+                {easy.map(item =>{
                     return (
                         //<div style={{background: 'url({item.toPicture}) no repeat center/cover'}} className='itemBg'>
                         <div key ={item.id} className='itemInfo'>
@@ -48,7 +52,7 @@ const ShadowPlants = () => {
                                 buttonTitle="Details"
                                 classNameButton="btn to-post"
                             />
-                            <div className='care'>
+                            <div className='water-care'>
                                 <CgDrop/>
                                 {item.watering==="DAY" &&(<p>Elke dag (zomer)</p>)}
                                 {item.watering==="TWODAYS" &&(<p>Om de dag (zomer)</p>)}
@@ -62,14 +66,14 @@ const ShadowPlants = () => {
                                 {item.difficulty==="MODERATE" &&(<p>Redelijk makkelijk</p>)}
                                 {item.difficulty==="HARD" &&(<p>Vergt wat extra zorg</p>)}
                             </div>
-                            <div className='care'>
+                            <div className='light-care'>
                                 <CgSun/>
-                                {item.light==="SUNNY" &&(<p>Kan tegen direct zonlicht</p>)}
-                                {item.light==="HALFSUNNY" &&(<p>Verdraagt geen direct zonlicht</p>)}
-                                {item.light==="HALFSHADOW" &&(<p>Heeft niet zoveel licht nodig</p>)}
+                                {item.light==="DIRECTSUN" &&(<p>Kan tegen direct zonlicht</p>)}
+                                {item.light==="SUNNY" &&(<p>Verdraagt geen direct zonlicht</p>)}
+                                {item.light==="HALFSUNNY" &&(<p>Heeft niet zoveel licht nodig</p>)}
                                 {item.light==="SHADOW" &&(<p>Kan op een donker plekje</p>)}
                             </div>
-                            <div className='care'>
+                            <div className='food-care'>
                                 <GrCafeteria/>
                                 {item.food==="WEEK" &&(<p>Elke week (zomer)</p>)}
                                 {item.food==="TWOWEEKS" &&(<p>Om de week (zomer)</p>)}
@@ -113,4 +117,4 @@ const ShadowPlants = () => {
 
     );
 };
-export default ShadowPlants
+export default DryPlants

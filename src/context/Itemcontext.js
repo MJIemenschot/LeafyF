@@ -54,7 +54,7 @@ export const ItemProvider = (props) => {
     }
 
     return (
-        <ItemContext.Provider value ={[items, setItems,]  }>
+        <ItemContext.Provider value ={{items, setItems}}>
             {props.children}
 
         </ItemContext.Provider>

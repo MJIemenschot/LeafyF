@@ -1,6 +1,8 @@
 import React, {useContext, useEffect, useState} from "react";
 import {NavLink, useHistory} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext";
+import {ItemsContext} from "../context/ItemsContext";
+
 import Logo from "./Logo";
 import {FaBars, FaHome, FaTimes } from "react-icons/fa";
 import {IoPersonOutline} from "react-icons/io5";
@@ -9,32 +11,37 @@ import axios from "axios";
 import {GrNext, GrClose, GrEdit, GrTrash, GrCafeteria} from "react-icons/gr";
 import Button from "./reusableComponents/Button";
 import {CgDrop, CgSun, GiWateringCan} from "react-icons/all";
+import ItemIndex from "./reusableComponents/ItemIndex";
 
 const ShadowPlants = () => {
-    const [shadow, setShadow] = useState([])
+    // const [index, setIndex] = useState([]);
+    const {shadow} = useContext(ItemsContext);
+     // const index = shadow;
 
-    async function fetchEasy(){
-        try{
-            const res = await axios.get("http://localhost:8080/api/v1/items/byL/SHADOW");
-            console.log("de data van byD easy api",res);
-            const data = res.data;
-            setShadow(res.data);
 
-        } catch (e) {
-            console.error("Er zijn helaas geen planten gevonden gevonden die je in het donker kan zetten, error: " + e)
-        }
-
-    }
-    useEffect(()=>{
-        fetchEasy()
-    },[])
-
+    // useEffect(()=>{
+    //     async function fetchEasy(){
+    //         try{
+    //             const res = await axios.get("http://localhost:8080/api/v1/items/byL/SHADOW");
+    //             console.log("de data van byD easy api",res);
+    //             const data = res.data;
+    //             setIndex(res.data);
+    //
+    //         } catch (e) {
+    //             console.error("Er zijn helaas geen planten gevonden gevonden die je in het donker kan zetten, error: " + e)
+    //         }
+    //
+    //     }
+    //     fetchEasy()
+    // },[])
+    // //
     return (
         <>
             <h1 className='page-header'>Schaduw Planten</h1>
             <p className='page-text'>Deze planten kunnen op donkere plakken staan. Heb je een lege hoek in je kamer maar er komt niet zoveel daglicht? Er zijn planten die niet veel licht nodig hebben.</p>
 
             <div className='item-container'>
+                {/*<ItemIndex index= {shadow}/>*/}
 
                 {shadow.map(item =>{
                     return (
@@ -48,7 +55,7 @@ const ShadowPlants = () => {
                                 buttonTitle="Details"
                                 classNameButton="btn to-post"
                             />
-                            <div className='care'>
+                            <div className='water-care'>
                                 <CgDrop/>
                                 {item.watering==="DAY" &&(<p>Elke dag (zomer)</p>)}
                                 {item.watering==="TWODAYS" &&(<p>Om de dag (zomer)</p>)}
@@ -62,14 +69,14 @@ const ShadowPlants = () => {
                                 {item.difficulty==="MODERATE" &&(<p>Redelijk makkelijk</p>)}
                                 {item.difficulty==="HARD" &&(<p>Vergt wat extra zorg</p>)}
                             </div>
-                            <div className='care'>
+                            <div className='light-care'>
                                 <CgSun/>
-                                {item.light==="SUNNY" &&(<p>Kan tegen direct zonlicht</p>)}
-                                {item.light==="HALFSUNNY" &&(<p>Verdraagt geen direct zonlicht</p>)}
-                                {item.light==="HALFSHADOW" &&(<p>Heeft niet zoveel licht nodig</p>)}
+                                {item.light==="DIRECTSUN" &&(<p>Kan tegen direct zonlicht</p>)}
+                                {item.light==="SUNNY" &&(<p>Verdraagt geen direct zonlicht</p>)}
+                                {item.light==="HALFSUNNY" &&(<p>Heeft niet zoveel licht nodig</p>)}
                                 {item.light==="SHADOW" &&(<p>Kan op een donker plekje</p>)}
                             </div>
-                            <div className='care'>
+                            <div className='food-care'>
                                 <GrCafeteria/>
                                 {item.food==="WEEK" &&(<p>Elke week (zomer)</p>)}
                                 {item.food==="TWOWEEKS" &&(<p>Om de week (zomer)</p>)}
@@ -93,14 +100,7 @@ const ShadowPlants = () => {
                                     {/*}*/}
 
                                 </div>
-                                {/*<GrEdit style={{ color:'white', cursor:'pointer'}}/>*/}
-                                {/*/!*<ItemDelete id={item.id} />*!/*/}
-                                {/*/!*<button onClick={() => delete(item.id)}>Delete</button>*!/*/}
-                                {/*<button*/}
-                                {/*     onClick={() => this.editItem(item.id)}*/}
-                                {/*>Bewerk</button>*/}
-                                {/*/!*<button onClick={()=> history.push(`/item/item.id`)}></button>*!/*/}
-                                {/*<Link  to='/item/:id}'>Details</Link>*/}
+
 
                             </div>
 

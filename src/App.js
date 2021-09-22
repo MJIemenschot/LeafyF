@@ -54,7 +54,7 @@ function App() {
 
           <Route exact path='/item/:id' component={Item}/>
           <Route exact path='/update-item' component={ItemUpdate}/>
-          <Route exact path='/over-leafy' component={About}/>
+          <Route exact path='/over-leafy' component={ItemOvervieuw}/>
 
           {/*<Items />*/}
           {/*</Switch>*/}

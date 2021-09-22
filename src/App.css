@@ -272,10 +272,25 @@ form .formContainer label {
   margin: 10px;
   padding:10px;
 }
-.care {
-  background-color: lightgray;
+.water-care{
+  background-color: lightblue;
   padding: 5px;
-  margin: 5px 0px 5px 0px;
+
+}
+.care {
+  background-color: paleturquoise;
+  padding: 5px;
+
+}
+.light-care {
+  background-color: lemonchiffon;
+  padding: 5px;
+
+}
+.food-care {
+  background-color: #f6d0f6;
+  padding: 5px;
+
 }
 /*.item .itemInfo {*/
 /*  background: #202342;*/

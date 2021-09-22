@@ -14,6 +14,7 @@ function AddItem () {
     const onSubmit = (data) => setResult(JSON.stringify(data));
 
 
+
     async function sendInfo (formData) {
         setError('');
         toggleLoading(true);
@@ -62,11 +63,6 @@ function AddItem () {
                         {...register("description")}
             />
             {errors.address && <p className="errorMessage">Vergeet niet een verzorgingshandleiding of beschrijving in te vullen</p>}
-            {/*<select {...register("difficulty")}>*/}
-            {/*    <option value="EASY">Makkelijk</option>*/}
-            {/*    <option value="MODERATE">Gemiddeld</option>*/}
-            {/*    <option value="HARD">Moeilijk</option>*/}
-            {/*</select>*/}
             <div className="selectField">
                 <h3>Verzorging</h3>
                 <input  className="choose"

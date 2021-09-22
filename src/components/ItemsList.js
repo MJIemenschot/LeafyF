@@ -11,13 +11,13 @@ import {CgDrop, CgSun, GiWateringCan} from "react-icons/all";
 
 const ItemsList = () => {
     const {user, isTokenValid} = useContext(AuthContext);
-    const[contents] = useContext(ItemsContext);
+    const {contents} = useContext(ItemsContext);
     console.log("dit komt binnen in itemslist vanuit itemscontext", contents);
 
 
-    // this.editItem = function (id) {
-    //     //this.props.history.push(`/update-item/${id}`);
-    // }
+    function selectItem(){
+
+    }
     return (
         <>
             <h1 className='page-header'>Alle planten</h1>
@@ -36,7 +36,7 @@ const ItemsList = () => {
                                 buttonTitle="Details"
                                 classNameButton="btn to-post"
                             />
-                            <div className='care'>
+                            <div className='water-care'>
                                 <CgDrop/>
                                 {item.watering==="DAY" &&(<p>Elke dag (zomer)</p>)}
                                 {item.watering==="TWODAYS" &&(<p>Om de dag (zomer)</p>)}
@@ -50,14 +50,14 @@ const ItemsList = () => {
                                 {item.difficulty==="MODERATE" &&(<p>Redelijk makkelijk</p>)}
                                 {item.difficulty==="HARD" &&(<p>Vergt wat extra zorg</p>)}
                             </div>
-                            <div className='care'>
+                            <div className='light-care'>
                                 <CgSun/>
-                                {item.light==="SUNNY" &&(<p>Kan tegen direct zonlicht</p>)}
-                                {item.light==="HALFSUNNY" &&(<p>Verdraagt geen direct zonlicht</p>)}
-                                {item.light==="HALFSHADOW" &&(<p>Heeft niet zoveel licht nodig</p>)}
+                                {item.light==="DIRECTSUN" &&(<p>Kan tegen direct zonlicht</p>)}
+                                {item.light==="SUNNY" &&(<p>Verdraagt geen direct zonlicht</p>)}
+                                {item.light==="HALFSUNNY" &&(<p>Heeft niet zoveel licht nodig</p>)}
                                 {item.light==="SHADOW" &&(<p>Kan op een donker plekje</p>)}
                             </div>
-                            <div className='care'>
+                            <div className='food-care'>
                                 <GrCafeteria/>
                                 {item.food==="WEEK" &&(<p>Elke week (zomer)</p>)}
                                 {item.food==="TWOWEEKS" &&(<p>Om de week (zomer)</p>)}
@@ -65,12 +65,13 @@ const ItemsList = () => {
                                 {item.food==="NEVER_SPECIAL" &&(<p>Heeft niets nodig</p>)}
                             </div>
                             <div className='tools'>
-                                <div className='tools'>
+
                                     {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
                                     (<Button
                                     type="submit"
                                     buttonTitle={<GrTrash/>}
                                     classNameButton="btn delete-post"
+                                    // onclick={}
                                 />)
                                     {/*}*/}
                                     {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
@@ -78,6 +79,7 @@ const ItemsList = () => {
                                     type="submit"
                                     buttonTitle={<GrEdit/>}
                                     classNameButton="btn edit-post"
+                                    onClickEvent={selectItem(contents.id)}
                                 />)
                                     {/*}*/}
 
@@ -86,13 +88,13 @@ const ItemsList = () => {
                             {/*/!*<ItemDelete id={item.id} />*!/*/}
                             {/*/!*<button onClick={() => delete(item.id)}>Delete</button>*!/*/}
                             {/*<button*/}
-                            {/*     onClick={() => this.editItem(item.id)}*/}
+                            {/*     onClick={selectItem(item.id)}*/}
                             {/*>Bewerk</button>*/}
-                            {/*/!*<button onClick={()=> history.push(`/item/item.id`)}></button>*!/*/}
+                            {/*<button onClick={()=> history.push(`/item-update`)}></button>*/}
                             {/*<Link  to='/item/:id}'>Details</Link>*/}
 
                         </div>
-                    </div>
+
                 );
             })}
 

@@ -4,10 +4,10 @@ import { GrNext, GrClose, GrEdit, GrTrash  } from "react-icons/gr";
 
 
 import {Link} from 'react-router-dom';
-//import Item from "./Item";
+
 
 const Items = () => {
-    const [items, setItems] = useContext(ItemContext);
+    const {items} = useContext(ItemContext);
     console.log(items)
 
 
@@ -17,7 +17,7 @@ const Items = () => {
                <h2>Itemlijst</h2>
                {items.map(item =>{
                    return (
-                      <div style={{background: 'url(./item.img) no repeat center/cover'}} className='itemBg'>
+                      // <div style={{background: 'url(./item.img) no repeat center/cover'}} className='itemBg'>
                            <div className='itemInfo'>
                                <h3>{item.name}</h3>
                                {/*<p>{item.description}</p>*/}
@@ -26,8 +26,8 @@ const Items = () => {
                            <button>Bewerk</button>
                            />
                                <Link to='#'>Details</Link>
-                           </div>
-                       </div>
+                           {/*</div>*/}
+                        </div>
                    );
                })};
 
