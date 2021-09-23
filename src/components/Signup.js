@@ -33,7 +33,7 @@ const Signup = () => {
                 ]
             });
             toggleRegisterSuccess(true);
-            {/* hier kan ik in het history push path kan ik het doorverwijzen naar het inlogpagina als ik het registreerformulier wil laten verdwijnen*/}
+            {/* hier kan ik in het history push path  doorverwijzen naar het inlogpagina als ik het registreerformulier wil laten verdwijnen*/}
             setTimeout(() => {
                 history.push('/');
             }, 2000);

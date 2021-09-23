@@ -1,32 +1,50 @@
-import React, {useContext, useState, useEffect} from 'react';
-import {ItemsContext} from "../context/ItemsContext";
-import {GrNext, GrClose, GrEdit, GrTrash, GrRestaurant, GrCafeteria} from "react-icons/gr";
-import {Link} from 'react-router-dom';
-import ItemDelete from "./reusableComponents/ItemDelete";
-import {useHistory} from "react-router-dom";
+import React, {useContext, useEffect, useState} from "react";
+import {Link, NavLink, useHistory} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext";
+import Logo from "./Logo";
+import {FaBars, FaHome, FaTimes } from "react-icons/fa";
+import {IoPersonOutline} from "react-icons/io5";
+import axios from "axios";
+
+import {GrNext, GrClose, GrEdit, GrTrash, GrCafeteria} from "react-icons/gr";
 import Button from "./reusableComponents/Button";
 import {CgDrop, CgSun, GiWateringCan} from "react-icons/all";
+import {ItemsContext} from "../context/ItemsContext";
 
 
-const ItemsList = () => {
-    const {user, isTokenValid} = useContext(AuthContext);
-    const {contents} = useContext(ItemsContext);
-    console.log("dit komt binnen in itemslist vanuit itemscontext", contents);
+
+const EasyPlants = () => {
+    const [index, setIndex] = useState([])
+    const {easy} = useContext(ItemsContext);
+    //console.log('from context in easy', easy)
 
 
-    function selectItem(){
+    // useEffect(()=>{
+    //     async function fetchEasy(){
+    //         try{
+    //             const res = await axios.get("http://localhost:8080/api/v1/items/byD/EASY");
+    //             console.log("de data van byD easy api",res);
+    //             const data = res.data;
+    //             setIndex(res.data);
+    //
+    //         } catch (e) {
+    //             console.error("Er zijn helaas geen makkelijke planten gevonden gevonden, error: " + e)
+    //         }
+    //
+    //     }
+    //     fetchEasy()
+    // },[])
 
-    }
     return (
         <>
-            <h1 className='page-header'>Alle planten</h1>
+            <h1 className='page-header'>Makkelijke planten</h1>
+            <p className='page-text'>Naar deze planten hoef je bijna niet om te kijken want ze kunnen tegen een stootje.</p>
 
-        <div className='item-container'>
+            <div className='item-container'>
 
-            {contents.map(item =>{
-                return (
-                     //<div style={{background: 'url({item.toPicture}) no repeat center/cover'}} className='itemBg'>
+                {easy.map(item =>{
+                    return (
+                        //<div style={{background: 'url({item.toPicture}) no repeat center/cover'}} className='itemBg'>
                         <div key ={item.id} className='itemInfo'>
                             <h3> {item.name}</h3>
                             {/*<p>{item.description}</p>*/}
@@ -69,7 +87,6 @@ const ItemsList = () => {
                                     type="submit"
                                     buttonTitle={<GrTrash/>}
                                     classNameButton="btn delete-post"
-                                    // onclick={}
                                 />)
                                     {/*}*/}
                                     {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
@@ -77,29 +94,20 @@ const ItemsList = () => {
                                     type="submit"
                                     buttonTitle={<GrEdit/>}
                                     classNameButton="btn edit-post"
-                                    onClickEvent={selectItem(contents.id)}
                                 />)
                                     {/*}*/}
 
+                                </div>
+
                             </div>
-                            {/*<GrEdit style={{ color:'white', cursor:'pointer'}}/>*/}
-                            {/*/!*<ItemDelete id={item.id} />*!/*/}
-                            {/*/!*<button onClick={() => delete(item.id)}>Delete</button>*!/*/}
-                            {/*<button*/}
-                            {/*     onClick={selectItem(item.id)}*/}
-                            {/*>Bewerk</button>*/}
-                            {/*<button onClick={()=> history.push(`/item-update`)}></button>*/}
-                            {/*<Link  to='/item/:id}'>Details</Link>*/}
 
-                        </div>
+                    );
+                })}
 
-                );
-            })}
-
-        </div>
+            </div>
         </>
 
 
     );
 };
-export default ItemsList
+export default EasyPlants

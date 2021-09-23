@@ -1,32 +1,51 @@
-import React, {useContext, useState, useEffect} from 'react';
-import {ItemsContext} from "../context/ItemsContext";
-import {GrNext, GrClose, GrEdit, GrTrash, GrRestaurant, GrCafeteria} from "react-icons/gr";
-import {Link} from 'react-router-dom';
-import ItemDelete from "./reusableComponents/ItemDelete";
-import {useHistory} from "react-router-dom";
+import React, {useContext, useEffect, useState} from "react";
+import {Link, NavLink, useHistory} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext";
+import {ItemsContext} from "../context/ItemsContext";
+
+import Logo from "./Logo";
+import {FaBars, FaHome, FaTimes } from "react-icons/fa";
+import {IoPersonOutline} from "react-icons/io5";
+import axios from "axios";
+
+import {GrNext, GrClose, GrEdit, GrTrash, GrCafeteria} from "react-icons/gr";
 import Button from "./reusableComponents/Button";
 import {CgDrop, CgSun, GiWateringCan} from "react-icons/all";
+import ItemIndex from "./reusableComponents/ItemIndex";
+
+const ShadowPlants = () => {
+    // const [index, setIndex] = useState([]);
+    const {shadow} = useContext(ItemsContext);
+     // const index = shadow;
 
 
-const ItemsList = () => {
-    const {user, isTokenValid} = useContext(AuthContext);
-    const {contents} = useContext(ItemsContext);
-    console.log("dit komt binnen in itemslist vanuit itemscontext", contents);
-
-
-    function selectItem(){
-
-    }
+    // useEffect(()=>{
+    //     async function fetchEasy(){
+    //         try{
+    //             const res = await axios.get("http://localhost:8080/api/v1/items/byL/SHADOW");
+    //             console.log("de data van byD easy api",res);
+    //             const data = res.data;
+    //             setIndex(res.data);
+    //
+    //         } catch (e) {
+    //             console.error("Er zijn helaas geen planten gevonden gevonden die je in het donker kan zetten, error: " + e)
+    //         }
+    //
+    //     }
+    //     fetchEasy()
+    // },[])
+    // //
     return (
         <>
-            <h1 className='page-header'>Alle planten</h1>
+            <h1 className='page-header'>Schaduw Planten</h1>
+            <p className='page-text'>Deze planten kunnen op donkere plekken staan. Heb je een lege hoek in je kamer maar er komt niet zoveel daglicht? Er zijn planten die niet veel licht nodig hebben.</p>
 
-        <div className='item-container'>
+            <div className='item-container'>
+                {/*<ItemIndex index= {shadow}/>*/}
 
-            {contents.map(item =>{
-                return (
-                     //<div style={{background: 'url({item.toPicture}) no repeat center/cover'}} className='itemBg'>
+                {shadow.map(item =>{
+                    return (
+                        //<div style={{background: 'url({item.toPicture}) no repeat center/cover'}} className='itemBg'>
                         <div key ={item.id} className='itemInfo'>
                             <h3> {item.name}</h3>
                             {/*<p>{item.description}</p>*/}
@@ -62,14 +81,12 @@ const ItemsList = () => {
                                 {item.food==="MONTH" &&(<p>Elke maand (zomer)</p>)}
                                 {item.food==="NEVER_SPECIAL" &&(<p>Heeft niets nodig</p>)}
                             </div>
-                            <div className='tools'>
-
+                                <div className='tools'>
                                     {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
                                     (<Button
                                     type="submit"
                                     buttonTitle={<GrTrash/>}
                                     classNameButton="btn delete-post"
-                                    // onclick={}
                                 />)
                                     {/*}*/}
                                     {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
@@ -77,29 +94,21 @@ const ItemsList = () => {
                                     type="submit"
                                     buttonTitle={<GrEdit/>}
                                     classNameButton="btn edit-post"
-                                    onClickEvent={selectItem(contents.id)}
                                 />)
                                     {/*}*/}
 
+                                </div>
+
+
                             </div>
-                            {/*<GrEdit style={{ color:'white', cursor:'pointer'}}/>*/}
-                            {/*/!*<ItemDelete id={item.id} />*!/*/}
-                            {/*/!*<button onClick={() => delete(item.id)}>Delete</button>*!/*/}
-                            {/*<button*/}
-                            {/*     onClick={selectItem(item.id)}*/}
-                            {/*>Bewerk</button>*/}
-                            {/*<button onClick={()=> history.push(`/item-update`)}></button>*/}
-                            {/*<Link  to='/item/:id}'>Details</Link>*/}
 
-                        </div>
+                    );
+                })}
 
-                );
-            })}
-
-        </div>
+            </div>
         </>
 
 
     );
 };
-export default ItemsList
+export default ShadowPlants

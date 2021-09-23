@@ -24,6 +24,10 @@ import ItemDetails from "./components/ItemDetails";
 import Item from "./components/Item";
 import ItemUpdate from "./components/reusableComponents/ItemUpdate";
 import About from "./pages/About";
+import DifficultyList from "./components/DifficultyList";
+import EasyPlants from "./components/EasyPlants";
+import ShadowPlants from "./components/ShadowPlants";
+import DryPlants from "./components/DryPlants";
 //import Item from "./components/Item";
 // import Image from "./components/Image";
 
@@ -40,6 +44,9 @@ function App() {
 
         <Nav />
           <Route exact path='/' component={ItemsList}/>
+          <Route exact path='/makkelijk' component={EasyPlants}/>
+          <Route excact path='/vergeet-deze' component={DryPlants}/>
+          <Route exact path='/shadow' component={ShadowPlants}/>
           <Route exact path='/user-portal' component={UserPortal}/>
           <Route exact path='/profile' component={Profile}/>
           {/*<Switch>*/}
@@ -47,7 +54,7 @@ function App() {
 
           <Route exact path='/item/:id' component={Item}/>
           <Route exact path='/update-item' component={ItemUpdate}/>
-          <Route exact path='/over-leafy' component={About}/>
+          <Route exact path='/over-leafy' component={ItemOvervieuw}/>
 
           {/*<Items />*/}
           {/*</Switch>*/}

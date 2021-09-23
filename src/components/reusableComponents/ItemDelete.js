@@ -13,10 +13,21 @@ function ItemDelete (props) {
 
     // const { handleSubmit, formState: { errors }, register } = useForm();
     const itemId = props.id;
+    console.log('itemId',itemId)
+
+    async function deleteItemHandler () {
+        try{
+            await axios.delete(`http://localhost:8080/api/v1/items/${itemId}`)
+            // const newItemList = (props.filter((item)=>item.id !==itemId));
+
+        }catch (e) {
+            console.log("het is niet gelukt, error: " + e)
+        }
+    }
 
 
-    useEffect(() => {
-        async function deleteItem() {
+    useEffect((itemId) => {
+        async function deleteItem(itemId) {
             console.log("Hebben we hier een itemId in component deleteItem?",itemId)
             try {
                await axios.delete(`http://localhost:8080/api/v1/items/${itemId}`);
@@ -33,8 +44,8 @@ function ItemDelete (props) {
         <div >
             <button
                 type="submit"
-                onClick="{deleteItem}"
-            >
+                onClick={deleteItemHandler}
+           >
                 verwijder
                 {/*<GrTrash/>*/}
 
