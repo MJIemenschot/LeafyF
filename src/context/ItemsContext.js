@@ -53,7 +53,6 @@ function ItemsProvider (props) {
             } catch (e) {
                 console.error("Er zijn helaas geen planten gevonden gevonden die je in het donker kan zetten, error: " + e)
             }
-
         }
         fetchShadow()
     },[])
@@ -136,7 +135,7 @@ function ItemsProvider (props) {
     // }
 
     return (
-        <ItemsContext.Provider value={ {contents, easy, shadow, light, dry, } }>
+        <ItemsContext.Provider value={ {contents, easy, shadow, dry, error } }>
             {props.children}
         </ItemsContext.Provider>
     )

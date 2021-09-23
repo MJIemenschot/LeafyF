@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
-import {NavLink, useHistory} from "react-router-dom";
+import {Link, NavLink, useHistory} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext";
 import Logo from "./Logo";
 import {FaBars, FaHome, FaTimes } from "react-icons/fa";
@@ -80,6 +80,9 @@ const ItemOvervieuw = () => {
                                 <ItemUpdate
                                     id={item.id}
                                 />
+                                <Link to={`/Item/${ item.id }`}   className="btn btn-primary">
+                                    Meer Informatie
+                                </Link>
                                 {/*<GrEdit style={{ color:'white', cursor:'pointer'}}/>*/}
                                 {/*/!*<ItemDelete id={item.id} />*!/*/}
                                 {/*/!*<button onClick={() => delete(item.id)}>Delete</button>*!/*/}

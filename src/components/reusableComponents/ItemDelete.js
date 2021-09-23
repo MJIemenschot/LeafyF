@@ -13,12 +13,13 @@ function ItemDelete (props) {
 
     // const { handleSubmit, formState: { errors }, register } = useForm();
     const itemId = props.id;
+    console.log('itemId',itemId)
 
-    async function deleteItemHandler (itemId) {
+    async function deleteItemHandler () {
         try{
             await axios.delete(`http://localhost:8080/api/v1/items/${itemId}`)
-            const newItemList = (props.filter((item)=>item.id !==itemId));
-            console.log('id in deleteItemHandler in context',itemId)
+            // const newItemList = (props.filter((item)=>item.id !==itemId));
+
         }catch (e) {
             console.log("het is niet gelukt, error: " + e)
         }
@@ -26,7 +27,7 @@ function ItemDelete (props) {
 
 
     useEffect((itemId) => {
-        async function deleteItem() {
+        async function deleteItem(itemId) {
             console.log("Hebben we hier een itemId in component deleteItem?",itemId)
             try {
                await axios.delete(`http://localhost:8080/api/v1/items/${itemId}`);
@@ -41,14 +42,14 @@ function ItemDelete (props) {
 
     return (
         <div >
-            {/*<button*/}
-            {/*    type="submit"*/}
-            {/*    onClick="{deleteItem}"*/}
-            {/*>*/}
-            {/*    verwijder*/}
-            {/*    /!*<GrTrash/>*!/*/}
+            <button
+                type="submit"
+                onClick={deleteItemHandler}
+           >
+                verwijder
+                {/*<GrTrash/>*/}
 
-            {/*</button>*/}
+            </button>
         </div>
     )
 }
