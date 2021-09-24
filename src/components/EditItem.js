@@ -1,48 +1,59 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { useForm } from 'react-hook-form';
 import axios from "axios";
-import '../AddItem.css';
+
 
 import {GrEdit, GrUpload} from "react-icons/gr";
-import {ItemsContext} from "../../context/ItemsContext";
+import {ItemsContext} from "../context/ItemsContext";
+import {useHistory, useParams} from "react-router-dom";
 
 
-function ItemUpdate () {
-
+function EditItem () {
 
     const { handleSubmit, formState: { errors }, register, reset } = useForm();
-    const {contents} = useContext(ItemsContext);
-    console.log('contents id in itemUpdate', {contents} );
+    // const {contents} = useContext(ItemsContext);
+    // console.log('contents  in Edititem', {contents} );
      // const Itemid = {id};
+    const [currentItem,setCurrentItem ] = useState([]);
+    const [edit,setEdit ] = useState([]);
 
-
-    const [currentItem,setCurrentItem ] = useState([])
+    const { id } = useParams();
+    const history = useHistory();
      const [loading, toggleLoading] = useState(false);
      const [error, setError] = useState('');
      const [Success, toggleSuccess] = useState(false);
-     const [result, setResult] = useState("");
+     const [result, setResult] = useState("currentItem");
     const onSubmit = (data) => setResult(JSON.stringify(data));
+    
 
     useEffect(()=>{
-        async function getCurrent(){
-            try{
-              const res = await axios.get(`http://localhost:8080/api/v1/items/`)
-                console.log("res from getCurrent",res)
-            } catch (e){
-                console.log(console.error(e))
-                setError(`Het ophalen is mislukt. probeer het opnieuw(${e.message}`);
-            }
-        } getCurrent();
+        async function getCurrent() {
+            try {
+                const response = await axios.get(`http://localhost:8080/api/v1/items/${id}`);
+                console.log('response in getCurrent',response.data)
 
+                setCurrentItem(response.data)
+
+            } catch (error) {
+                console.error('Er ging iets mis, geen data gevonden', error)
+            }
+        }
+        getCurrent();
     },[]);
 
+    // useEffect(()=>{
+    //     if (currentItem){
+    //         setEdit(currentItem)
+    //     }
+    //
+    // },[currentItem, edit]);
 
-    async function updateIt (contents) {
+    async function updateIt (formData) {
         setError('');
-        toggleLoading(true);
+        // toggleLoading(true);
 
         try {
-            const res = await axios.put('http://localhost:8080/api/v1/items/update/sjaak', contents, contents)
+            const res = await axios.put('http://localhost:8080/api/v1/items/update', formData)
             console.log('res in update',res)
             toggleSuccess(true);
         } catch (e) {
@@ -55,7 +66,6 @@ function ItemUpdate () {
 
     const formSubmit = (data) => {
         formData.append("id", data.id)
-
         formData.append("description", data.description)
         formData.append("name", data.name)
         formData.append("difficulty", data.difficulty)
@@ -75,21 +85,22 @@ function ItemUpdate () {
                 <form onSubmit={handleSubmit(formSubmit)} onReset={reset} className="add-item">
                     <input  type="text"
                             className="add-item-field"
-                            // placeholder="Voeg hier de plantnaam toe:"
+                            defaultValue={currentItem.id}
+                            // placeholder="Voeg hier de id toe:"
                             {...register("id", {
-
                             })}
                     />
                     <input  type="text"
                             className="add-item-field"
-                            // placeholder="Voeg hier de plantnaam toe:"
+                            defaultValue={currentItem.name}
+                             // placeholder="Plantnaam"
                             {...register("name", {
-
                             })}
                     />{errors.address && <p className="errorMessage">Het veld is niet ingevuld</p>}
 
                     <textarea   className="add-item-field"
                                 cols="30" rows="10"
+                                defaultValue={currentItem.description}
                                 // placeholder="Voeg hier een beschrijving en/of verzorgingshandleiding van jouw plant toe:"
                                 {...register("description")}
                     />
@@ -100,16 +111,19 @@ function ItemUpdate () {
                         <input  className="choose"
                                 type="radio"
                                 id="easy"
+
                                 value="EASY" {...register("difficulty")}/>
                         <label htmlFor="easy">Makkelijk</label>
                         <input  className="choose"
                                 type="radio"
                                 id="moderate"
+
                                 value="MODERATE" {...register("difficulty")}/>
                         <label htmlFor="moderate">Gemiddeld</label>
                         <input  className="choose"
                                 type="radio"
                                 id="hard"
+
                                 value="HARD" {...register("difficulty")}/>
                         <label htmlFor="hard">Moeilijk</label>
                     </div>
@@ -120,6 +134,7 @@ function ItemUpdate () {
                         <input  className="choose"
                                 type="radio"
                                 id="directsun"
+
                                 value="DIRECTSUN" {...register("light")}/>
                         <label htmlFor="directsun">Direct Zonlicht</label>
                         <input  className="choose"
@@ -193,7 +208,9 @@ function ItemUpdate () {
                     <p>{result}</p>
 
                     <div className="upload">
-                        <input type="file" {...register("file", {
+                        <input type="file"
+                                defaultValue={currentItem.fileName}
+                               {...register("file", {
 
                         })} accept="image/jpeg"
                         />
@@ -209,4 +226,4 @@ function ItemUpdate () {
     )
 }
 
-export default ItemUpdate;
+export default EditItem;

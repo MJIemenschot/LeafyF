@@ -65,20 +65,24 @@ const ItemsList = () => {
                             <div className='tools'>
 
                                     {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
-                                    (<Button
-                                    type="submit"
-                                    buttonTitle={<GrTrash/>}
-                                    classNameButton="btn delete-post"
-                                    // onclick={}
-                                />)
+                                <ItemDelete id={item.id}/>
+                                {/*    (<Button*/}
+                                {/*    type="submit"*/}
+                                {/*    buttonTitle={<GrTrash/>}*/}
+                                {/*    classNameButton="btn delete-post"*/}
+                                {/*    // onclick={}*/}
+                                {/*/>)*/}
                                     {/*}*/}
                                     {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
-                                    (<Button
-                                    type="submit"
-                                    buttonTitle={<GrEdit/>}
-                                    classNameButton="btn edit-post"
-                                    onClickEvent={selectItem(contents.id)}
-                                />)
+                                <Link to={`/edit-item/${ item.id }`}   className="btn-to-post">
+                                    <GrEdit/>
+                                </Link>
+                                {/*    (<Button*/}
+                                {/*    type="submit"*/}
+                                {/*    buttonTitle={<GrEdit/>}*/}
+                                {/*    classNameButton="btn edit-post"*/}
+                                {/*    onClickEvent={selectItem(contents.id)}*/}
+                                {/*/>)*/}
                                     {/*}*/}
 
                             </div>

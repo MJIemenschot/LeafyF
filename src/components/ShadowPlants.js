@@ -12,6 +12,7 @@ import {GrNext, GrClose, GrEdit, GrTrash, GrCafeteria} from "react-icons/gr";
 import Button from "./reusableComponents/Button";
 import {CgDrop, CgSun, GiWateringCan} from "react-icons/all";
 import ItemIndex from "./reusableComponents/ItemIndex";
+import ItemDelete from "./reusableComponents/ItemDelete";
 
 const ShadowPlants = () => {
     // const [index, setIndex] = useState([]);
@@ -83,18 +84,16 @@ const ShadowPlants = () => {
                             </div>
                                 <div className='tools'>
                                     {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
-                                    (<Button
-                                    type="submit"
-                                    buttonTitle={<GrTrash/>}
-                                    classNameButton="btn delete-post"
-                                />)
+                                    <ItemDelete id={item.id}/>
+
+                                    {/*/>)*/}
                                     {/*}*/}
                                     {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
-                                    (<Button
-                                    type="submit"
-                                    buttonTitle={<GrEdit/>}
-                                    classNameButton="btn edit-post"
-                                />)
+                                    <Link to={`/edit-item/${ item.id }`}   className="btn-to-post">
+                                        <GrEdit/>
+                                    </Link>
+
+                                    {/*/>)*/}
                                     {/*}*/}
 
                                 </div>

@@ -135,7 +135,7 @@ function ItemsProvider (props) {
     // }
 
     return (
-        <ItemsContext.Provider value={ {contents, easy, shadow, dry, error } }>
+        <ItemsContext.Provider value={ {contents, easy, shadow, dry, error, loading } }>
             {props.children}
         </ItemsContext.Provider>
     )

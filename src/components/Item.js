@@ -1,4 +1,4 @@
-import { useHistory, useParams} from "react-router-dom";
+import {Link, useHistory, useParams} from "react-router-dom";
 import React, {useContext, useEffect, useState} from "react";
 import Container from './reusableComponents/Container';
 import axios from "axios";
@@ -6,6 +6,7 @@ import {ItemsContext} from "../context/ItemsContext";
 import Button from "./reusableComponents/Button";
 import {CgDrop, CgSun, GiWateringCan} from "react-icons/all";
 import {GrCafeteria, GrEdit, GrTrash} from "react-icons/gr";
+import ItemDelete from "./reusableComponents/ItemDelete";
 
 
 const Item = () => {
@@ -72,7 +73,7 @@ useEffect(()=>{
                             {currentItem.light==="SHADOW" &&(<p>Kan op een donker plekje</p>)}
                         </div>
                         <div className='food-care'>
-                            <GrCafeteria className='care-icon'/>
+                            <GrCafeteria className='care-icon' />
                             {currentItem.food==="WEEK" &&(<p>Elke week (zomer)</p>)}
                             {currentItem.food==="TWOWEEKS" &&(<p>Om de week (zomer)</p>)}
                             {currentItem.food==="MONTH" &&(<p>Elke maand (zomer)</p>)}
@@ -85,20 +86,24 @@ useEffect(()=>{
                         <div >
 
                             {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
-                            (<Button
-                            type="submit"
-                            buttonTitle={<GrTrash/>}
-                            classNameButton="btn delete-post"
-                            // onclick={}
-                        />)
+                            <ItemDelete id={currentItem.id}/>
+                            {/*    (<Button*/}
+                            {/*    type="submit"*/}
+                            {/*    buttonTitle={<GrTrash/>}*/}
+                            {/*    classNameButton="btn delete-post"*/}
+                            {/*    // onclick={}*/}
+                            {/*/>)*/}
                             {/*}*/}
                             {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
-                            (<Button
-                            type="submit"
-                            buttonTitle={<GrEdit/>}
-                            classNameButton="btn edit-post"
-                            // onClickEvent={selectItem(contents.id)}
-                        />)
+                            <Link to={`/edit-item/${ currentItem.id }`}   className="btn-to-post">
+                                <GrEdit/>
+                            </Link>
+                            {/*    (<Button*/}
+                            {/*    type="submit"*/}
+                            {/*    buttonTitle={<GrEdit/>}*/}
+                            {/*    classNameButton="btn edit-post"*/}
+                            {/*    onClickEvent={selectItem(contents.id)}*/}
+                            {/*/>)*/}
                             {/*}*/}
 
                         </div>
