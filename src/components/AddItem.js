@@ -12,15 +12,25 @@ function AddItem () {
     const [Success, toggleSuccess] = useState(false);
     const [result, setResult] = useState("");
     const onSubmit = (data) => setResult(JSON.stringify(data));
+    // const token = localStorage.getItem("token")
 
 
 
     async function sendInfo (formData) {
         setError('');
         toggleLoading(true);
+        //of  const token = localStorage.getItem("token")
 
         try {
-            await axios.post('http://localhost:8080/api/v1/items/add', formData)
+            await axios.post('http://localhost:8080/api/v1/items/add', formData ,
+            // {
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //             Authorization: `Bearer ${token}`,
+            //     }
+            // }
+            );
+
             toggleSuccess(true);
         } catch (e) {
             console.log(console.error(e))
@@ -34,6 +44,7 @@ function AddItem () {
 
         formData.append("description", data.description)
         formData.append("name", data.name)
+        formData.append("latinName", data.latinName)
         formData.append("difficulty", data.difficulty)
         formData.append("light", data.light)
         formData.append("food", data.food)
@@ -56,6 +67,11 @@ function AddItem () {
                             required:true
                         })}
                 />{errors.address && <p className="errorMessage">Het veld is niet ingevuld</p>}
+            <input  type="text"
+                    className="add-item-field"
+                    placeholder="Voeg hier de latijnse naam toe:"
+                    {...register("latinName", )}
+            />{errors.address && <p className="errorMessage">probeer de naam in te korten</p>}
 
             <textarea   className="add-item-field"
                         cols="30" rows="10"

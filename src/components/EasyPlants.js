@@ -57,8 +57,8 @@ const EasyPlants = () => {
                                 {/*/>)*/}
                                 {/*}*/}
                                 {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
-                                <Link to={`/edit-item/${ item.id }`}   className="btn-to-post">
-                                    <GrEdit/>
+                                <Link to={`/change-item/${ item.id }`}   className="btn-to-post">
+                                    <GrEdit/>Change
                                 </Link>
 
                                 {/*/>)*/}

@@ -29,6 +29,7 @@ const ItemsList = () => {
                      //<div style={{background: 'url({item.toPicture}) no repeat center/cover'}} className='itemBg'>
                         <div key ={item.id} className='itemInfo'>
                             <h3> {item.name}</h3>
+                            <h5>{item.latinName}</h5>
                             {/*<p>{item.description}</p>*/}
                             <img src={item.toPicture} alt={item.name} width="80px"/>
                             <Link to={`/Item/${ item.id }`}   className="btn-to-post">
@@ -75,7 +76,13 @@ const ItemsList = () => {
                                     {/*}*/}
                                     {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
                                 <Link to={`/edit-item/${ item.id }`}   className="btn-to-post">
-                                    <GrEdit/>
+                                    <GrEdit/>Edit
+                                </Link>
+                                {/*<Link to={`/update-item/${ item.id }`}   className="btn-to-post">*/}
+                                {/*    <GrEdit/>update*/}
+                                {/*</Link>*/}
+                                <Link to={`/change-item/${ item.id }`}   className="btn-to-post">
+                                    <GrEdit/>Change
                                 </Link>
                                 {/*    (<Button*/}
                                 {/*    type="submit"*/}

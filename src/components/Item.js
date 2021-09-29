@@ -43,6 +43,7 @@ useEffect(()=>{
                 <div className='full-item'>
                     <img className='full-item-picture' src={currentItem.toPicture} alt={currentItem.name} width="200px"/>
                     <div className='full-item-text'>
+                        <h3>{currentItem.latinName}</h3>
                         <p>{currentItem.description}</p>
                     </div>
                 </div>
@@ -95,8 +96,8 @@ useEffect(()=>{
                             {/*/>)*/}
                             {/*}*/}
                             {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
-                            <Link to={`/edit-item/${ currentItem.id }`}   className="btn-to-post">
-                                <GrEdit/>
+                            <Link to={`/change-item/${ currentItem.id }`}   className="btn-to-post">
+                                <GrEdit/>Change
                             </Link>
                             {/*    (<Button*/}
                             {/*    type="submit"*/}

@@ -8,12 +8,12 @@ import {ItemsContext} from "../../context/ItemsContext";
 
 function ItemDelete (props) {
     //const[contents] = useContext(ItemsContext);
-    console.log("props in itemDelete", props.id)
+   // console.log("props in itemDelete", props.id)
 
 
     // const { handleSubmit, formState: { errors }, register } = useForm();
     const itemId = props.id;
-    console.log('itemId',itemId)
+    //console.log('itemId',itemId)
 
     async function deleteItemHandler () {
         try{
