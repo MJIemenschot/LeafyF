@@ -13,7 +13,7 @@ import AddItem from "./components/AddItem";
 
 import ItemsList from "./components/ItemsList";
 
-import ItemsProvider from "./context/ItemsContext";
+import DataProvider from "./context/DataContext";
 
 import Item from "./components/Item";
 import ItemUpdate from "./components/reusableComponents/ItemUpdate";
@@ -25,6 +25,11 @@ import DryPlants from "./components/DryPlants";
 import EditItem from "./components/EditItem";
 
 import ChangeItem from "./components/ChangeItem";
+import Plants from "./components/Plants";
+import Plant from "./components/Plant";
+import PlantEdit from "./components/PlantEdit";
+import PlantChange from "./components/PlantChange";
+import PlantAdd from "./components/PlantAdd";
 
 
 
@@ -36,23 +41,22 @@ function App() {
     console.log("wat zijn de authData", authData);
 
   return (
-       <ItemsProvider>
+       <DataProvider>
       <>
 
         <Nav />
           <Route exact path='/user-portal' component={UserPortal}/>
           <Route exact path='/profile' component={Profile}/>
           {/*<Switch>*/}
-          <Route path='/add-item' component={AddItem}/>
-          <Route exact path='/' component={ItemsList}/>
+          <Route path='/plant-add' component={PlantAdd}/>
+          <Route exact path='/' component={Plants}/>
           <Route exact path='/makkelijk' component={EasyPlants}/>
           <Route excact path='/vergeet-deze' component={DryPlants}/>
           <Route exact path='/shadow' component={ShadowPlants}/>
-          <Route exact path='/item/:id' component={Item}/>
+          <Route exact path='/plant/:id' component={Plant}/>
 
-          <Route exact path='/edit-item/:id' component={EditItem}/>
-          <Route exact path='/update-item/:id' component={ItemUpdate}/>
-          <Route exact path='/change-item/:id' component={ChangeItem}/>
+          <Route exact path='/plant-edit/:id' component={PlantEdit}/>
+          <Route exact path='/plant-change/:id' component={PlantChange}/>
 
           <Route exact path='/over-leafy' component={About}/>
 
@@ -62,7 +66,7 @@ function App() {
           <Footer />
       </>
 
-       </ItemsProvider>
+       </DataProvider>
 
   );
 }

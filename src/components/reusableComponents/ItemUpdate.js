@@ -14,7 +14,7 @@ function ItemUpdate (props) {
      const [loading, toggleLoading] = useState(false);
      const [error, setError] = useState('');
      const [Success, toggleSuccess] = useState(false);
-     const [result, setResult] = useState('');
+     const [result, setResult] = useState('currentData');
     const onSubmit = (data) => setResult(JSON.stringify(data));
     //const token = localStorage.getItem("token")
 

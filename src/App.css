@@ -99,6 +99,7 @@ button {
 /* Container */
 
 .container {
+  min-height: 65%;
   width: 100%;
   max-width: 1060px;
   margin: 0 auto;
@@ -377,6 +378,7 @@ form .formContainer label {
   width: 100%;
   display: flex;
   flex-direction: row;
+  align-items: stretch;
 
 }
 .full-item-card {
@@ -448,11 +450,20 @@ form .formContainer label {
 /*}*/
 
 #footer{
-  height: 150px;
+  min-height: 30vh;
   background-color: #00828e;
+  padding-top: 30px;
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*!*text-align: center;*!*/
+  /*align-content: center;*/
+  margin-top: 50px;
+  margin-bottom: 0px;
+}
+.footer-text{
   color: #eeeeee;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 40px;
 }
 
 /* Media Queries */

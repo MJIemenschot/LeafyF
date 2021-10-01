@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import {Link, NavLink, useHistory} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext";
-import {ItemsContext} from "../context/ItemsContext";
+import {DataContext} from "../context/DataContext";
 import Logo from "./Logo";
 import {FaBars, FaHome, FaTimes } from "react-icons/fa";
 import {IoPersonOutline} from "react-icons/io5";
@@ -10,10 +10,10 @@ import axios from "axios";
 import {GrNext, GrClose, GrEdit, GrTrash, GrCafeteria} from "react-icons/gr";
 import Button from "./reusableComponents/Button";
 import {CgDrop, CgSun, GiWateringCan} from "react-icons/all";
-import ItemDelete from "./reusableComponents/ItemDelete";
+import ItemDelete from "./ItemDelete";
 
 const DryPlants = () => {
-    const {dry} = useContext(ItemsContext);
+    const {dry} = useContext(DataContext);
 
     // const [index, setIndex] = useState([])
 
@@ -86,7 +86,7 @@ const DryPlants = () => {
                                     {/*/>)*/}
                                     {/*}*/}
                                     {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
-                                    <Link to={`/change-item/${ item.id }`}   className="btn-to-post">
+                                    <Link to={`/plant-change/${ item.id }`}   className="btn-to-post">
                                         <GrEdit/>Change
                                     </Link>
 

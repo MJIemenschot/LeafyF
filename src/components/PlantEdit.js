@@ -8,54 +8,42 @@ import {ItemsContext} from "../context/ItemsContext";
 import {useHistory, useParams} from "react-router-dom";
 
 
-function EditItem () {
-
-    const { handleSubmit, formState: { errors }, register, reset } = useForm();
+function PlantEdit (props) {
+    console.log("props in PlanEdit",props.current);
+    const currentPlant =props.current;
+    const { handleSubmit, formState: { errors }, register, reset } = useForm(
+        {defaultValues : currentPlant}
+    );
     // const {contents} = useContext(ItemsContext);
     // console.log('contents  in Edititem', {contents} );
     // const Itemid = {id};
-    const [currentItem,setCurrentItem ] = useState([]);
+   // const [currentPlant,setCurrentPlant ] = useState([]);
     // const [edit,setEdit ] = useState([]);
-
     const { id } = useParams();
     const history = useHistory();
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState('');
     const [Success, toggleSuccess] = useState(false);
-    const [result, setResult] = useState(null);
+    const [result, setResult] = useState('');
     const onSubmit = (data) => setResult(JSON.stringify(data));
     
 
-    useEffect(()=>{
-        async function getCurrent() {
 
-            try {
-                const response = await axios.get(`http://localhost:8080/api/v1/items/${id}`);
-                console.log('response in getCurrent',response.data)
-
-                setCurrentItem(response.data)
-
-            } catch (error) {
-                console.error('Er ging iets mis, geen data gevonden', error)
-            }
-        }
-        getCurrent();
-    },[]);
-
-    // useEffect(()=>{
-    //     if (currentItem){
-    //         setEdit(currentItem)
-    //     }
-    //
-    // },[currentItem, edit]);
 
     async function updateIt (formData) {
         setError('');
         // toggleLoading(true);
-        const token = localStorage.getItem("token")
+        //const token = localStorage.getItem("token")
 
         try {
-            const res = await axios.put('http://localhost:8080/api/v1/items/update', formData)
+            const res = await axios.put('http://localhost:8080/api/v1/items/update', formData
+                //     , {
+                //     headers: {
+                //         "Content-Type": "application/json",
+                //         Authorization: `Bearer ${token}`,
+                //     }
+                // }
+            );
             console.log('res in update',res)
             toggleSuccess(true);
         } catch (e) {
@@ -93,24 +81,24 @@ function EditItem () {
                 <form onSubmit={handleSubmit(formSubmit)} onReset={reset} className="add-item">
                     <input  type="text"
                             className="add-item-field"
-                             defaultValue={currentItem.id}
+                             //defaultValue={currentPlant.id}
                             // readonly
-                            // placeholder="Voeg hier de id toe:"
+
                             {...register("id", {
                             })}
                     />
                     <input  type="text"
                             className="add-item-field"
-                             defaultValue={currentItem.name}
-                             // placeholder="Plantnaam"
+                             //defaultValue={currentPlant.name}
+
                             {...register("name", {
                             })}
                     />{errors.address && <p className="errorMessage">Het veld is niet ingevuld</p>}
 
                     <textarea   className="add-item-field"
                                 cols="30" rows="10"
-                                 defaultValue={currentItem.description}
-                                // placeholder="Voeg hier een beschrijving en/of verzorgingshandleiding van jouw plant toe:"
+                                 //defaultValue={currentPlant.description}
+
                                 {...register("description")}
                     />
                     {errors.address && <p className="errorMessage">Vergeet niet een verzorgingshandleiding of beschrijving in te vullen</p>}
@@ -120,7 +108,7 @@ function EditItem () {
                         <input  className="choose"
                                 type="radio"
                                 id="easy"
-                                checked={currentItem.difficulty === "EASY"}
+                                //checked={currentPlant.difficulty === "EASY"}
                                 // onChange={onValueChange}
 
 
@@ -129,14 +117,14 @@ function EditItem () {
                         <input  className="choose"
                                 type="radio"
                                 id="moderate"
-                                 checked={currentItem.difficulty === "MODERATE"}
+                                 //checked={currentPlant.difficulty === "MODERATE"}
 
                                 value="MODERATE" {...register("difficulty")}/>
                         <label htmlFor="moderate">Gemiddeld</label>
                         <input  className="choose"
                                 type="radio"
                                 id="hard"
-                                 checked={currentItem.difficulty === "HARD"}
+                                 //checked={currentPlant.difficulty === "HARD"}
 
                                 value="HARD" {...register("difficulty")}/>
                         <label htmlFor="hard">Moeilijk</label>
@@ -162,7 +150,7 @@ function EditItem () {
                                 id="sunny"
                                 // checked={currentItem.light === "SUNNY"}
                                 value="SUNNY" {...register("light")}/>
-                        <label htmlFor="sunny">Half zonnig</label>
+                        <label htmlFor="sunny">Zonnig</label>
                         <input  className="choose"
                                 type="radio"
                                 id="shadow"
@@ -226,7 +214,7 @@ function EditItem () {
                         <label htmlFor="month">Iedere maand</label>
                         <input  className="choose"
                                 type="radio"
-                                defaultValue={currentItem.food === "NEVER_SPECIAL"}
+                                //defaultValue={currentPlant.food === "NEVER_SPECIAL"}
                                 id="never_special"
                                 // checked={currentItem.food === "NEVER_SPECIAL"}
                                 value="NEVER_SPECIAL" {...register("food")}/>
@@ -253,4 +241,4 @@ function EditItem () {
     )
 }
 
-export default EditItem;
+export default PlantEdit;

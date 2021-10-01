@@ -45,7 +45,7 @@ const Profile = () => {
                     Hallo <strong>
                     {/*TODO een functie om het mailadres eraf te halen*/}
                     {user && user.username}</strong>
-                </p><p>klik <Link id="add-link" to="/add-item">hier</Link> om je aanbod toe te voegen.</p>
+                </p><p>klik <Link id="add-link" to="/plant-add">hier</Link> om je aanbod toe te voegen.</p>
             <p>Mijn aanbiedingen (bewerk)</p>//todo
                 <ItemsList />
             </section>

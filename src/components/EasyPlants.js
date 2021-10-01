@@ -9,14 +9,14 @@ import axios from "axios";
 import {GrNext, GrClose, GrEdit, GrTrash, GrCafeteria} from "react-icons/gr";
 import Button from "./reusableComponents/Button";
 import {CgDrop, CgSun, GiWateringCan} from "react-icons/all";
-import {ItemsContext} from "../context/ItemsContext";
-import ItemDelete from "./reusableComponents/ItemDelete";
+import {DataContext} from "../context/DataContext";
+import ItemDelete from "./ItemDelete";
 
 
 
 const EasyPlants = () => {
     const [index, setIndex] = useState([])
-    const {easy} = useContext(ItemsContext);
+    const {easy} = useContext(DataContext);
     //console.log('from context in easy', easy)
 
 
@@ -57,7 +57,7 @@ const EasyPlants = () => {
                                 {/*/>)*/}
                                 {/*}*/}
                                 {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
-                                <Link to={`/change-item/${ item.id }`}   className="btn-to-post">
+                                <Link to={`/plant-change/${ item.id }`}   className="btn-to-post">
                                     <GrEdit/>Change
                                 </Link>
 

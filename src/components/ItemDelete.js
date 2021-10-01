@@ -4,7 +4,7 @@ import axios from "axios";
 
 
 import {GrTrash} from "react-icons/gr";
-import {ItemsContext} from "../../context/ItemsContext";
+import {ItemsContext} from "../context/ItemsContext";
 
 function ItemDelete (props) {
     //const[contents] = useContext(ItemsContext);
