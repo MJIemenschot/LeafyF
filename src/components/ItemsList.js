@@ -7,6 +7,7 @@ import {useHistory} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext";
 import Button from "./reusableComponents/Button";
 import {CgDrop, CgSun, GiWateringCan} from "react-icons/all";
+import Image from "./Image";
 
 
 const ItemsList = () => {
@@ -31,7 +32,8 @@ const ItemsList = () => {
                             <h5>{item.latinName}</h5>
                             {/*<p>{item.description}</p>*/}
                             <div style={{background: `url({item.toPicture}) no repeat center/cover`}} className='itemBg'>picbg</div>
-                            <img src={item.toPicture} alt={item.name} width="80px"/>
+                            {/*<img src={item.toPicture} alt={item.name} width="80px"/>*/}
+                            <Image id={item.id}/>
                             <Link to={`/Item/${ item.id }`}   className="btn-to-post">
                                 Meer Informatie
                             </Link>

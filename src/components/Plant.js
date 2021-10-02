@@ -96,9 +96,9 @@ useEffect(()=>{
                             {/*/>)*/}
                             {/*}*/}
                             {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
-                            {/*<Link to={`/plant-edit/${ currentPlant.id }`}   className="btn-to-post">*/}
-                            {/*    <GrEdit/>Change*/}
-                            {/*</Link>*/}
+                            <Link to={`/edit-plant/${ currentPlant.id }`}   className="btn-to-post">
+                                <GrEdit/>Pas aan
+                            </Link>
                             {/*    (<Button*/}
                             {/*    type="submit"*/}
                             {/*    buttonTitle={<GrEdit/>}*/}

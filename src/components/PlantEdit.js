@@ -24,7 +24,7 @@ function PlantEdit (props) {
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState('');
     const [Success, toggleSuccess] = useState(false);
-    const [result, setResult] = useState('');
+    const [result, setResult] = useState('currenPlant');
     const onSubmit = (data) => setResult(JSON.stringify(data));
     
 
@@ -36,7 +36,7 @@ function PlantEdit (props) {
         //const token = localStorage.getItem("token")
 
         try {
-            const res = await axios.put('http://localhost:8080/api/v1/items/update', formData
+            const res = await axios.put('http://localhost:8080/api/v1/plants/update', formData
                 //     , {
                 //     headers: {
                 //         "Content-Type": "application/json",
@@ -64,6 +64,7 @@ function PlantEdit (props) {
         formData.append("id", data.id)
         formData.append("description", data.description)
         formData.append("name", data.name)
+        formData.append("latinName", data.latinName)
         formData.append("difficulty", data.difficulty)
         formData.append("light", data.light)
         formData.append("food", data.food)
@@ -93,7 +94,15 @@ function PlantEdit (props) {
 
                             {...register("name", {
                             })}
-                    />{errors.address && <p className="errorMessage">Het veld is niet ingevuld</p>}
+                    />{errors.name && <p className="errorMessage">Het veld is niet ingevuld</p>}
+                    <input  type="text"
+                            className="add-item-field"
+                        //defaultValue = {currentData.name}
+
+                            {...register("latinName", {
+
+                            })}
+                    />{errors.latinName && <p className="errorMessage">Het veld is niet ingevuld</p>}
 
                     <textarea   className="add-item-field"
                                 cols="30" rows="10"
@@ -101,7 +110,7 @@ function PlantEdit (props) {
 
                                 {...register("description")}
                     />
-                    {errors.address && <p className="errorMessage">Vergeet niet een verzorgingshandleiding of beschrijving in te vullen</p>}
+                    {errors.description && <p className="errorMessage">Vergeet niet een verzorgingshandleiding of beschrijving in te vullen</p>}
 
                     <div className="selectField">
                         <h3>Verzorging</h3>
@@ -229,7 +238,7 @@ function PlantEdit (props) {
 
                         })} accept="image/jpeg"
                         />
-                        {errors.address && <p className="errorMessage">Er ging iets mis met uploaden. Probeer het opnieuw.</p>}
+                        {errors.file && <p className="errorMessage">Er ging iets mis met uploaden. Probeer het opnieuw.</p>}
                         <GrUpload/>
                     </div >
                     <button className="form-btn">Wijzig de plant</button>

@@ -30,6 +30,7 @@ import Plant from "./components/Plant";
 import PlantEdit from "./components/PlantEdit";
 import PlantChange from "./components/PlantChange";
 import PlantAdd from "./components/PlantAdd";
+import {EditPlant} from "./components/EditPlant";
 
 
 
@@ -56,6 +57,8 @@ function App() {
           <Route exact path='/plant/:id' component={Plant}/>
 
           <Route exact path='/plant-edit/:id' component={PlantEdit}/>
+          <Route exact path='/edit-plant/:id' component={EditPlant}/>
+
           <Route exact path='/plant-change/:id' component={PlantChange}/>
 
           <Route exact path='/over-leafy' component={About}/>
