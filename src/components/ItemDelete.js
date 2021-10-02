@@ -4,16 +4,16 @@ import axios from "axios";
 
 
 import {GrTrash} from "react-icons/gr";
-import {ItemsContext} from "../../context/ItemsContext";
+import {ItemsContext} from "../context/ItemsContext";
 
 function ItemDelete (props) {
     //const[contents] = useContext(ItemsContext);
-    console.log("props in itemDelete", props.id)
+   // console.log("props in itemDelete", props.id)
 
 
     // const { handleSubmit, formState: { errors }, register } = useForm();
     const itemId = props.id;
-    console.log('itemId',itemId)
+    //console.log('itemId',itemId)
 
     async function deleteItemHandler () {
         try{
@@ -26,18 +26,18 @@ function ItemDelete (props) {
     }
 
 
-    useEffect((itemId) => {
-        async function deleteItem(itemId) {
-            console.log("Hebben we hier een itemId in component deleteItem?",itemId)
-            try {
-               await axios.delete(`http://localhost:8080/api/v1/items/${itemId}`);
-
-            } catch (e) {
-                console.error(e);
-            }
-        }
-        deleteItem()
-         },[])
+    // useEffect((itemId) => {
+    //     async function deleteItem(itemId) {
+    //         console.log("Hebben we hier een itemId in component deleteItem?",itemId)
+    //         try {
+    //            await axios.delete(`http://localhost:8080/api/v1/items/${itemId}`);
+    //
+    //         } catch (e) {
+    //             console.error(e);
+    //         }
+    //     }
+    //     deleteItem()
+    //      },[])
 
 
     return (
@@ -47,7 +47,7 @@ function ItemDelete (props) {
                 onClick={deleteItemHandler}
            >
                 verwijder
-                {/*<GrTrash/>*/}
+                <GrTrash/>
 
             </button>
         </div>

@@ -91,6 +91,7 @@ button {
 .page-header{
   text-align: center;
   color: #00828e;
+  margin-bottom: 20px;
 }
 .page-text{
   text-align: center;
@@ -98,6 +99,7 @@ button {
 /* Container */
 
 .container {
+  min-height: 65%;
   width: 100%;
   max-width: 1060px;
   margin: 0 auto;
@@ -121,11 +123,11 @@ button {
 nav {
   width: 100%;
   min-height: 10vh;
+  margin-bottom: 30px;
   padding: 16px 0;
   background: cadetblue;
   display: flex;
   justify-content: space-around;
-
   align-items: center;
   padding: 0 1.5em;
 }
@@ -265,6 +267,7 @@ form .formContainer label {
   margin: auto;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 
 }
 .itemInfo{
@@ -354,8 +357,7 @@ form .formContainer label {
 
 .fullItem-container {
   width: 70%;
-  margin: 20px auto 20px;
-
+  margin:auto;
   display: flex;
   flex-direction: column;
 }
@@ -376,6 +378,7 @@ form .formContainer label {
   width: 100%;
   display: flex;
   flex-direction: row;
+  align-items: stretch;
 
 }
 .full-item-card {
@@ -447,11 +450,20 @@ form .formContainer label {
 /*}*/
 
 #footer{
-  height: 150px;
+  min-height: 30vh;
   background-color: #00828e;
+  padding-top: 30px;
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*!*text-align: center;*!*/
+  /*align-content: center;*/
+  margin-top: 50px;
+  margin-bottom: 0px;
+}
+.footer-text{
   color: #eeeeee;
   text-align: center;
-  margin-top: auto;
+  margin-top: 40px;
 }
 
 /* Media Queries */

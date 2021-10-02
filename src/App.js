@@ -1,35 +1,38 @@
 import React, { useContext } from 'react';
-import {ItemProvider} from "./context/Itemcontext";
-
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {AuthContext} from "./context/AuthContext";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import './App.css';
- import ItemAdd from "./components/ItemAdd";
+
 
 import UserPortal from "./pages/UserPortal";
 import Profile from "./pages/Profile";
 import AddItem from "./components/AddItem";
 
 import ItemsList from "./components/ItemsList";
-import ItemOvervieuw from "./components/ItemOvervieuw";
 
-import AddPost from "./components/AddPost";
-import PostOvervieuw from "./components/PostOvervieuw";
-import Items from "./components/Items";
-import ItemsProvider from "./context/ItemsContext";
-import ItemDetails from "./components/ItemDetails";
+import DataProvider from "./context/DataContext";
+
 import Item from "./components/Item";
 import ItemUpdate from "./components/reusableComponents/ItemUpdate";
 import About from "./pages/About";
-import DifficultyList from "./components/DifficultyList";
+
 import EasyPlants from "./components/EasyPlants";
 import ShadowPlants from "./components/ShadowPlants";
 import DryPlants from "./components/DryPlants";
-//import Item from "./components/Item";
-// import Image from "./components/Image";
+import EditItem from "./components/EditItem";
+
+import ChangeItem from "./components/ChangeItem";
+import Plants from "./components/Plants";
+import Plant from "./components/Plant";
+import PlantEdit from "./components/PlantEdit";
+import PlantChange from "./components/PlantChange";
+import PlantAdd from "./components/PlantAdd";
+import {EditPlant} from "./components/EditPlant";
+
+
 
 
 
@@ -39,22 +42,26 @@ function App() {
     console.log("wat zijn de authData", authData);
 
   return (
-       <ItemsProvider>
+       <DataProvider>
       <>
 
         <Nav />
-          <Route exact path='/' component={ItemsList}/>
-          <Route exact path='/makkelijk' component={EasyPlants}/>
-          <Route excact path='/vergeet-deze' component={DryPlants}/>
-          <Route exact path='/shadow' component={ShadowPlants}/>
           <Route exact path='/user-portal' component={UserPortal}/>
           <Route exact path='/profile' component={Profile}/>
           {/*<Switch>*/}
-          <Route path='/add-item' component={AddItem}/>
+          <Route path='/plant-add' component={PlantAdd}/>
+          <Route exact path='/' component={Plants}/>
+          <Route exact path='/makkelijk' component={EasyPlants}/>
+          <Route excact path='/vergeet-deze' component={DryPlants}/>
+          <Route exact path='/shadow' component={ShadowPlants}/>
+          <Route exact path='/plant/:id' component={Plant}/>
 
-          <Route exact path='/item/:id' component={Item}/>
-          <Route exact path='/update-item' component={ItemUpdate}/>
-          <Route exact path='/over-leafy' component={ItemOvervieuw}/>
+          <Route exact path='/plant-edit/:id' component={PlantEdit}/>
+          <Route exact path='/edit-plant/:id' component={EditPlant}/>
+
+          <Route exact path='/plant-change/:id' component={PlantChange}/>
+
+          <Route exact path='/over-leafy' component={About}/>
 
           {/*<Items />*/}
           {/*</Switch>*/}
@@ -62,7 +69,7 @@ function App() {
           <Footer />
       </>
 
-       </ItemsProvider>
+       </DataProvider>
 
   );
 }

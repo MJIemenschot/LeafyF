@@ -2,11 +2,12 @@ import React, {useContext, useState, useEffect} from 'react';
 import {ItemsContext} from "../context/ItemsContext";
 import {GrNext, GrClose, GrEdit, GrTrash, GrRestaurant, GrCafeteria} from "react-icons/gr";
 import {Link} from 'react-router-dom';
-import ItemDelete from "./reusableComponents/ItemDelete";
+import ItemDelete from "./ItemDelete";
 import {useHistory} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext";
 import Button from "./reusableComponents/Button";
 import {CgDrop, CgSun, GiWateringCan} from "react-icons/all";
+import Image from "./Image";
 
 
 const ItemsList = () => {
@@ -15,9 +16,7 @@ const ItemsList = () => {
     console.log("dit komt binnen in itemslist vanuit itemscontext", contents);
 
 
-    function selectItem(){
 
-    }
     return (
         <>
             <h1 className='page-header'>Alle planten</h1>
@@ -26,11 +25,15 @@ const ItemsList = () => {
 
             {contents.map(item =>{
                 return (
-                     //<div style={{background: 'url({item.toPicture}) no repeat center/cover'}} className='itemBg'>
+
+
                         <div key ={item.id} className='itemInfo'>
                             <h3> {item.name}</h3>
+                            <h5>{item.latinName}</h5>
                             {/*<p>{item.description}</p>*/}
-                            <img src={item.toPicture} alt={item.name} width="80px"/>
+                            <div style={{background: `url({item.toPicture}) no repeat center/cover`}} className='itemBg'>picbg</div>
+                            {/*<img src={item.toPicture} alt={item.name} width="80px"/>*/}
+                            <Image id={item.id}/>
                             <Link to={`/Item/${ item.id }`}   className="btn-to-post">
                                 Meer Informatie
                             </Link>
@@ -65,20 +68,30 @@ const ItemsList = () => {
                             <div className='tools'>
 
                                     {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
-                                    (<Button
-                                    type="submit"
-                                    buttonTitle={<GrTrash/>}
-                                    classNameButton="btn delete-post"
-                                    // onclick={}
-                                />)
+                                <ItemDelete id={item.id}/>
+                                {/*    (<Button*/}
+                                {/*    type="submit"*/}
+                                {/*    buttonTitle={<GrTrash/>}*/}
+                                {/*    classNameButton="btn delete-post"*/}
+                                {/*    // onclick={}*/}
+                                {/*/>)*/}
                                     {/*}*/}
                                     {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
-                                    (<Button
-                                    type="submit"
-                                    buttonTitle={<GrEdit/>}
-                                    classNameButton="btn edit-post"
-                                    onClickEvent={selectItem(contents.id)}
-                                />)
+                                <Link to={`/edit-item/${ item.id }`}   className="btn-to-post">
+                                    <GrEdit/>Edit
+                                </Link>
+                                {/*<Link to={`/update-item/${ item.id }`}   className="btn-to-post">*/}
+                                {/*    <GrEdit/>update*/}
+                                {/*</Link>*/}
+                                <Link to={`/change-item/${ item.id }`}   className="btn-to-post">
+                                    <GrEdit/>Change
+                                </Link>
+                                {/*    (<Button*/}
+                                {/*    type="submit"*/}
+                                {/*    buttonTitle={<GrEdit/>}*/}
+                                {/*    classNameButton="btn edit-post"*/}
+                                {/*    onClickEvent={selectItem(contents.id)}*/}
+                                {/*/>)*/}
                                     {/*}*/}
 
                             </div>

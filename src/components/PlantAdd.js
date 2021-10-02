@@ -5,7 +5,7 @@ import './AddItem.css';
 
 import {GrUpload} from "react-icons/gr";
 
-function AddItem () {
+function PlantAdd () {
     const { handleSubmit, formState: { errors }, register, reset } = useForm();
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState('');
@@ -22,7 +22,7 @@ function AddItem () {
         //of  const token = localStorage.getItem("token")
 
         try {
-            await axios.post('http://localhost:8080/api/v1/items/add', formData ,
+            await axios.post('http://localhost:8080/api/v1/plants', formData ,
             // {
             //     headers: {
             //         "Content-Type": "application/json",
@@ -193,4 +193,4 @@ function AddItem () {
     )
 }
 
-export default AddItem;
+export default PlantAdd;

@@ -9,13 +9,14 @@ import axios from "axios";
 import {GrNext, GrClose, GrEdit, GrTrash, GrCafeteria} from "react-icons/gr";
 import Button from "./reusableComponents/Button";
 import {CgDrop, CgSun, GiWateringCan} from "react-icons/all";
-import {ItemsContext} from "../context/ItemsContext";
+import {DataContext} from "../context/DataContext";
+import ItemDelete from "./ItemDelete";
 
 
 
 const EasyPlants = () => {
     const [index, setIndex] = useState([])
-    const {easy} = useContext(ItemsContext);
+    const {easy} = useContext(DataContext);
     //console.log('from context in easy', easy)
 
 
@@ -49,6 +50,21 @@ const EasyPlants = () => {
                             <h3> {item.name}</h3>
                             {/*<p>{item.description}</p>*/}
                             <img src={item.toPicture} alt={item.name} width="80px"/>
+                            <div className='tools'>
+                                {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
+                                <ItemDelete id={item.id}/>
+
+                                {/*/>)*/}
+                                {/*}*/}
+                                {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
+                                <Link to={`/plant-change/${ item.id }`}   className="btn-to-post">
+                                    <GrEdit/>Change
+                                </Link>
+
+                                {/*/>)*/}
+                                {/*}*/}
+
+                            </div>
                             <Link to={`/Item/${ item.id }`}   className="btn-to-post">
                                 Meer Informatie
                             </Link>
@@ -80,24 +96,7 @@ const EasyPlants = () => {
                                 {item.food==="MONTH" &&(<p>Elke maand (zomer)</p>)}
                                 {item.food==="NEVER_SPECIAL" &&(<p>Heeft niets nodig</p>)}
                             </div>
-                            <div className='tools'>
 
-                                    {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
-                                    (<Button
-                                    type="submit"
-                                    buttonTitle={<GrTrash/>}
-                                    classNameButton="btn delete-post"
-                                />)
-                                    {/*}*/}
-                                    {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
-                                    (<Button
-                                    type="submit"
-                                    buttonTitle={<GrEdit/>}
-                                    classNameButton="btn edit-post"
-                                />)
-                                    {/*}*/}
-
-                                </div>
 
                             </div>
 

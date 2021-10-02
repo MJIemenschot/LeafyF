@@ -5,7 +5,8 @@ const Footer = () => {
 
     return (
         <div id="footer">
-            <p>Leafy &copy; 2021</p>
+            <div className='footer-text'>Leafy &copy; 2021</div>
+
             {/*<Searchbar/>*/}
         </div>
     )

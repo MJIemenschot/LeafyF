@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import {Link, NavLink, useHistory} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext";
-import {ItemsContext} from "../context/ItemsContext";
+import {DataContext} from "../context/DataContext";
 
 import Logo from "./Logo";
 import {FaBars, FaHome, FaTimes } from "react-icons/fa";
@@ -12,10 +12,11 @@ import {GrNext, GrClose, GrEdit, GrTrash, GrCafeteria} from "react-icons/gr";
 import Button from "./reusableComponents/Button";
 import {CgDrop, CgSun, GiWateringCan} from "react-icons/all";
 import ItemIndex from "./reusableComponents/ItemIndex";
+import ItemDelete from "./ItemDelete";
 
 const ShadowPlants = () => {
     // const [index, setIndex] = useState([]);
-    const {shadow} = useContext(ItemsContext);
+    const {shadow} = useContext(DataContext);
      // const index = shadow;
 
 
@@ -83,18 +84,15 @@ const ShadowPlants = () => {
                             </div>
                                 <div className='tools'>
                                     {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
-                                    (<Button
-                                    type="submit"
-                                    buttonTitle={<GrTrash/>}
-                                    classNameButton="btn delete-post"
-                                />)
+                                    <ItemDelete id={item.id}/>
+
+                                    {/*/>)*/}
                                     {/*}*/}
                                     {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
-                                    (<Button
-                                    type="submit"
-                                    buttonTitle={<GrEdit/>}
-                                    classNameButton="btn edit-post"
-                                />)
+                                    <Link to={`/plant-change/${ item.id }`}   className="btn-to-post">
+                                        <GrEdit/>Change
+                                    </Link>
+                                    {/*/>)*/}
                                     {/*}*/}
 
                                 </div>

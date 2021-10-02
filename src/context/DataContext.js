@@ -2,9 +2,9 @@ import React, { createContext, useState, useEffect } from 'react';
 import axios from "axios";
 import pic from "../assets/img1.jpg";
 
-export const ItemsContext = createContext({});
+export const DataContext = createContext({});
 
-function ItemsProvider (props) {
+function DataProvider (props) {
 
     const [contents, setContents] = useState([])
     const [deleteIt, setDeleteIt] = useState([])
@@ -23,7 +23,7 @@ function ItemsProvider (props) {
         async function fetchData () {
             setLoading(true);
             try {
-                const res = await axios.get("http://localhost:8080/api/v1/items")
+                const res = await axios.get("http://localhost:8080/api/v1/plants")
                 console.log("items van backend vanuit Context", res);
                 const data = res.data;
                 setContents(res.data);
@@ -45,7 +45,7 @@ function ItemsProvider (props) {
     useEffect(()=>{
         async function fetchShadow(){
             try{
-                const res = await axios.get("http://localhost:8080/api/v1/items/byL/SHADOW");
+                const res = await axios.get("http://localhost:8080/api/v1/plants/byL/SHADOW");
                 console.log("de data van byD easy api",res);
                 const data = res.data;
                 setShadow(res.data);
@@ -63,7 +63,7 @@ function ItemsProvider (props) {
         useEffect(()=>{
             async function fetchEasy(){
                 try{
-                    const res = await axios.get("http://localhost:8080/api/v1/items/byD/EASY");
+                    const res = await axios.get("http://localhost:8080/api/v1/plants/byD/EASY");
                     console.log("de data van byD easy api",res);
                     const data = res.data;
                     setEasy(res.data);
@@ -80,7 +80,7 @@ function ItemsProvider (props) {
     useEffect(()=>{
         async function fetchDry(){
             try{
-                const res = await axios.get("http://localhost:8080/api/v1/items/byW/MONTH");
+                const res = await axios.get("http://localhost:8080/api/v1/plants/byW/MONTH");
                 console.log("de data van byD easy api",res);
                 const data = res.data;
                 setDry(res.data);
@@ -96,7 +96,7 @@ function ItemsProvider (props) {
     // useEffect(()=>{
         async function deleteItemHandler (id) {
         try{
-            await axios.delete(`http://localhost:8080/api/v1/items/${id}`)
+            await axios.delete(`http://localhost:8080/api/v1/plants/files/${id}`)
             const newItemList = (contents.filter((item)=>item.id !==id));
             console.log('id in deleteItemHandler in context',id)
         }catch (e) {
@@ -135,10 +135,10 @@ function ItemsProvider (props) {
     // }
 
     return (
-        <ItemsContext.Provider value={ {contents, easy, shadow, dry, error, loading } }>
+        <DataContext.Provider value={ {contents, easy, shadow, dry, error, loading } }>
             {props.children}
-        </ItemsContext.Provider>
+        </DataContext.Provider>
     )
 }
 
-export default ItemsProvider;
+export default DataProvider;

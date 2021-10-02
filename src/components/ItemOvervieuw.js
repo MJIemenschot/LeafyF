@@ -8,7 +8,7 @@ import axios from "axios";
 
 import { GrNext, GrClose, GrEdit, GrTrash  } from "react-icons/gr";
 import Button from "./reusableComponents/Button";
-import ItemDelete from "./reusableComponents/ItemDelete";
+import ItemDelete from "./ItemDelete";
 import ItemUpdate from "./reusableComponents/ItemUpdate";
 
 const ItemOvervieuw = () => {
