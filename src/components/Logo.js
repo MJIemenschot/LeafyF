@@ -5,7 +5,7 @@ const Logo = () => {
 
     return (
         <Link to='/' className='logo'>
-            Leafy<span>.<GrGrow /></span>
+            Leafy<span className='logo-icon'>.<GrGrow /></span>
 
         </Link>
     )

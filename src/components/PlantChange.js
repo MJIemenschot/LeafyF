@@ -12,6 +12,8 @@ function PlantChange(props) {
     const [error, setError] = useState('');
     const [Success, toggleSuccess] = useState(false);
     const [currentPlant, setCurrentPlant] = useState([]);
+    const [currentFile, setCurrentFile] = useState([]);
+
 
 
     useEffect(() => {
@@ -31,7 +33,24 @@ function PlantChange(props) {
         getCurrent();
     }, []);
 
+    useEffect(() => {
+        async function getCurrentFile() {
 
-    return currentPlant ? <PlantEdit current={currentPlant}/> : <div>Loading...</div>
+            try {
+                const response = await axios.get(`http://localhost:8080/api/v1/plants/${id}download`);
+                console.log('response in van change getCurrentFile', response.data)
+
+                setCurrentFile(response.data)
+
+            } catch (error) {
+                console.error('Er ging iets mis, geen data gevonden', error)
+            }
+        }
+
+        getCurrentFile();
+    }, []);
+
+
+    return currentPlant ? <PlantEdit current={currentPlant} cfile={currentFile}/> : <div>Loading...</div>
 }
 export default PlantChange;

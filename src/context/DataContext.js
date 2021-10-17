@@ -27,6 +27,7 @@ function DataProvider (props) {
                 console.log("items van backend vanuit Context", res);
                 const data = res.data;
                 setContents(res.data);
+                //voor een file uit de database
                 // const blob = new Blob([result.data.config], {
                 //     type: 'image/jpg',
                 // });
@@ -71,7 +72,6 @@ function DataProvider (props) {
                 } catch (e) {
                     console.error("Er zijn helaas geen makkelijke planten gevonden gevonden, error: " + e)
                 }
-
             }
             fetchEasy()
         },[])
@@ -94,15 +94,15 @@ function DataProvider (props) {
 
 
     // useEffect(()=>{
-        async function deleteItemHandler (id) {
-        try{
-            await axios.delete(`http://localhost:8080/api/v1/plants/files/${id}`)
-            const newItemList = (contents.filter((item)=>item.id !==id));
-            console.log('id in deleteItemHandler in context',id)
-        }catch (e) {
-            console.log("het is niet gelukt, error: " + e)
-        }
-    }
+    //     async function deleteItemHandler (id) {
+    //     try{
+    //         await axios.delete(`http://localhost:8080/api/v1/plants/files/${id}`)
+    //         const newItemList = (contents.filter((item)=>item.id !==id));
+    //         console.log('id in deleteItemHandler in context',id)
+    //     }catch (e) {
+    //         console.log("het is niet gelukt, error: " + e)
+    //     }
+    // }
     // deleteItemHandler()
     // },[])
 

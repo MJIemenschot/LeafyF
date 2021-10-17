@@ -1,38 +1,52 @@
 import React, {useContext, useState, useEffect} from 'react';
-import {ItemsContext} from "../context/ItemsContext";
+import {DataContext} from "../context/DataContext";
 import {GrNext, GrClose, GrEdit, GrTrash, GrRestaurant, GrCafeteria} from "react-icons/gr";
 import {Link} from 'react-router-dom';
-import ItemDelete from "./ItemDelete";
+import UserDelete from "./UserDelete";
 import {useHistory} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext";
 import Button from "./reusableComponents/Button";
 import {CgDrop, CgSun, GiWateringCan} from "react-icons/all";
 import Image from "./Image";
+import Search from "./Search";
 
 
 const ItemsList = () => {
     const {user, isTokenValid} = useContext(AuthContext);
-    const {contents} = useContext(ItemsContext);
+    const {contents} = useContext(DataContext);
     console.log("dit komt binnen in itemslist vanuit itemscontext", contents);
+    const { search } = window.location;
+    const query = new URLSearchParams(search).get('s');
+    const filteredPosts = filterPosts(contents, query);
+    const filterPosts = (contents, query) => {
+        if (!query) {
+            return contents;
+        }
 
+        return contents.filter((post) => {
+            const postName = post.name.toLowerCase();
+            return postName.includes(query);
 
+        });
+
+    };
 
     return (
         <>
+            <Search/>
             <h1 className='page-header'>Alle planten</h1>
 
         <div className='item-container'>
 
-            {contents.map(item =>{
+            {filterPosts.map(item =>{
                 return (
 
 
                         <div key ={item.id} className='itemInfo'>
                             <h3> {item.name}</h3>
                             <h5>{item.latinName}</h5>
-                            {/*<p>{item.description}</p>*/}
-                            <div style={{background: `url({item.toPicture}) no repeat center/cover`}} className='itemBg'>picbg</div>
-                            {/*<img src={item.toPicture} alt={item.name} width="80px"/>*/}
+
+
                             <Image id={item.id}/>
                             <Link to={`/Item/${ item.id }`}   className="btn-to-post">
                                 Meer Informatie
@@ -68,7 +82,7 @@ const ItemsList = () => {
                             <div className='tools'>
 
                                     {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
-                                <ItemDelete id={item.id}/>
+                                <UserDelete id={item.id}/>
                                 {/*    (<Button*/}
                                 {/*    type="submit"*/}
                                 {/*    buttonTitle={<GrTrash/>}*/}
@@ -96,7 +110,7 @@ const ItemsList = () => {
 
                             </div>
                             {/*<GrEdit style={{ color:'white', cursor:'pointer'}}/>*/}
-                            {/*/!*<ItemDelete id={item.id} />*!/*/}
+                            {/*/!*<UserDelete id={item.id} />*!/*/}
                             {/*/!*<button onClick={() => delete(item.id)}>Delete</button>*!/*/}
                             {/*<button*/}
                             {/*     onClick={selectItem(item.id)}*/}

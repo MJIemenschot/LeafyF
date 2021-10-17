@@ -1,12 +1,11 @@
 import {Link, useHistory, useParams} from "react-router-dom";
 import React, {useContext, useEffect, useState} from "react";
-import Container from './reusableComponents/Container';
 import axios from "axios";
-import {ItemsContext} from "../context/ItemsContext";
-import Button from "./reusableComponents/Button";
 import {CgDrop, CgSun, GiWateringCan} from "react-icons/all";
 import {GrCafeteria, GrEdit, GrTrash} from "react-icons/gr";
-import ItemDelete from "./ItemDelete";
+import PlantDelete from "./PlantDelete";
+import SearchBar from "./SearchBar";
+import SearchForm from "./SearchForm";
 
 
 const Plant = () => {
@@ -35,13 +34,13 @@ useEffect(()=>{
     return (
         <div className='container'>
             <div>
-                <h1 className='page-header'> {currentPlant.name}</h1>
+                <h1 className='page-header' data-testid='pageheader'> {currentPlant.name}</h1>
             </div>
 
-            <div className="full-item-container">
+            <div className='full-item-container'>
 
                 <div className='full-item'>
-                    <img className='full-item-picture' src={currentPlant.downloadUri} alt={currentPlant.name} width="200px"/>
+                    <img className='full-item-picture' src={currentPlant.downloadUri} alt={currentPlant.name}  width="200px"/>
                     <div className='full-item-text'>
                         <h3>{currentPlant.latinName}</h3>
                         <p>{currentPlant.description}</p>
@@ -87,7 +86,7 @@ useEffect(()=>{
                         <div >
 
                             {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
-                            <ItemDelete id={currentPlant.id}/>
+                            <PlantDelete id={currentPlant.id}/>
                             {/*    (<Button*/}
                             {/*    type="submit"*/}
                             {/*    buttonTitle={<GrTrash/>}*/}

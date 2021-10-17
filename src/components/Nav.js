@@ -5,10 +5,12 @@ import { useHistory } from "react-router-dom";
 import Container from './reusableComponents/Container';
 import Logo from './Logo';
 import { IoPerson, IoPersonOutline } from "react-icons/io5";
-import { FaBars, FaTimes, FaRegUser, FaUser, FaHeart, FaHome } from 'react-icons/fa';
-import Searchbar from "./Searchbar";
+import {FaBars, FaTimes, FaRegUser, FaUser, FaHeart, FaHome, FaSearch} from 'react-icons/fa';
+//import Searchbar from "./Searchbar";
 import {AuthContext} from "../context/AuthContext";
-import {ItemsContext} from "../context/ItemsContext"
+//import {ItemsContext} from "../context/ItemsContext"
+import SearchForm from "./SearchForm";
+import SearchBar from "./SearchBar";
 
 
 const Nav = () => {
@@ -18,40 +20,55 @@ const Nav = () => {
         logout,
          user ,
     } = useContext(AuthContext);
-    //const[contents] = useContext(ItemsContext);
+    const [searchQuery, setSearchQuery] = useState( '');
 
 
     return (
         <nav>
             {/*<div className='navbar'>*/}
             <Logo />
-           {/*<Searchbar />*/}
+
+
 
                 <ul className={isMobile ? 'nav-menu-mobile':'nav-menu'}
                 onClick={(()=>setIsMobile(false))}
                 >
                     <li className= 'nav-links'>
-                        <NavLink exact to='/'>
+                        <NavLink activeClassName='activeLink' exact to='/'>
                         <FaHome/>
                         </NavLink>
                     </li>
+                    {/*<li className= 'nav-links'>*/}
+                    {/*    /!*<NavLink to={`/${ searchQuery }`}  >*!/*/}
+                    {/*        <SearchBar*/}
+                    {/*        searchQuery={searchQuery}*/}
+                    {/*        setSearchQuery={setSearchQuery}*/}
+                    {/*        />*/}
+                    {/*    /!*</NavLink>*!/*/}
+                    {/*</li>*/}
                     <li className='nav-links'>
-                        <NavLink exact to='/makkelijk'>
+                        <NavLink to='/search?q=${input}' className='btn btn-primary mr-3'>
+                            Java
+                        </NavLink>
+                    </li>
+
+                    <li className='nav-links'>
+                        <NavLink activeClassName='activeLink' exact to='/makkelijk'>
                         Makkelijk
                         </NavLink>
                     </li>
                     <li className='nav-links'>
-                        <NavLink exact to='/shadow'>
+                        <NavLink activeClassName='activeLink' exact to='/shadow'>
                         Schaduw
                         </NavLink>
                     </li>
                     <li className='nav-links'>
-                        <NavLink exact to='/vergeet-deze'>
+                        <NavLink activeClassName='activeLink' exact to='/vergeet-deze'>
                         Vergeet deze..
                         </NavLink>
                     </li>
                     <li className='nav-links'>
-                        <NavLink exact to='/over-leafy'>
+                        <NavLink activeClassName='activeLink' exact to='/over-leafy'>
                             over Leafy
                         </NavLink>
                     </li>

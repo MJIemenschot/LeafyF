@@ -9,15 +9,19 @@ import {useHistory, useParams} from "react-router-dom";
 
 
 function PlantEdit (props) {
-    console.log("props in PlanEdit",props.current);
-    const currentPlant =props.current;
+    console.log("props in PlantEdit",props.current);
+    //const currentPlant =props.current;
+    // const currentFile = props.cFile;
+    //props.cFile = React.createRef();
+    console.log("Dit is currentfile",props.cFile);
+    const [isSelected, setIsSelected] = useState(false);
     const { handleSubmit, formState: { errors }, register, reset } = useForm(
-        {defaultValues : currentPlant}
+        // {defaultValues : currentPlant}
     );
     // const {contents} = useContext(ItemsContext);
     // console.log('contents  in Edititem', {contents} );
     // const Itemid = {id};
-   // const [currentPlant,setCurrentPlant ] = useState([]);
+    const [currentPlant,setCurrentPlant ] = useState([]);
     // const [edit,setEdit ] = useState([]);
     const { id } = useParams();
     const history = useHistory();
@@ -26,6 +30,25 @@ function PlantEdit (props) {
     const [Success, toggleSuccess] = useState(false);
     const [result, setResult] = useState('currenPlant');
     const onSubmit = (data) => setResult(JSON.stringify(data));
+
+    // effect runs on component mount
+
+    useEffect(() => {
+        async function getCurrent() {
+
+            try {
+                const response = await axios.get(`http://localhost:8080/api/v1/plants/${id}`);
+                console.log('response in editplant getCurrentplant', response.data)
+
+                setCurrentPlant(response.data)
+
+            } catch (error) {
+                console.error('Er ging iets mis, geen data gevonden', error)
+            }
+        }
+
+        getCurrent();
+    }, []);
     
 
 
@@ -36,7 +59,7 @@ function PlantEdit (props) {
         //const token = localStorage.getItem("token")
 
         try {
-            const res = await axios.put('http://localhost:8080/api/v1/plants/update', formData
+            const res = await axios.put('http://localhost:8080/api/v1/plants/edito/${id}', formData
                 //     , {
                 //     headers: {
                 //         "Content-Type": "application/json",
@@ -69,22 +92,23 @@ function PlantEdit (props) {
         formData.append("light", data.light)
         formData.append("food", data.food)
         formData.append("watering", data.watering)
-        formData.append("file", data.file[0])
+        //formData.append("file", data.file[0])
 
 
         updateIt(formData)
     }
+    useEffect(() => {
+        // reset form with plant data
+        reset(currentPlant);
+    }, [currentPlant]);
 
     return (
         <div className="add-item-container">
             <div className="add-items">
                 <h1>Bewerk plant</h1>
                 <form onSubmit={handleSubmit(formSubmit)} onReset={reset} className="add-item">
-                    <input  type="text"
+                    <input  type="hidden"
                             className="add-item-field"
-                             //defaultValue={currentPlant.id}
-                            // readonly
-
                             {...register("id", {
                             })}
                     />
@@ -231,19 +255,20 @@ function PlantEdit (props) {
                     </div>
                     <p>{result}</p>
 
-                    <div className="upload">
-                        <input type="file"
-                                // defaultValue={currentItem.fileName}
-                               {...register("file", {
+                    {/*<div className="upload">*/}
+                    {/*    <input type="file"*/}
+                    {/*             // ref={props.cFile}*/}
+                    {/*           {...register("file", {*/}
 
-                        })} accept="image/jpeg"
-                        />
-                        {errors.file && <p className="errorMessage">Er ging iets mis met uploaden. Probeer het opnieuw.</p>}
-                        <GrUpload/>
-                    </div >
+                    {/*    })} accept="image/jpeg"*/}
+                    {/*    />*/}
+                    {/*    {errors.file && <p className="errorMessage">Er ging iets mis met uploaden. Probeer het opnieuw.</p>}*/}
+                    {/*    <GrUpload/>*/}
+                    {/*</div >*/}
                     <button className="form-btn">Wijzig de plant</button>
                     {Success === true && <p>De plant is succesvol gewijzigd!</p>}
                     {error && <p className="error-message">{error}</p>}
+                    <button type="button" onClick={() => reset()} className="btn btn-secondary">Zet terug</button>
                 </form>
             </div>
         </div>

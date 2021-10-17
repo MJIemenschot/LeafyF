@@ -10,7 +10,7 @@ function PlantAdd () {
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState('');
     const [Success, toggleSuccess] = useState(false);
-    const [result, setResult] = useState("");
+    const [result, setResult] = useState('');
     const onSubmit = (data) => setResult(JSON.stringify(data));
     // const token = localStorage.getItem("token")
 

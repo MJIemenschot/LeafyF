@@ -9,13 +9,17 @@ export default function Image(props) {
    useEffect(()=>{
         async function fetchImage() {
             try {
-                const result = await axios.get(`http://localhost:8080/api/v1/plants/${props.id}/download`, {
+                const result = await axios.get(`http://localhost:8080/api/v1/plants/${props.id}/download/`, {
                     responseType: 'image.jpg',
                     //responseType: 'blob',
                 });
-                console.log("de result fetchimage", result.data)
+                console.log("de result fetchimage", result.config.url)
+                //                 console.log("de result uit imago display", result.config.url)
+//
+//                  setBlobImag(result.config.url);
+//                 console.log("controle uit setBlobImag",blobImag)
 
-                setPlantImage(result.data)
+                setPlantImage(result.config.url)
             } catch (e) {
                 console.error(e);
             }
@@ -28,6 +32,7 @@ export default function Image(props) {
         <>
 
             {plantImage && <img src={plantImage} alt={props.name} width='80px'/>}
+            {/*<img src={plantImage}/>*/}
 
             </>
     )

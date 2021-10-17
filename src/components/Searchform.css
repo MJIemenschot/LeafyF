@@ -1,0 +1,16 @@
+.search-form{
+    display: flex;
+
+}
+.search-btn{
+   width: 20px;
+
+}
+.search-icon{
+}
+.search-input {
+    padding: 10px;
+}
+.search-input text {
+    margin: 10px;
+}

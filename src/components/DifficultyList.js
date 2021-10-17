@@ -2,7 +2,7 @@
 // import {ItemsContext} from "../context/ItemsContext";
 // import { GrNext, GrClose, GrEdit, GrTrash  } from "react-icons/gr";
 // import {Link} from 'react-router-dom';
-// import ItemDelete from "./reusableComponents/ItemDelete";
+// import UserDelete from "./reusableComponents/UserDelete";
 // import {useHistory} from "react-router-dom";
 // import {AuthContext} from "../context/AuthContext";
 // import Button from "./reusableComponents/Button";
@@ -74,7 +74,7 @@
 //                                     />
 //                             </div>
 //                             {/*<GrEdit style={{ color:'white', cursor:'pointer'}}/>*/}
-//                             {/*/!*<ItemDelete id={item.id} />*!/*/}
+//                             {/*/!*<UserDelete id={item.id} />*!/*/}
 //                             {/*/!*<button onClick={() => delete(item.id)}>Delete</button>*!/*/}
 //                             {/*<button*/}
 //                             {/*     onClick={() => this.editItem(item.id)}*/}

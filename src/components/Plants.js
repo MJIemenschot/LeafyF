@@ -2,28 +2,38 @@ import React, {useContext, useState, useEffect} from 'react';
 import {DataContext} from "../context/DataContext";
 import {GrNext, GrClose, GrEdit, GrTrash, GrRestaurant, GrCafeteria} from "react-icons/gr";
 import {Link} from 'react-router-dom';
-import ItemDelete from "./ItemDelete";
+
 import {useHistory} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext";
 import Button from "./reusableComponents/Button";
 import {CgDrop, CgSun, GiWateringCan} from "react-icons/all";
 import PlantDelete from "./PlantDelete";
 import Image from "./Image";
+import SearchBar from "./SearchBar";
+import SearchForm from "./SearchForm";
 
 
 const Plants = () => {
     const {user, isTokenValid} = useContext(AuthContext);
     const {contents} = useContext(DataContext);
+    // const { search } = window.location;
+    // const query = new URLSearchParams(search).get('s');
+
     console.log("dit komt binnen in plants vanuit datacontext", contents);
 
     return (
         <>
-            <h1 className='page-header'>Alle planten</h1>
+
+
+            <h1 className='page-header' data-testid='pageheader'>Alle planten</h1>
 
         <div className='item-container'>
+            {contents.length === 0 &&<p>Geen Planten...</p> }
 
             {contents.map(plant =>{
+
                 return (
+
                         <div key ={plant.id} className='itemInfo'>
                             <h3> {plant.name}</h3>
                             <h5>{plant.latinName}</h5>
@@ -62,13 +72,21 @@ const Plants = () => {
                             <div className='tools'>
 
                                     {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
-                                <PlantDelete id={plant.id}/>
+                                <PlantDelete id={plant.id} className='btn-to-post'/>
                                     {/*}*/}
                                     {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
-                                <Link to={`/edit-plant/${ plant.id }`}   className="btn-to-post">
+                                <Link to={`/edit-plant/${ plant.id }`}   className='btn-to-edit'>
                                     <GrEdit/>Pas aan
                                 </Link>
                                     {/*}*/}
+                                {/*/!*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*!/*/}
+                                {/*<Link to={`/plant-edit/${ plant.id }`}   className='btn-to-edit'>*/}
+                                {/*    <GrEdit/>editb*/}
+                                {/*</Link>*/}
+                                {/*}*/}
+                                {/*<Link to={`/plant-change/${ plant.id }`}   className="btn-to-edit">*/}
+                                {/*    <GrEdit/>Verander*/}
+                                {/*</Link>*/}
 
                             </div>
 

@@ -6,7 +6,7 @@ import axios from "axios";
 import {GrTrash} from "react-icons/gr";
 import {ItemsContext} from "../context/ItemsContext";
 
-function ItemDelete (props) {
+function UserDelete (props) {
     //const[contents] = useContext(ItemsContext);
    // console.log("props in itemDelete", props.id)
 
@@ -17,10 +17,11 @@ function ItemDelete (props) {
 
     async function deleteItemHandler () {
         try{
-            await axios.delete(`http://localhost:8080/api/v1/items/${itemId}`)
+            await axios.delete(`http://localhost:8080/api/v1/users/${itemId}`)
             // const newItemList = (props.filter((item)=>item.id !==itemId));
+            // to do warning/
 
-        }catch (e) {
+        } catch (e) {
             console.log("het is niet gelukt, error: " + e)
         }
     }
@@ -54,4 +55,4 @@ function ItemDelete (props) {
     )
 }
 
-export default ItemDelete;
+export default UserDelete;

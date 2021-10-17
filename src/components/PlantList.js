@@ -1,53 +1,59 @@
-import React, {useContext, useEffect, useState} from "react";
-import {Link, NavLink, useHistory} from "react-router-dom";
-import {AuthContext} from "../context/AuthContext";
+import React, {useContext, useState, useEffect} from 'react';
 import {DataContext} from "../context/DataContext";
-import Logo from "./Logo";
-import {FaBars, FaHome, FaTimes } from "react-icons/fa";
-import {IoPersonOutline} from "react-icons/io5";
-import axios from "axios";
-
-import {GrNext, GrClose, GrEdit, GrTrash, GrCafeteria} from "react-icons/gr";
+import {GrNext, GrClose, GrEdit, GrTrash, GrRestaurant, GrCafeteria} from "react-icons/gr";
+import {Link, useLocation, useParams, useHistory, withRouter} from 'react-router-dom';
+import {AuthContext} from "../context/AuthContext";
 import Button from "./reusableComponents/Button";
 import {CgDrop, CgSun, GiWateringCan} from "react-icons/all";
-import UserDelete from "./UserDelete";
-import Image from "./Image";
 import PlantDelete from "./PlantDelete";
+import Image from "./Image";
+import SearchBar from "./SearchBar";
+import Search from "./Search";
+import axios from "axios";
 
-const DryPlants = () => {
-    const {dry} = useContext(DataContext);
 
-    // const [index, setIndex] = useState([])
+const PlantList = (props) => {
+    const {user, isTokenValid} = useContext(AuthContext);
+    //const {contents} = useContext(DataContext);
+    const [contents, setContents] = useState([]);
+    //const {SearchText} =useParams();
+    const search = useLocation().search;
+    const [appState, setAppState] = useState("idle");
+    //const { search } = window.location;
+    //const query = new URLSearchParams(search).get('s');
+    console.log("dit komt serch binnen in plantlist props", props);
 
+   console.log("dit komt serch binnen in plantlist uselocation", search);
+    useEffect(()=>{
+        async function searchPlants(){
 
-    // useEffect(()=>{
-    //     async function fetchEasy(){
-    //         try{
-    //             const res = await axios.get("http://localhost:8080/api/v1/items/byW/MONTH");
-    //             console.log("de data van byD easy api",res);
-    //             const data = res.data;
-    //             setIndex(res.data);
-    //
-    //         } catch (e) {
-    //             console.error("Er zijn helaas geen planten die nauwelijks water nodig hebben gevonden gevonden, error: " + e)
-    //         }
-    //
-    //     }
-    //     fetchEasy();
-    // },[])
+            setAppState("searching ...");
+
+            try{
+                // const res = await axios.get(`http://localhost:8080/api/v1/plants/search?query=${userInputToSearch}`);
+                const res = await axios.get(`http://localhost:8080/api/v1/plants/search${search}`);
+                console.log("de data van search easy api",res);
+                const data = res.data;
+                setContents(res.data);
+
+            } catch (e) {
+                console.error("Er zijn helaas geen planten gevonden gevonden opnaam: " + e)
+            }
+        }
+        searchPlants();
+    },[]);
 
     return (
         <>
-            <h1 className='page-header'>Vergeet deze</h1>
-            <p className='page-text'>Deze planten hoef je nauwelijks water te geven</p>
 
-            <div className='item-container'>
+            <h1 className='page-header' data-testid='pageheader'>Alle planten</h1>
 
-                {dry.length === 0 &&<p>Geen Planten...</p> }
+        <div className='item-container'>
+            <Search query={search}/>
 
-                {dry.map(plant =>{
+            {contents.map(plant =>{
 
-                    return (
+                return (
 
                         <div key ={plant.id} className='itemInfo'>
                             <h3> {plant.name}</h3>
@@ -86,33 +92,33 @@ const DryPlants = () => {
                             </div>
                             <div className='tools'>
 
-                                {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
+                                    {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
                                 <PlantDelete id={plant.id} className='btn-to-post'/>
-                                {/*}*/}
-                                {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
+                                    {/*}*/}
+                                    {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
                                 <Link to={`/edit-plant/${ plant.id }`}   className='btn-to-edit'>
                                     <GrEdit/>Pas aan
                                 </Link>
+                                    {/*}*/}
+                                {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
+                                <Link to={`/plant-edit/${ plant.id }`}   className='btn-to-edit'>
+                                    <GrEdit/>editb
+                                </Link>
                                 {/*}*/}
-                                {/*/!*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*!/*/}
-                                {/*<Link to={`/plant-edit/${ plant.id }`}   className='btn-to-edit'>*/}
-                                {/*    <GrEdit/>editb*/}
-                                {/*</Link>*/}
-                                {/*}*/}
-                                {/*<Link to={`/plant-change/${ plant.id }`}   className="btn-to-edit">*/}
-                                {/*    <GrEdit/>Verander*/}
-                                {/*</Link>*/}
+                                <Link to={`/plant-change/${ plant.id }`}   className="btn-to-edit">
+                                    <GrEdit/>Verander
+                                </Link>
 
                             </div>
 
                         </div>
-                    );
-                })}
+                );
+            })}
 
-            </div>
+        </div>
         </>
 
 
     );
 };
-export default DryPlants
+export default PlantList

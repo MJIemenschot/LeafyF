@@ -1,70 +1,100 @@
-import React, { useContext } from 'react';
-
+import React, {useContext, useState} from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {AuthContext} from "./context/AuthContext";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import './App.css';
-
-
 import UserPortal from "./pages/UserPortal";
 import Profile from "./pages/Profile";
-import AddItem from "./components/AddItem";
-
-import ItemsList from "./components/ItemsList";
-
 import DataProvider from "./context/DataContext";
-
-import Item from "./components/Item";
-import ItemUpdate from "./components/reusableComponents/ItemUpdate";
 import About from "./pages/About";
-
 import EasyPlants from "./components/EasyPlants";
 import ShadowPlants from "./components/ShadowPlants";
 import DryPlants from "./components/DryPlants";
-import EditItem from "./components/EditItem";
-
-import ChangeItem from "./components/ChangeItem";
 import Plants from "./components/Plants";
 import Plant from "./components/Plant";
 import PlantEdit from "./components/PlantEdit";
 import PlantChange from "./components/PlantChange";
 import PlantAdd from "./components/PlantAdd";
 import {EditPlant} from "./components/EditPlant";
+import UsersList from "./components/UsersList";
+import UserUpdate from "./components/UserUpdate";
+import PasswordReset from "./components/PasswordReset";
 
 
+import SearchResults from "./components/SearchResults";
+import SearchBar from "./components/SearchBar";
+import ItemsList from "./components/ItemsList";
 
+import PlantList from "./components/PlantList";
+import Hero from "./components/Hero";
+import SearchRes from "./components/SearchRes/SearchRes";
+import SearchB from "./components/SearchB";
 
 
 
 function App() {
     const authData = useContext(AuthContext);
     console.log("wat zijn de authData", authData);
+  const [terms, setTerms] = useState('');
+  const[term,setTerm] = useState('')
+
+
+  function addTerm(term) {
+    let newTerms = new Set([term, ...terms]);
+    setTerms(Array.from(newTerms));
+  }
+
+
 
   return (
        <DataProvider>
       <>
 
         <Nav />
+        {/*<SearchBar*/}
+        {/*      term={terms[0]} addTerm={addTerm}*/}
+        {/*    // term={term}*/}
+        {/*    // setTerm={setTerm}*/}
+
+        {/*/>*/}
+        <SearchB  term={term}
+            setTerm={setTerm}
+
+        />
+          {/*<Route exact path='/hero' component={Hero}/>*/}
+
           <Route exact path='/user-portal' component={UserPortal}/>
           <Route exact path='/profile' component={Profile}/>
-          {/*<Switch>*/}
-          <Route path='/plant-add' component={PlantAdd}/>
           <Route exact path='/' component={Plants}/>
+        <Route path={'/search-results'} component={SearchResults}/>
+        {/*<Route path='/search' component={Search} />*/}
+          <Switch>
+          <Route path='/plant-add' component={PlantAdd}/>
+          {/*<Route path='/search' component={SearchForm}/>*/}
+
+        {/*<Route path='/plant-list/' component={PlantList}/>*/}
+
+
+          {/*<Route exact path='/index' component={PlantIndex}/>*/}
+          {/*<Route exact path='/search-results' component={}/>*/}
+
+          <Route exact path='/users' component={UsersList}/>
+          <Route path='/user-update/:username' component={UserUpdate}/>
+          <Route path='/reset-password/:username' component={PasswordReset}/>
+
           <Route exact path='/makkelijk' component={EasyPlants}/>
           <Route excact path='/vergeet-deze' component={DryPlants}/>
           <Route exact path='/shadow' component={ShadowPlants}/>
           <Route exact path='/plant/:id' component={Plant}/>
-
-          <Route exact path='/plant-edit/:id' component={PlantEdit}/>
+          {/*<Route exact path='/plant-edit/:id' component={PlantEdit}/>*/}
           <Route exact path='/edit-plant/:id' component={EditPlant}/>
-
-          <Route exact path='/plant-change/:id' component={PlantChange}/>
+          {/*<Route exact path='/plant-change/:id' component={PlantChange}/>*/}
 
           <Route exact path='/over-leafy' component={About}/>
 
-          {/*<Items />*/}
-          {/*</Switch>*/}
+
+          </Switch>
           {/* eslint-disable-next-line react/jsx-no-undef */}
           <Footer />
       </>

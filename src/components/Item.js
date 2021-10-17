@@ -6,7 +6,7 @@ import {ItemsContext} from "../context/ItemsContext";
 import Button from "./reusableComponents/Button";
 import {CgDrop, CgSun, GiWateringCan} from "react-icons/all";
 import {GrCafeteria, GrEdit, GrTrash} from "react-icons/gr";
-import ItemDelete from "./ItemDelete";
+import UserDelete from "./UserDelete";
 
 
 const Item = () => {
@@ -87,7 +87,7 @@ useEffect(()=>{
                         <div >
 
                             {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
-                            <ItemDelete id={currentItem.id}/>
+                            <UserDelete id={currentItem.id}/>
                             {/*    (<Button*/}
                             {/*    type="submit"*/}
                             {/*    buttonTitle={<GrTrash/>}*/}
