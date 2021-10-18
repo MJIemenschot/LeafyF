@@ -10,7 +10,7 @@ import AuthContextProvider from "./context/AuthContext";
 ReactDOM.render(
   <React.StrictMode>
 
-      <Router forceRefresh>
+      <Router >
           <AuthContextProvider>
               {/*<ItemProvider>*/}
                 <App />

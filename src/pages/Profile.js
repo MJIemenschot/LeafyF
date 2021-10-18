@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react'
 import {AuthContext} from "../context/AuthContext";
 import {Link} from "react-router-dom";
 import axios from "axios";
-import ItemsList from "../components/ItemsList";
+
 import Plants from "../components/Plants";
 import {GrEdit} from "react-icons/gr";
 
@@ -45,10 +45,10 @@ const Profile = () => {
                 <h2>Gegevens</h2>
                 <p>
                     Hallo <strong>
-                    {/*TODO een functie om het mailadres eraf te halen*/}
+
                     {user && user.username}</strong>
                 </p><p>klik <Link id="add-link" to="/plant-add">hier</Link> om je aanbod toe te voegen.</p>
-            <p>Mijn aanbiedingen (bewerk)</p>//todo
+            <p>Mijn aanbiedingen (bewerk)</p>
                 {/*/!*{user && user.authority === "ADMIN" && isTokenValid() &&*!/*/}
                 <Link to={`/users/`}   className="btn-to-post">
                     <GrEdit/>Gebruikerslijst

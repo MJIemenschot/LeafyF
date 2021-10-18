@@ -115,7 +115,7 @@ function EditPlant() {
     }
     return (
         <div className="add-item-container">
-            <h5 className="">Bewerk plant</h5>
+            <h3 className="page-header">Bewerk plant</h3>
             <div className="add-items">
                 {currentPlant &&
                 // <form onSubmit={handleSubmit(onSubmit)} //volgende met resetfunctie>

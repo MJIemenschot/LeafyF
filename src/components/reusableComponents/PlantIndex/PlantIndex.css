@@ -1,0 +1,50 @@
+.item-container{
+    width:90%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+
+}
+.itemInfo{
+    width: 250px;
+    background-color: white;
+    margin: 10px;
+    padding:10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.water-care{
+    background-color: lightblue;
+    padding: 5px;
+    display: flex;
+
+}
+.care-icon {
+    margin: 5px 10px;
+}
+
+
+.care {
+    background-color: paleturquoise;
+    padding: 5px;
+    display: flex;
+
+}
+.light-care {
+    background-color: lemonchiffon;
+    padding: 5px;
+    display: flex;
+
+}
+.food-care {
+    background-color: #f6d0f6;
+    padding: 5px;
+    display: flex;
+}
+
+@media (min-width: 755px) and (max-width: 1110px) {
+    .item {
+        max-width: 48%;
+    }
+}

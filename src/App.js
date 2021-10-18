@@ -1,8 +1,8 @@
 import React, {useContext, useState} from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {AuthContext} from "./context/AuthContext";
-import Nav from "./components/Nav";
-import Footer from "./components/Footer";
+import Nav from "./components/Nav/Nav";
+import Footer from "./components/Footer/Footer";
 import './App.css';
 import UserPortal from "./pages/UserPortal";
 import Profile from "./pages/Profile";
@@ -12,24 +12,20 @@ import EasyPlants from "./components/EasyPlants";
 import ShadowPlants from "./components/ShadowPlants";
 import DryPlants from "./components/DryPlants";
 import Plants from "./components/Plants";
-import Plant from "./components/Plant";
+import Plant from "./components/Plant/Plant";
 import PlantEdit from "./components/PlantEdit";
-import PlantChange from "./components/PlantChange";
-import PlantAdd from "./components/PlantAdd";
+
+import PlantAdd from "./components/PlantAdd/PlantAdd";
 import {EditPlant} from "./components/EditPlant";
 import UsersList from "./components/UsersList";
-import UserUpdate from "./components/UserUpdate";
+import UserUpdate from "./components/SignForm/UserUpdate";
 import PasswordReset from "./components/PasswordReset";
 
 
-import SearchResults from "./components/SearchResults";
-import SearchBar from "./components/SearchBar";
-import ItemsList from "./components/ItemsList";
+import SearchResults from "./components/SearchResults/SearchResults";
 
-import PlantList from "./components/PlantList";
-import Hero from "./components/Hero";
-import SearchRes from "./components/SearchRes/SearchRes";
-import SearchB from "./components/SearchB";
+
+import SearchBar from "./components/SearchBar/SearchBar";
 
 
 
@@ -52,44 +48,31 @@ function App() {
       <>
 
         <Nav />
-        {/*<SearchBar*/}
-        {/*      term={terms[0]} addTerm={addTerm}*/}
-        {/*    // term={term}*/}
-        {/*    // setTerm={setTerm}*/}
 
-        {/*/>*/}
-        <SearchB  term={term}
-            setTerm={setTerm}
+        <SearchBar term={term}
+                   setTerm={setTerm}
 
         />
           {/*<Route exact path='/hero' component={Hero}/>*/}
 
           <Route exact path='/user-portal' component={UserPortal}/>
           <Route exact path='/profile' component={Profile}/>
-          <Route exact path='/' component={Plants}/>
-        <Route path={'/search-results'} component={SearchResults}/>
-        {/*<Route path='/search' component={Search} />*/}
-          <Switch>
+
+        <Switch>
           <Route path='/plant-add' component={PlantAdd}/>
-          {/*<Route path='/search' component={SearchForm}/>*/}
-
-        {/*<Route path='/plant-list/' component={PlantList}/>*/}
-
-
-          {/*<Route exact path='/index' component={PlantIndex}/>*/}
-          {/*<Route exact path='/search-results' component={}/>*/}
-
           <Route exact path='/users' component={UsersList}/>
           <Route path='/user-update/:username' component={UserUpdate}/>
           <Route path='/reset-password/:username' component={PasswordReset}/>
+          <Route exact path='/' component={Plants}/>
 
           <Route exact path='/makkelijk' component={EasyPlants}/>
           <Route excact path='/vergeet-deze' component={DryPlants}/>
           <Route exact path='/shadow' component={ShadowPlants}/>
           <Route exact path='/plant/:id' component={Plant}/>
-          {/*<Route exact path='/plant-edit/:id' component={PlantEdit}/>*/}
+
           <Route exact path='/edit-plant/:id' component={EditPlant}/>
-          {/*<Route exact path='/plant-change/:id' component={PlantChange}/>*/}
+            <Route exact path='/plant-edit/:id' component={PlantEdit}/>
+
 
           <Route exact path='/over-leafy' component={About}/>
 

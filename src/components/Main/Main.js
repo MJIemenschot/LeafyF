@@ -5,7 +5,7 @@ import Plants from "../Plants";
 import axios from "axios";
 import EasyPlants from "../EasyPlants";
 import DryPlants from "../DryPlants";
-import Plant from "../Plant";
+import Plant from "../Plant/Plant";
 
 export default function Main(props) {
     //we could put state here to hold the list to share with children

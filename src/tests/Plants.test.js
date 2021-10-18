@@ -1,6 +1,6 @@
  import Plants from "../components/Plants";
  import {getAllByTestId, render} from "@testing-library/react";
- import Plant from "../components/Plant";
+ import Plant from "../components/Plant/Plant";
  import {jest} from '@jest/globals';
 
 

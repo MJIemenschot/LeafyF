@@ -59,8 +59,6 @@ function DataProvider (props) {
     },[])
 
 
-
-
         useEffect(()=>{
             async function fetchEasy(){
                 try{

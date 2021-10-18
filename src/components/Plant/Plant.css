@@ -1,0 +1,91 @@
+/* Full PLANT Styles */
+.container {
+    min-height: 65%;
+    width: 100%;
+    max-width: 1060px;
+    margin: 0 auto;
+    background-color: lightgray;
+
+}
+.page-header{
+    text-align: center;
+    color: #00828e;
+    margin-bottom: 20px;
+}
+.page-text{
+    text-align: center;
+}
+
+.fullItem-container {
+    width: 70%;
+    margin:auto;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.full-item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background: #fff;
+}
+.full-item-picture{
+    margin-right: 20px;
+}
+.full-item-text{
+    margin-top: 20px;
+    word-break: keep-all;
+}
+.card-container {
+    background-color: aliceblue;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+
+}
+.full-item-card {
+    width: 30%;
+
+}
+.full-item-tools {
+    min-width:20%;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+
+@media (max-width: 855px) {
+    .fullItem .container .fullItemCard {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .fullItem .container .fullItemCard .fullItemBg {
+        max-width: 100%;
+        min-height: 280px;
+        height: 280px;
+    }
+
+    .fullItem .container .fullItemCard .fullItemInfo {
+        max-width: 100%;
+        height: auto;
+        max-height: 420px;
+    }
+
+    .fullItem .container .fullItemCard .fullItemInfo h2 {
+        font-size: 22px;
+    }
+
+    .fullItem .container .fullItemCard .fullItemInfo ul li {
+        font-size: 15px;
+    }
+
+    @media (max-width: 1110px) {
+        .container {
+            max-width: 94%;
+        }
+    }
+}
+

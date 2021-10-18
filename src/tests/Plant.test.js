@@ -1,5 +1,5 @@
  import {render} from "@testing-library/react";
- import Plant from "../components/Plant";
+ import Plant from "../components/Plant/Plant";
  import {jest} from '@jest/globals';
 
 let getByTestId;
