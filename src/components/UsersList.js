@@ -10,7 +10,7 @@ import { GrNext, GrClose, GrEdit, GrTrash  } from "react-icons/gr";
 import Button from "./reusableComponents/Button";
 import UserDelete from "./UserDelete/UserDelete";
 
-import UserUpdate from "./SignForm/UserUpdate";
+import UserUpdate from "./UserForms/UserUpdate";
 
 const UsersList = () => {
     const [users, setUsers] = useState([])

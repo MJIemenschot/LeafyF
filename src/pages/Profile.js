@@ -41,25 +41,25 @@ const Profile = () => {
     return (
         <div className='container'>
             <h1>Profiel</h1>
-            <section className='hero'>
+           <div className= 'profile'></div>
+            {/*<section className='hero'>*/}
                 <h2>Gegevens</h2>
                 <p>
                     Hallo <strong>
 
                     {user && user.username}</strong>
                 </p><p>klik <Link id="add-link" to="/plant-add">hier</Link> om je aanbod toe te voegen.</p>
-            <p>Mijn aanbiedingen (bewerk)</p>
+            <p>Mijn profiel</p>
+                <Link key={user.username} to={`/user/username`}   className="btn-to-post">
+                    <GrEdit/>mijn gegevens
+                </Link>
                 {/*/!*{user && user.authority === "ADMIN" && isTokenValid() &&*!/*/}
+
                 <Link to={`/users/`}   className="btn-to-post">
                     <GrEdit/>Gebruikerslijst
                 </Link>
                 {/*/!*}*!/*/}
-                <Plants />
-            </section>
-
-            {/*<section>*/}
-            {/*    <h2>{content?.title}</h2>*/}
-            {/*    <p>{content?.content}</p>*/}
+                {/*<Plants />*/}
             {/*</section>*/}
             <p>
                 Terug naar de <Link to="/">Homepagina</Link>

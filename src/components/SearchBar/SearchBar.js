@@ -43,6 +43,7 @@ const SearchBar = ({term, setTerm}) => {
             </div>
             <div>
                 <SearchResults sTxt={term}/>
+                {/*<PlantIndex sTxt={term}/>*/}
             </div>
         </>
 

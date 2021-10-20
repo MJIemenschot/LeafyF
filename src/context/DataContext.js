@@ -5,6 +5,8 @@ import pic from "../assets/img1.jpg";
 export const DataContext = createContext({});
 
 function DataProvider (props) {
+    const [data, setData] = useState([]);
+    const [sortType, setSortType] = useState('albums');
 
     const [contents, setContents] = useState([])
     const [deleteIt, setDeleteIt] = useState([])
@@ -41,6 +43,20 @@ function DataProvider (props) {
         }
         fetchData()
     },[])
+//sorteer
+    useEffect(() => {
+        const sortArray = type => {
+            const types = {
+                name: 'name',
+                // collection: 'collection',
+                releasedOn: 'releasedOn',
+            };
+            const sortProperty = types[type];
+            const sorted = [...contents].sort((a, b) => b[sortProperty] - a[sortProperty]);
+            setData(sorted);
+        };
+        sortArray(sortType);
+    }, [sortType]);
 
 
     useEffect(()=>{

@@ -25,12 +25,14 @@
     margin: 10px;
     border-bottom: lightgray 1px solid;
 }
+
 .select-field{
     min-width: 80%;
     padding: 10px;
     margin: 10px;
     border-bottom: lightgray 1px solid;
 }
+
 .choose{
     margin-left: 15px;
 }
@@ -44,7 +46,7 @@
 }
 .form-btn{
     width:80%;
-    margin: 20px 0;
+    margin: 20px 20px;
     background-color: darkseagreen;
 }
 .form-btn:hover{

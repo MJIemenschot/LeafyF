@@ -26,21 +26,6 @@ function UserDelete (props) {
         }
     }
 
-
-    // useEffect((itemId) => {
-    //     async function deleteItem(itemId) {
-    //         console.log("Hebben we hier een itemId in component deleteItem?",itemId)
-    //         try {
-    //            await axios.delete(`http://localhost:8080/api/v1/items/${itemId}`);
-    //
-    //         } catch (e) {
-    //             console.error(e);
-    //         }
-    //     }
-    //     deleteItem()
-    //      },[])
-
-
     return (
         <div >
             <button

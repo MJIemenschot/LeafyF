@@ -1,4 +1,15 @@
 .delete-plnt{
-    background-color: coral;
+    background-color: rosybrown;
 
+    margin: 5px;
+
+    border: none;
+    outline: none;
+    width: 120px;
+    padding: 10px 0;
+    color: #fff;
+
+    font-weight: 400;
+    letter-spacing: 1px;
+    cursor: pointer;
 }

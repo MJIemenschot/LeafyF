@@ -14,6 +14,8 @@ import axios from 'axios';
 import {FaSearch} from "react-icons/fa";
 
 import * as queryString from "querystring";
+import EditButton from "../EditButton/EditButton";
+import EditImageBtn from "../EditImageBtn/EditImageBtn";
 
 
 const SearchResults = (match) => {
@@ -24,6 +26,8 @@ const SearchResults = (match) => {
     const queryParam = useLocation().search;
     //const query = new URLSearchParams(search).get('s');
     const [contents,setContents] = useState([]);
+    let history = useHistory();
+
 
     const [appState, setAppState] = useState("idle");
 
@@ -48,20 +52,40 @@ const SearchResults = (match) => {
     //     return <h1>Zoeken..</h1>;
     // }
 
+    function relocate() {
+       history.push('/')
+     }
+    // }
+    function refreshPage() {
+        relocate();
+        window.location.reload(false);
+    }
+    function refresh() {
+        window.location.reload(false);
+    }
+
     return  (
         <>
-            {/*{contents ?*/}
+            {contents ?
                 <div className='found'>
+
                     {/*<h1 className='page-header' data-testid='pageheader'>Gevonden:</h1>*/}
                     {contents.map(plant =>{
                         return (
                             <div key ={plant.id} className='found-item-info'>
-                                <h3> {plant.name}</h3>
+
+                                <h3> {plant.name}</h3><span>
                                 <h5>{plant.latinName}</h5>
                                 {/*<Image id={plant.id}/>*/}
                                 <Link to={`/plant/${ plant.id }`}   className="btn-to-post">
                                     Meer Informatie
-                                </Link>
+                                </Link> <button
+                                className='close-found'
+
+                                onClick={refreshPage}
+
+
+                            >X</button></span>
                                 <div className='water-care'>
                                     <CgDrop className='care-icon'/>
                                     {plant.watering==="DAY" &&(<p>Elke dag (zomer)</p>)}
@@ -90,33 +114,38 @@ const SearchResults = (match) => {
                                     {plant.food==="MONTH" &&(<p>Elke maand (zomer)</p>)}
                                     {plant.food==="NEVER_SPECIAL" &&(<p>Heeft niets nodig</p>)}
                                 </div>
-                                <div className='tools'>
+                                {/*<div className='found-tools'>*/}
 
-                                    {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
-                                    <PlantDelete id={plant.id} className='btn-to-post'/>
-                                    {/*}*/}
-                                    {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
-                                    <Link to={`/edit-plant/${ plant.id }`}   className='btn-to-edit'>
-                                        <GrEdit/>Pas aan
-                                    </Link>
-                                    {/*}*/}
+                                {/*    /!*{user && user.authority === "ADMIN" && isTokenValid() &&*!/*/}
+                                {/*    <PlantDelete id={plant.id} className='btn-to-post'/>*/}
+                                {/*    /!*}*!/*/}
+
+                                {/*    /!*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*!/*/}
+
+                                {/*    <EditButton id={plant.id}/>*/}
+                                {/*    /!*}*!/*/}
+                                {/*    /!*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*!/*/}
+                                {/*    <EditImageBtn id={plant.id}/>*/}
+                                {/*    /!*<Link to={`/edit-plant/${ plant.id }`}   className='btn-to-edit'>*!/*/}
+                                {/*    /!*    <GrEdit/>Pas aan*!/*/}
+                                {/*    /!*</Link>*!/*/}
+                                {/*    /!*}*!/*/}
                                     {/*/!*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*!/*/}
-                                    {/*<Link to={`/plant-edit/${ plant.id }`}   className='btn-to-edit'>*/}
-                                    {/*    <GrEdit/>editb*/}
-                                    {/*</Link>*/}
-                                    {/*}*/}
-                                    {/*<Link to={`/plant-change/${ plant.id }`}   className="btn-to-edit">*/}
-                                    {/*    <GrEdit/>Verander*/}
-                                    {/*</Link>*/}
-
-                                </div>
+                                {/*    /!*<Link to={`/plant-edit/${ plant.id }`}   className='btn-to-edit'>*!/*/}
+                                {/*    /!*    <GrEdit/>editb*!/*/}
+                                {/*    /!*</Link>*!/*/}
+                                {/*    /!*}*!/*/}
+                                {/*    /!*<Link to={`/plant-change/${ plant.id }`}   className="btn-to-edit">*!/*/}
+                                {/*    /!*    <GrEdit/>Verander*!/*/}
+                                {/*    /!*</Link>*!/*/}
+                                {/*</div>*/}
 
                             </div>
                         );
                     })}
 
                 </div>
-            {/*: <h1 className='page-header' data-testid='pageheader'>Niets gevonden...</h1>*/}
+            : <h1 className='page-header' data-testid='pageheader'>Niets gevonden...</h1>}
 
 
 

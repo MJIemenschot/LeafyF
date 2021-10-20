@@ -74,17 +74,17 @@ h1 h2 h3 h4 h5{
 
 /* Button */
 
-button {
-  border: none;
-  outline: none;
-  width: 90px;
-  padding: 10px 0;
-  color: #fff;
-  background: darkseagreen;
-  font-weight: 400;
-  letter-spacing: 1px;
-  cursor: pointer;
-}
+/*button {*/
+/*  border: none;*/
+/*  outline: none;*/
+/*  width: 90px;*/
+/*  padding: 10px 0;*/
+/*  color: #fff;*/
+/*  background: darkseagreen;*/
+/*  font-weight: 400;*/
+/*  letter-spacing: 1px;*/
+/*  cursor: pointer;*/
+/*}*/
 #root{
   background-color: lightgray;
 }
@@ -95,14 +95,20 @@ button {
 }
 .page-text{
   text-align: center;
+  width: 50%;
 }
 /* Container */
 
 .container {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+
   min-height: 65%;
   width: 100%;
   max-width: 1060px;
-  margin: 0 auto;
+  /*margin: 0 auto;*/
   background-color: lightgray;
 
 }

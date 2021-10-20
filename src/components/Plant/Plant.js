@@ -5,6 +5,8 @@ import axios from "axios";
 import {CgDrop, CgSun, GiWateringCan} from "react-icons/all";
 import {GrCafeteria, GrEdit, GrTrash} from "react-icons/gr";
 import PlantDelete from "../PlantDelete/PlantDelete";
+import EditButton from "../EditButton/EditButton";
+import EditImageBtn from "../EditImageBtn/EditImageBtn";
 
 
 
@@ -44,11 +46,12 @@ useEffect(()=>{
                     <div className='full-item-text'>
                         <h3>{currentPlant.latinName}</h3>
                         <p>{currentPlant.description}</p>
+                        <p>{currentPlant.care}</p>
                     </div>
                 </div>
                 <div className='card-container'>
                     <div className='full-item-card'>
-                        <div className='water-care'>
+                        <div className='f-water-care'>
                             <CgDrop className='care-icon'/>
                             {currentPlant.watering==="DAY" &&(<p>Elke dag (zomer)</p>)}
                             {currentPlant.watering==="TWODAYS" &&(<p>Om de dag (zomer)</p>)}
@@ -56,7 +59,7 @@ useEffect(()=>{
                             {currentPlant.watering==="WEEK" &&(<p>1 keer per week (zomer)</p>)}
                             {currentPlant.watering==="MONTH" &&(<p>1 keer per maand</p>)}
                         </div>
-                        <div className='care'>
+                        <div className='f-care'>
                             <GiWateringCan className='care-icon'/>
                             {currentPlant.difficulty==="EASY" &&(<p>Makkelijke plant</p>)}
                             {currentPlant.difficulty==="MODERATE" &&(<p>Redelijk makkelijk</p>)}
@@ -65,49 +68,43 @@ useEffect(()=>{
 
                     </div>
                     <div className='full-item-card'>
-                        <div className='light-care'>
+                        <div className='f-light-care'>
                             <CgSun className='care-icon'/>
                             {currentPlant.light==="DIRECTSUN" &&(<p>Kan tegen direct zonlicht</p>)}
                             {currentPlant.light==="SUNNY" &&(<p>Verdraagt geen direct zonlicht</p>)}
                             {currentPlant.light==="HALFSUNNY" &&(<p>Heeft niet zoveel licht nodig</p>)}
                             {currentPlant.light==="SHADOW" &&(<p>Kan op een donker plekje</p>)}
                         </div>
-                        <div className='food-care'>
+                        <div className='f-food-care'>
                             <GrCafeteria className='care-icon' />
                             {currentPlant.food==="WEEK" &&(<p>Elke week (zomer)</p>)}
                             {currentPlant.food==="TWOWEEKS" &&(<p>Om de week (zomer)</p>)}
                             {currentPlant.food==="MONTH" &&(<p>Elke maand (zomer)</p>)}
                             {currentPlant.food==="NEVER_SPECIAL" &&(<p>Heeft niets nodig</p>)}
                         </div>
-
-
                     </div>
-                    <div className='full-item-tools'>
-                        <div >
 
-                            {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
-                            <PlantDelete id={currentPlant.id}/>
-                            {/*    (<Button*/}
-                            {/*    type="submit"*/}
-                            {/*    buttonTitle={<GrTrash/>}*/}
-                            {/*    classNameButton="btn delete-post"*/}
-                            {/*    // onclick={}*/}
-                            {/*/>)*/}
-                            {/*}*/}
-                            {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
-                            <Link to={`/edit-plant/${ currentPlant.id }`}   className="btn-to-post">
-                                <GrEdit/>Pas aan
-                            </Link>
-                            {/*    (<Button*/}
-                            {/*    type="submit"*/}
-                            {/*    buttonTitle={<GrEdit/>}*/}
-                            {/*    classNameButton="btn edit-post"*/}
-                            {/*    onClickEvent={selectItem(contents.id)}*/}
-                            {/*/>)*/}
-                            {/*}*/}
+                </div>
+                <div className='full-item-tools'>
 
-                        </div>
-                    </div>
+
+                        {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
+                        <PlantDelete id={currentPlant.id}/>
+                        {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
+                        <EditButton id={currentPlant.id}/>
+                        {/*}*/}
+                        {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
+                        <EditImageBtn id={currentPlant.id}/>
+
+                        {/*/!*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*!/*/}
+                        {/*<Link to={`/plant-edit/${ currentPlant.id }`}   className="edit-btn">*/}
+                        {/*    Pas aan <GrEdit/>*/}
+                        {/*</Link>*/}
+                        {/*/!*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*!/*/}
+                        {/*<Link to={`/edit-plant/${ currentPlant.id }`}   className="edit-img-btn">*/}
+                        {/*    Afbeelding <GrEdit/>*/}
+                        {/*</Link>*/}
+
                 </div>
             </div>
         </div>
