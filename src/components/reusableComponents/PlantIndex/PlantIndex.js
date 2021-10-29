@@ -19,15 +19,14 @@ const PlantIndex = (props) => {
     const contents = props.contents;
     console.log('contents in index',contents);
     function refreshPage() {
-
         window.location.reload(false);
     }
 
     return(
         <div className='item-container'>
 
-            {contents.length === 0 &&<p className='nothing-found'>Geen Planten...</p> }
-            {/*//de inhoud op alfabetische volgorde*/}
+            {contents.length === 0 &&<h3 className='nothing-found'>Geen Planten...</h3> }
+            {/*//de inhoud op alfabetische volgord van Nederlandse naam*/}
             {contents.sort((a, b) => a.name > b.name ? 1 : -1).map(plant =>{
 
                 return (
@@ -35,11 +34,10 @@ const PlantIndex = (props) => {
                     <div key ={plant.id} className='itemInfo'>
                         <h3> {plant.name}</h3>
                         <h5>{plant.latinName}</h5>
-                        {/*//Het onderstaande geeft een afbeelding weer*/}
+                        {/*//Met het onderstaande het onderstaande kan de afbeelding weergegeven worden*/}
                         {/*<Image id={plant.id}/>*/}
                         <Link to={`/plant/${ plant.id }`}
                               className='btn-to-post'
-
                         >
                             Meer Informatie
                         </Link>
@@ -71,26 +69,6 @@ const PlantIndex = (props) => {
                             {plant.food==='MONTH' &&(<p>Elke maand (zomer)</p>)}
                             {plant.food==='NEVER_SPECIAL' &&(<p>Heeft niets nodig</p>)}
                         </div>
-                        {/*<div className='tools'>*/}
-
-                        {/*    /!*{user && user.authority === "ADMIN" && isTokenValid() &&*!/*/}
-                        {/*    <PlantDelete id={plant.id} className='plnt-delete'/>*/}
-                        {/*    /!*}*!/*/}
-                        {/*    /!*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*!/*/}
-
-                        {/*    <EditButton id={plant.id}/>*/}
-                        {/*    /!*}*!/*/}
-                        {/*    /!*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*!/*/}
-                        {/*    <EditImageBtn id={plant.id}/>*/}
-                        {/*    /!*<Link to={`/plant-edit/${ plant.id }`}   className='btn-to-edit'>*!/*/}
-                        {/*    /!*    <GrEdit/>pas aan met nieuwe afbeelding*!/*/}
-                        {/*    /!*</Link>*!/*/}
-
-                        {/*    /!*<Link to={`/plant-change/${ plant.id }`}   className="btn-to-edit">*!/*/}
-                        {/*    /!*    <GrEdit/>Verander*!/*/}
-                        {/*    /!*</Link>*!/*/}
-
-                        {/*</div>*/}
 
                     </div>
                 );

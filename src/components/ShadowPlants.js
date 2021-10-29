@@ -22,13 +22,13 @@ const ShadowPlants = () => {
     const {shadow} = useContext(DataContext);
 
     return (
-        <>
+        <div className='container'>
             <h1 className='page-header'>Schaduw Planten</h1>
             <p className='page-text'>Deze planten kunnen op donkere plekken staan. Heb je een lege hoek in je kamer maar er komt niet zoveel daglicht? Er zijn planten die niet veel licht nodig hebben.</p>
                 <PlantIndex contents= {shadow}/>
 
 
-        </>
+        </div>
 
 
     );

@@ -61,8 +61,12 @@ const Nav = () => {
                     <li className='nav-links'>{!user ? (<NavLink exact to='/user-portal'>
                         <IoPersonOutline/>
                     </NavLink>):(
-                        <button type="button" onClick={logout}>Log uit</button>
+                        <NavLink exact to='/profile'>
+                            <IoPerson/>
+                        </NavLink>
+                        // <button type="button" onClick={logout}>Log uit</button>
                     )}
+                        {user &&(<button type='button' onClick={logout}>Log uit</button>)}
                     </li>
                 </ul>
                 <div className='mobile-menu-icon'

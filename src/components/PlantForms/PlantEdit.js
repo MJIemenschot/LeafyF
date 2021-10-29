@@ -16,9 +16,8 @@ function PlantEdit (props) {
     //props.cFile = React.createRef();
     console.log('Dit is currentfile',props.cFile);
     const [isSelected, setIsSelected] = useState(false);
-    const { handleSubmit, formState: { errors }, register, reset } = useForm(
-        // {defaultValues : currentPlant}
-    );
+    const { handleSubmit, formState: { errors }, register, reset } = useForm();
+
     // const {contents} = useContext(ItemsContext);
     // console.log('contents  in Edititem', {contents} );
     // const Itemid = {id};
@@ -31,6 +30,7 @@ function PlantEdit (props) {
     const [Success, toggleSuccess] = useState(false);
     const [result, setResult] = useState('currenPlant');
     const onSubmit = (data) => setResult(JSON.stringify(data));
+    const [submitting, setSubmitting] = useState(false)
 
     // effect runs on component mount
 
@@ -56,17 +56,17 @@ function PlantEdit (props) {
 
     async function updateIt (formData) {
         setError('');
-        // toggleLoading(true);
-        //const token = localStorage.getItem("token")
+        toggleLoading(true);
+            const token = localStorage.getItem("token")
 
         try {
             const res = await axios.patch(`http://localhost:8080/api/v1/plants/${id}`, formData
-                //     , {
-                //     headers: {
-                //         "Content-Type": "application/json",
-                //         Authorization: `Bearer ${token}`,
-                //     }
-                // }
+                    , {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    }
+                }
             );
             console.log('res in update',res)
             toggleSuccess(true);
@@ -113,7 +113,10 @@ function PlantEdit (props) {
             <div className='add-items'>
                 <h1 className='page-header'>Bewerk plant</h1>
                 {currentPlant &&
-                <form onSubmit={handleSubmit(formSubmit)} onReset={reset} className='add-item'>
+                <form onSubmit={handleSubmit(formSubmit)}
+
+                      onReset={reset}
+                      className='add-item'>
                     {/*<input  type="hidden"*/}
                     {/*        className="add-item-field"*/}
                     {/*        {...register("id", {*/}
@@ -137,7 +140,7 @@ function PlantEdit (props) {
                                 placeholder='Voeg hier een beschrijving van jouw plant toe:'
                                 {...register('description',{
                                     maxLength:{
-                                        value: 220,
+                                        value: 300,
                                         message: 'Maak je beschrijving wat korter',
                                     }
                                 })}
@@ -216,17 +219,28 @@ function PlantEdit (props) {
                     {Success === true &&
                         <>
                             <p>De plant is succesvol gewijzigd!</p>
-                            <Link to='/'
-                            >Terug naar plantenoverzicht</Link>
+
                         </>
 
                     }
                     {error && <p className='error-message'>{error}</p>}
-                    {!Success && <button type='button' onClick={() => reset()} className='btn btn-secondary'>Zet terug</button>}
+                    {/*{!Success && <button type='button' onClick={() => reset()} className='btn btn-secondary'>Zet terug</button>}*/}
+                    {/*{!Success ? <Link to='/'*/}
+                    {/*>Cancel</Link>:<button type='button' onClick={() => reset()} className='btn btn-secondary'>Zet terug</button>}*/}
 
                 </form>
                 }
                 {!currentPlant &&<p>Geen plant om te wijzigen...</p>}
+                {!Success && <button type='button' onClick={() => reset()} className='reset-btn'>Zet terug</button>}
+                <div>
+                    {Success ?<Link to='/'
+                    >Terug naar plantenoverzicht</Link>: <Link to='/'
+                    >Cancel</Link>}
+                </div>
+
+
+
+
 
 
             </div>

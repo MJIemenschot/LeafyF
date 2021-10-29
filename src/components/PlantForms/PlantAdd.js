@@ -21,16 +21,16 @@ function PlantAdd () {
     async function sendInfo (formData) {
         setError('');
         toggleLoading(true);
-        //of  const token = localStorage.getItem("token")
+        const token = localStorage.getItem("token")
 
         try {
             await axios.post('http://localhost:8080/api/v1/plants', formData ,
-            // {
-            //     headers: {
-            //         "Content-Type": "application/json",
-            //             Authorization: `Bearer ${token}`,
-            //     }
-            // }
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                }
+            }
             );
 
             toggleSuccess(true);
@@ -49,6 +49,8 @@ function PlantAdd () {
 
         formData.append('description', data.description)
         formData.append('care', data.care)
+        // formData.append('care', data.potting)
+        // formData.append('care', data.flowering)
         formData.append('name', data.name)
         formData.append('latinName', data.latinName)
         formData.append('difficulty', data.difficulty)
@@ -85,7 +87,7 @@ function PlantAdd () {
                         placeholder='Voeg hier een beschrijving van jouw plant toe:'
                         {...register('description',{
                             maxLength:{
-                                value: 220,
+                                value: 500,
                                 message: 'Maak je beschrijving wat korter',
                             }
                         })}
@@ -101,6 +103,26 @@ function PlantAdd () {
                             }
                         })}
             />
+            {/*<textarea   type='potting'*/}
+            {/*            className='add-item-field'*/}
+            {/*            cols='30' rows='10'*/}
+            {/*            placeholder='Informatie over grond en verpotten:'*/}
+            {/*            {...register('care',{maxLength:{*/}
+            {/*                    value: 500,*/}
+            {/*                    message: 'Maak de tekst wat korter',*/}
+            {/*                }*/}
+            {/*            })}*/}
+            {/*/>*/}
+            {/*<textarea   type='flowering'*/}
+            {/*            className='add-item-field'*/}
+            {/*            cols='30' rows='10'*/}
+            {/*            placeholder='Informatie over Bloeiwijze en stekken:'*/}
+            {/*            {...register('care',{maxLength:{*/}
+            {/*                    value: 500,*/}
+            {/*                    message: 'Maak tekst wat korter',*/}
+            {/*                }*/}
+            {/*            })}*/}
+            {/*/>*/}
             {errors.care ? <p className='errorMessage'>{errors.care.message}</p>:null}
             <div className='selectField'>
                 <h3>Verzorging</h3>
@@ -138,7 +160,7 @@ function PlantAdd () {
                         type='radio'
                         id='sunny'
                         value='SUNNY' {...register('light')}/>
-                <label htmlFor='sunny'>Half zonnig</label>
+                <label htmlFor='sunny'>Half schaduw</label>
                 <input  className='choose'
                         type='radio'
                         id='shadow'
@@ -213,8 +235,7 @@ function PlantAdd () {
             {Success === true && <p>De plant is succesvol toegevoegd!</p> }
             {error && <p className='error-message'>{error}</p>}
         </form>
-                <Link to='/'
-                      >Terug naar plantenoverzicht</Link>
+                <Link to='/'>Terug naar plantenoverzicht</Link>
 
             </div>
         </div>

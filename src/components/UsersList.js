@@ -13,17 +13,24 @@ import UserDelete from "./UserDelete/UserDelete";
 import UserUpdate from "./UserForms/UserUpdate";
 
 const UsersList = () => {
-    const [users, setUsers] = useState([])
+    const [users, setUsers] = useState([]);
+    const [abilities,setAbilities] = useState([]);
+    const [active, setActive] =useState(false)
+
 
     async function fetchUsers(){
         try{
             const res = await axios.get(`http://localhost:8080/api/v1/users`);
-            console.log('de data van users api',res);
-            const data = res.data;
+            console.log('de data van users api',res.data);
+            //console.log( 'de autorities',res.data.authorities.authority)
+            console.log('enabled',res.data.enabled)
+
             setUsers(res.data);
+            //setAbilitiesd(res.data.authorities)
+            //setActive(res.data.enabled)
 
         } catch (e) {
-            console.error('Er zijn helaas geen items gevonden, error: ' + e)
+            console.error('Er zijn helaas geen gebruikers gevonden, error: ' + e)
         }
 
     }
@@ -47,25 +54,32 @@ const UsersList = () => {
 
                         <div key ={user.username} className='itemInfo'>
                             <h3> {user.username}</h3>
-                            {/*<p>{item.description}</p>*/}
+
                             <p>Emailadres: {user.username}</p>
-                            <p>Actief: {user.enabled}</p>
-                            <p>Gebruikersrol: {user.authorities.authority}</p>
-                            {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
-                                <UserDelete
-                                    id ={user.username}
-                                />
-                            {/*}*/}
-                            {/*/!*{user && user.authority === "ADMIN" && isTokenValid() &&*!/*/}
-                            <Link to={`/user-update/${ user.username }`}   className='btn-to-post'>
-                                <GrEdit/>Pas aan
+                            {/*<p>Actief: {user.enabled}</p>*/}
+                            <h4>Rollen:</h4>
+                            <>{user.authorities.map(abilities=>{
+                                return(<p>
+                                    {abilities.authority ==='ROLE_ADMIN' &&<p>Administator</p>}
+                                    {abilities.authority ==='ROLE_USER' &&<p>Gebruiker</p>}
+                                </p>)}
+                            )}
+                            </>
+
+                            {abilities.authority ==='ROLE_ADMIN' &&<UserDelete
+                                id ={user.username}
+                            />}
+
+
+                            {user &&
+                            <Link to={`user/${ user.username }`}   className='btn-to-post'>
+                                Gegevens
                             </Link>
-                            {/*/!*}*!/*/}
-                            {/*/!*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*!/*/}
-                                <Link to={`/reset-password/${ user.username }`} className='btn btn-primary'>
-                                    Nieuw wachtwoord aanmaken
-                                </Link>
-                            {/*/!*}*!/*/}
+                            }
+                            {/*{user  &&*/}
+                            {/*    <Link to={`/reset-password/${ user.username }`} className='btn btn-primary'>*/}
+                            {/*        Nieuw wachtwoord aanmaken*/}
+                            {/*    </Link>}*/}
 
 
 

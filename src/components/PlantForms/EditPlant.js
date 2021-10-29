@@ -11,20 +11,11 @@ import {Link, useHistory, useParams} from 'react-router-dom';
 
 function EditPlant (props) {
     console.log("props in PlantEdit",props.current);
-    //const currentPlant =props.current;
-    // const currentFile = props.cFile;
-    //props.cFile = React.createRef();
     console.log("Dit is currentfile",props.cFile);
     const [isSelected, setIsSelected] = useState(false);
-    const { handleSubmit, formState: { errors }, register, reset } = useForm(
-        // {defaultValues : currentPlant}
-    );
-    // const {contents} = useContext(ItemsContext);
-    // console.log('contents  in Edititem', {contents} );
-    // const Itemid = {id};
+    const { handleSubmit, formState: { errors }, register, reset } = useForm();
     const [currentPlant,setCurrentPlant ] = useState([]);
     const [currentImage,setCurrentImage ] = useState([]);
-    // const [edit,setEdit ] = useState([]);
     const { id } = useParams();
     const history = useHistory();
     const [loading, toggleLoading] = useState(false);
@@ -70,24 +61,19 @@ useEffect(() => {
     getCurrentImage();
 }, []);
 
-
-
-
-
-
     async function updateIt (formData) {
         setError('');
-        // toggleLoading(true);
-        //const token = localStorage.getItem("token")
+        toggleLoading(true);
+        const token = localStorage.getItem("token")
 
         try {
-            const res = await axios.patch(`http://localhost:8080/api/v1/plants/${id}`, formData
-                //     , {
-                //     headers: {
-                //         "Content-Type": "application/json",
-                //         Authorization: `Bearer ${token}`,
-                //     }
-                // }
+            const res = await axios.patch(`http://localhost:8080/api/v1/plants/file/${id}`, formData
+                    , {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    }
+                }
             );
             console.log('res in update',res)
             toggleSuccess(true);
@@ -106,16 +92,8 @@ useEffect(() => {
     const formData = new FormData();
 
     const formSubmit = (data) => {
-        // formData.append("id", data.id)
-        formData.append("description", data.description)
-        formData.append("care", data.care)
-        formData.append("name", data.name)
-        formData.append("latinName", data.latinName)
-        formData.append("difficulty", data.difficulty)
-        formData.append("light", data.light)
-        formData.append("food", data.food)
-        formData.append("watering", data.watering)
-        //formData.append("file", data.file[0])
+
+        formData.append("file", data.file[0])
 
 
         updateIt(formData)
@@ -125,6 +103,10 @@ useEffect(() => {
         reset(currentPlant);
     }, [currentPlant]);
 
+    function refresh() {
+        window.location.reload(false);
+    }
+
     return (
         <div className="add-item-container">
 
@@ -132,109 +114,44 @@ useEffect(() => {
                 <h1 className='page-header'>Bewerk plant</h1>
                 {currentPlant &&
                 <form onSubmit={handleSubmit(formSubmit)} onReset={reset} className='add-item'>
-                    {/*<input  type='hidden'*/}
-                    {/*        className="add-item-field"*/}
-                    {/*        {...register("id", {*/}
-                    {/*        })}*/}
-                    {/*/>*/}
-                    <input  type='hidden'
-                            className='add-item-field'
-                            {...register('name', {
-                            })}
-                    />{errors.name && <p className='errorMessage'>Het veld is niet ingevuld</p>}
-                    <input  type='hidden'
-                            className='add-item-field'
-                            {...register('latinName', {
 
-                            })}
-                    />{errors.latinName && <p className='errorMessage'>Het veld is niet ingevuld</p>}
-                    <label>Beschrijving</label>
-
-                    <input type='hidden'
-                              className='add-item-field'
-                                cols='30' rows='7'
-                                {...register('description')}
-                    />
-                    {errors.description && <p className='errorMessage'>Vergeet niet een beschrijving in te vullen</p>}
-                    {/*<label>Verzorgingshandleiding</label>*/}
-                    <input type='hidden'
-                           className='add-item-field'
-                                cols='30' rows='10'
-                                {...register('care')}
-                    />
-                    {errors.care && <p className='errorMessage'>Vergeet niet een verzorgingshandleiding in te vullen</p>}
-
-
-
-                    <div className='ei-select-field'>
-
-
-                    </div>
-                    <div className='form-row'>
-                        <div className='form-group col'>
-                            <label>Overleving</label>
-                            <select name='difficulty' {...register('difficulty')} className='add-item-field'>
-                                <option value='EASY'>Makkelijk</option>
-                                <option value='MODERATE'>Gemiddeld</option>
-                                <option value='HARD'>Moeilijk</option>
-                            </select>
-                        </div>
-                        <div className='form-group col'>
-                            <label>Waterbehoefte</label>
-                            <select name='watering' {...register('watering')} className='add-item-field'>
-                                <option value='DAY'>Elke dag</option>
-                                <option value='TWODAYS'>Om de dag</option>
-                                <option value='THREEDAYS'>Eens in drie dagen</option>
-                                <option value='WEEK'>eens per week</option>
-                                <option value='MONTH'>Elke maand</option>
-                            </select>
-                        </div>
-                        <div className='form-group col'>
-                            <label>Standplaats</label>
-                            <select name='"light" '{...register('light')} className='add-item-field'>
-                                <option value='DIRECTSUN'>Direct zonlicht</option>
-                                <option value='SUNNY'>Zonnig</option>
-                                <option value='HALFSUNNY'>Halfzonnig</option>
-                                <option value='SHADOW'>Shaduw</option>
-                            </select>
-                        </div>
-                        <div className='form-group col'>
-                            <label>Bijmesten</label>
-                            <select
-                                name='food' {...register('food')} className='add-item-field'>
-                                <option value='WEEK'>Elke week</option>
-                                <option value='TWOWEEKS'>Om de week</option>
-                                <option value='MONTH'>Eens per maand</option>
-                                <option value='NEVER_SPECIAL'>Nooit/speciaal</option>
-                            </select>
-                        </div>
-                    </div>
-
-{/*//Zet dit als verplicht veld*/}
-                    <div className="upload">
+                    <div className='upload'>
+                        <h4>Huidige afbeelding:</h4>
                         <img src={currentPlant.downloadUri} alt={currentPlant.name} width="80px"/>
+                        <h4>Kies een nieuwe afbeelding</h4>
 
-                        <input type="file"
+                        <input type='file'
                                defaultValue={currentImage}
-                               {...register("file", {
-                               })} accept="image/jpeg"
+                               {...register('file', {
+                               })} accept='image/jpeg'
                         />
                         {/*{errors.file && <p className="errorMessage">Er ging iets mis met uploaden. Probeer het opnieuw.</p>}*/}
                         <GrUpload/>
                     </div >
                     <button className='form-btn'>Wijzig afbeelding</button>
-                    {Success === true &&
-                    <>
-                        <p>De plant is succesvol gewijzigd!</p>
-                        <Link to='/'>Terug</Link>
-                    </>
+                    {/*{Success === true &&*/}
+                    {/*<>*/}
+                    {/*    <p>De afbeelding is succesvol gewijzigd!</p>*/}
+                    {/*    <Link to='/'>Terug</Link>*/}
+                    {/*</>*/}
+                    {/*}*/}
+                    {error &&
+                        <>
+                            <p>De afbeelding is succesvol gewijzigd!</p>
+                             {/*<p className='error-message'>{error}</p>*/}
+                            <button type='button' onClick={refresh} className='btn btn-secondary'>Laat de nieuwe afbeelding zien</button>
 
+                        </>
                     }
-                    {error && <p className='error-message'>{error}</p>}
-                    {!Success && <button type='button' onClick={() => reset()} className='btn btn-secondary'>Zet terug</button>}
+                    {/*{Success && <button type='button' onClick={refresh} className='btn btn-secondary'>Laat de nieuwe afbeelding zien</button>}*/}
+                    {/*<button type='button' onClick={refresh} className='btn btn-secondary'>Laat nieuw afbeelding zien</button>*/}
+
 
                 </form>
                 }
+
+                <div><Link to='/'>Terug naar overzicht</Link></div>
+
                 {!currentPlant &&<p>Geen plant om te wijzigen...</p>}
 
 

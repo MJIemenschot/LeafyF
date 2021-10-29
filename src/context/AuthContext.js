@@ -57,7 +57,7 @@ function AuthContextProvider({ children }) {
                 user: {
                     username: result.data.username,
                     email: result.data.email,
-                    // sla hier nog rollen op bijv de data waar toegang toe is
+                    authorities: result.data.authorities
                 },
                 status: 'done',
             });

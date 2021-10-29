@@ -7,7 +7,7 @@ import {GrCafeteria, GrEdit, GrTrash} from "react-icons/gr";
 import PlantDelete from "../PlantDelete/PlantDelete";
 import EditButton from "../EditButton/EditButton";
 import EditImageBtn from "../EditImageBtn/EditImageBtn";
-
+import {AuthContext} from "../../context/AuthContext";
 
 
 const Plant = () => {
@@ -15,6 +15,12 @@ const Plant = () => {
      //const [Picture, setPicture] = useState();
      const { id } = useParams();
      const history = useHistory();
+    const isTokenValid = localStorage.getItem("token")
+    const {
+        user
+    } = useContext(AuthContext);
+    console.log('user in Plant from authcontext' ,user)
+
 
 
 useEffect(()=>{
@@ -32,11 +38,13 @@ useEffect(()=>{
         fetchPlant();
     },[]);
 
+    // const userAuthority =
+
 
     return (
         <div className='container'>
             <div>
-                <h1 className='page-header' data-testid='pageheader'> {currentPlant.name}</h1>
+                <h1 className='page-header' > {currentPlant.name}</h1>
             </div>
 
             <div className='full-item-container'>
@@ -85,27 +93,23 @@ useEffect(()=>{
                     </div>
 
                 </div>
-                <div className='full-item-tools'>
-
-
-                        {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
-                        <PlantDelete id={currentPlant.id}/>
-                        {/*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*/}
-                        <EditButton id={currentPlant.id}/>
-                        {/*}*/}
-                        {/*{user && user.authority === "ADMIN" && isTokenValid() &&*/}
-                        <EditImageBtn id={currentPlant.id}/>
-
-                        {/*/!*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*!/*/}
-                        {/*<Link to={`/plant-edit/${ currentPlant.id }`}   className="edit-btn">*/}
-                        {/*    Pas aan <GrEdit/>*/}
-                        {/*</Link>*/}
-                        {/*/!*{user && user.authority === "USER" || user.authority === "ADMIN" && isTokenValid() &&*!/*/}
-                        {/*<Link to={`/edit-plant/${ currentPlant.id }`}   className="edit-img-btn">*/}
-                        {/*    Afbeelding <GrEdit/>*/}
-                        {/*</Link>*/}
-
-                </div>
+                {user ?
+                    <div className='full-item-tools'>
+                        {user && <EditButton id={currentPlant.id}/>}
+                        <>{user.authorities.map(abilities=>{
+                            return(<>
+                                {abilities.authority ==='ROLE_ADMIN' &&<EditImageBtn id={currentPlant.id}/>}
+                            </>)}
+                        )}
+                        </>
+                        <>{user.authorities.map(abilities=>{
+                            return(<>
+                                {abilities.authority ==='ROLE_ADMIN' &&<PlantDelete id={currentPlant.id}/>}
+                            </>)}
+                        )}
+                        </>
+                    </div>
+                    :<></>}
             </div>
         </div>
 

@@ -20,7 +20,7 @@ const Signin = () => {
             console.log("result in signin formulier", result)
             login(result.data.jwt)
         } catch (e) {
-            console.error("Foutje bedankt",e);
+            console.error("Het is niet gelukt om in te loggen",e);
         }
     }
 
@@ -58,6 +58,12 @@ const Signin = () => {
                 Heb je nog geen account? <Link to="/signup">Registreer</Link> je dan
                 eerst.
             </p>
+
+            {/*<Link to={`/reset-password/*/}
+            {/* }`} className='btn btn-primary'>*/}
+            {/*    Nieuw wachtwoord aanmaken*/}
+            {/*</Link>*/}
+
         </div>
     )
 }

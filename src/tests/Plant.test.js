@@ -1,42 +1,59 @@
- import {render} from "@testing-library/react";
+
  import Plant from "../components/Plant/Plant";
- import {jest} from '@jest/globals';
+ import React from "react";
+ import { render, unmountComponentAtNode } from "react-dom";
+ import { act } from "react-dom/test-utils";
 
-let getByTestId;
+ import PlantIndex from "../components/reusableComponents/PlantIndex/PlantIndex";
 
- beforeEach(() =>{
-     const component = render(<Plant />);
-     getByTestId = component.getByTestId;
-
+ let container = null;
+ beforeEach(() => {
+     // setup a DOM element as a render target
+     container = document.createElement("div");
+     document.body.appendChild(container);
  });
-// // test('Fetch plantObject,should render an individual object with properties ', ()=>{
-// //     //Arrange
-// //
-// //     const description = "vraagt niet veel verzorging omdat ze niet zo veel water nodig hebben. Wacht tot de bovenste centimeters van de grond droog zijn en geef dan langzaam net zoveel water tot je het er door de";
-// //     const difficulty = "MODERATE";
-// //     const downloadUri = "http://localhost:8080/api/v1/plants/50/download";
-// //     const fileName = "Aloe2.jpeg";
-// //     const food = "MONTH";
-// //     const id = 50;
-// //     const latinName = "Aloe";
-// //     const name = "Aloe";
-// //     const uploadedbyUsername = "hendrikjan@mail.com";
-// //     const uploadedDate = "2021-10-12T14:39:37.548+00:00";
-// //     const Watering = "WEEK";
-// //     //Act
-// //     const plantObject = Plant(description, difficulty, downloadUri, fileName, food, id, latinName, name, uploadedDate, uploadedbyUsername, Watering);
-// //
-// //     //Assert
-// //     expect(plantObject).toReturnWith();
-// //
-// // });
 
+ afterEach(() => {
+     // cleanup on exiting
+     unmountComponentAtNode(container);
+     container.remove();
+     container = null;
+ });
 
-test("render div", ()=>{
+ it("renders plant data", async () => {
+     const fakePlant = {
+         name: "Pauwenplant",
+         latinName: "Calathea",
+         downloadUri: "http://localhost:8080/api/v1/plants/123/download",
+         description: "De Calathea heeft een grote diversiteit aan kleuren en vormen van de bladeren. Voornamelijk zijn deze bladeren groen en paars van kleur, ovaal en rond van vorm.",
+         care: "Qua verzorging kan het een beetje een diva zijn, maar met de juiste aanpak kom je een heel eind.",
+         difficulty: "HARD",
+         light: "HALFSUNNY",
+         food: "MONTH",
+         watering: "THREEDAYS"
 
-    const headerEl = getByTestId("pageheader");
+     };
+     jest.spyOn(global, "fetch").mockImplementation(() =>
+         Promise.resolve({
+             json: () => Promise.resolve(fakePlant)
+         })
+     );
 
-    // expect(headerEl.textContent).toBe("");
+     // Use the asynchronous version of act to apply resolved promises
+     await act(async () => {
+         render(<Plant id="123" />, container);
+     });
 
+     expect(container.querySelector(['page-header']).textContent).toBe(fakePlant.name);
+     expect(container.textContent).toBe(fakePlant.latinName);
+     expect(container.querySelector(['full-item-picture']).srcset).toBe(fakePlant.downloadUri);
+     expect(container.textContent).toContain(fakePlant.description);
+     expect(container.textContent).toContain(fakePlant.care);
+     expect(container.querySelector(['f-care']).textContent).toBe(fakePlant.difficulty);
+     expect(container.querySelector(['f-light-care']).textContent).toBe(fakePlant.light);
+     expect(container.querySelector(['f-food-care']).textContent).toBe(fakePlant.food);
+     expect(container.querySelector(['f-water-care']).textContent).toBe(fakePlant.watering);
 
-});
+     // remove the mock to ensure tests are completely isolated
+     global.fetch.mockRestore();
+ });

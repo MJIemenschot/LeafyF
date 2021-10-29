@@ -1,3 +1,4 @@
+import './PasswordReset.css';
 import React, {useEffect, useState} from 'react';
 import {useForm} from "react-hook-form";
 import {Link, useHistory, useParams, withRouter} from 'react-router-dom';
@@ -72,12 +73,12 @@ function PasswordReset(props) {
 
         toggleLoading(false);
     }
-    // effect runs when userstate is updated
-    // useEffect(() => {
-    //     // reset form with user data
-    //     reset(currentUser);
-    // }, [currentUser]);
-    //
+   // effect runs when userstate is updated
+    useEffect(() => {
+        // reset form with user data
+        reset(currentUser);
+    }, [currentUser]);
+
 
 
     function onSubmit(data) {
@@ -91,8 +92,8 @@ function PasswordReset(props) {
     }
 
     return (
-        <div className="form-content-right">
-            <form className="form" onSubmit={handleSubmit(updateInfo)}>
+        <div className="user-reset">
+            <form className="user-reset-form" onSubmit={handleSubmit(updateInfo)}>
                 <h1>
                     Stel je gebruikersnaam of wachtwoord opnieuw in
                 </h1>
@@ -133,9 +134,9 @@ function PasswordReset(props) {
                     </label>
                 </div>
 
-                <button disable={loading} type="submit" className="form-input-btn"
-                        disabled={loading}>{loading ? "Versturen.." : "Registreer"}</button>
-                {registerSuccess === true && <p>Registeren is gelukt! Je kan nu inloggen!</p>}
+                <button disable={loading} type="submit" className="reset-btn"
+                        disabled={loading}>{loading ? "Versturen.." : "Pas aan"}</button>
+                {registerSuccess === true && <p>Het is gelukt! Je kan nu weer inloggen!</p>}
                 {/*{loading && <p>Een moment geduld aub!</p>}*/}
 
                 {error && <p className="error-message">{error}</p>}
