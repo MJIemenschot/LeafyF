@@ -1,0 +1,10 @@
+.user-delete{
+    display: flex;
+    align-items: center;
+
+}
+.delete-usr-btn{
+    margin: auto;
+    padding: 10px;
+    background-color: #3498db;
+}

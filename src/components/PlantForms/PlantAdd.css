@@ -1,0 +1,72 @@
+.add-item-container{
+    width:100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0px 20px 0px;
+    padding: 10px 0px 10px 0px;
+}
+.add-items{
+    width:60%;
+    text-align: center;
+    background-color: #eeeeee;
+}
+
+.add-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+}
+.add-item-field {
+    min-width: 80%;
+    padding: 10px;
+    margin: 10px;
+    border-bottom: lightgray 1px solid;
+}
+
+.select-field{
+    min-width: 80%;
+    padding: 10px;
+    margin: 10px;
+    border-bottom: lightgray 1px solid;
+}
+
+.choose{
+    margin-left: 15px;
+}
+.upload {
+    width: 80%;
+    height: auto;
+    background-color: white;
+    border: #595959 dashed 2px;
+    padding: 20px;
+
+}
+.form-btn{
+    width:80%;
+    margin: 20px 20px;
+    background-color: darkseagreen;
+}
+.form-btn:hover{
+    cursor: pointer;
+    background: #00828e;
+    transition: all 0.4s ease-out;
+}
+fieldset.categories {
+    background-color: white;
+    margin-top: 10px;
+}
+@media (max-width: 754px) {
+    /*.add-items {*/
+    /*}*/
+    .itemInfo {
+        width:90%;
+        margin: 10px auto;
+    }
+    /*.form-content-right {*/
+    /*    width: 100%;*/
+
+    /*}*/
+}

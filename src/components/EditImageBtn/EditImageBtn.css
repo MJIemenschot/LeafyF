@@ -1,0 +1,13 @@
+.edit-img-btn{
+    width: 120px;
+    background-color: darkcyan;
+    font-size: 13px;
+    color:#fff;;
+    text-decoration: none;
+    text-align: center;
+    margin: 5px;
+    padding: 10px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    cursor: pointer;
+}

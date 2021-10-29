@@ -2,8 +2,8 @@ import React from 'react';
 
 import { AuthContext } from "../context/AuthContext";
 //import FormSignin from "../components/FormSignin";
-import Signup from "../components/Signup";
-import Signin from "../components/Signin";
+import Signup from "../components/UserForms/Signup";
+import Signin from "../components/UserForms/Signin";
 
 const UserPortal = () => {
 

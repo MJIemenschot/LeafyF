@@ -1,0 +1,14 @@
+.logo {
+    text-decoration: none;
+    font-size: 24px;
+    line-height: 1;
+    color: #fff;
+}
+.logo-icon{
+    color: #fff;
+}
+.logo span {
+    color: greenyellow;
+    font-weight: 800;
+    margin-left: 2px;
+}
