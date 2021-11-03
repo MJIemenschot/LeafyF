@@ -64,8 +64,7 @@ function App() {
           <Route path='/user/:username' component={UserDetail}/>
           <Route path='/user-update/:username' component={UserUpdate}/>
            <Route path='/user-edit/:username' component={UserEdit}/>
-              <Route path='/user-delete/:username' component={UserDelete}/>
-          <Route path='/reset-password/:username' component={PasswordReset}/>
+          {/*<Route path='/reset-password/:username' component={PasswordReset}/>*/}
           <Route exact path='/' component={Plants}/>
 
           <Route exact path='/makkelijk' component={EasyPlants}/>

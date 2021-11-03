@@ -87,7 +87,7 @@ function PlantAdd () {
                         placeholder='Voeg hier een beschrijving van jouw plant toe:'
                         {...register('description',{
                             maxLength:{
-                                value: 500,
+                                value: 495,
                                 message: 'Maak je beschrijving wat korter',
                             }
                         })}
@@ -98,7 +98,7 @@ function PlantAdd () {
                         cols='30' rows='10'
                         placeholder='Voeg hier een  verzorgingshandleiding van jouw plant toe:'
                         {...register('care',{maxLength:{
-                                value: 500,
+                                value: 495,
                                 message: 'Maak je verzorgingshandleiding wat korter',
                             }
                         })}
@@ -155,12 +155,12 @@ function PlantAdd () {
                         type='radio'
                         id='halfsunny'
                         value='HALFSUNNY' {...register('light')}/>
-                <label htmlFor='halfsunny'>Half zonnig</label>
+                <label htmlFor='halfsunny'>Zonnig</label>
                 <input  className='choose'
                         type='radio'
                         id='sunny'
                         value='SUNNY' {...register('light')}/>
-                <label htmlFor='sunny'>Half schaduw</label>
+                <label htmlFor='sunny'>Half zonnig</label>
                 <input  className='choose'
                         type='radio'
                         id='shadow'

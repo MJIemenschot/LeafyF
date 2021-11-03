@@ -11,3 +11,10 @@
     text-decoration: none;
 
 }
+.user-detail{
+    width:200px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+}

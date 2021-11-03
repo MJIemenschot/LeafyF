@@ -140,7 +140,7 @@ function PlantEdit (props) {
                                 placeholder='Voeg hier een beschrijving van jouw plant toe:'
                                 {...register('description',{
                                     maxLength:{
-                                        value: 300,
+                                        value: 495,
                                         message: 'Maak je beschrijving wat korter',
                                     }
                                 })}
@@ -151,12 +151,32 @@ function PlantEdit (props) {
                                 cols='30' rows='10'
                                 placeholder='Voeg hier een  verzorgingshandleiding van jouw plant toe:'
                                 {...register('care',{maxLength:{
-                                        value: 500,
+                                        value: 495,
                                         message: 'Maak je verzorgingshandleiding wat korter',
                                     }
                                 })}
                     />
                     {errors.description ? <p className='errorMessage'>{errors.description.message}</p>:null}
+                    {/*<textarea   type='potting'*/}
+                    {/*            className='add-item-field'*/}
+                    {/*            cols='30' rows='10'*/}
+                    {/*            placeholder='Informatie over grond en verpotten:'*/}
+                    {/*            {...register('care',{maxLength:{*/}
+                    {/*                    value: 495,*/}
+                    {/*                    message: 'Maak de tekst wat korter',*/}
+                    {/*                }*/}
+                    {/*            })}*/}
+                    {/*/>*/}
+                    {/*<textarea   type='flowering'*/}
+                    {/*            className='add-item-field'*/}
+                    {/*            cols='30' rows='10'*/}
+                    {/*            placeholder='Informatie over Bloeiwijze en stekken:'*/}
+                    {/*            {...register('care',{maxLength:{*/}
+                    {/*                    value: 495,*/}
+                    {/*                    message: 'Maak tekst wat korter',*/}
+                    {/*                }*/}
+                    {/*            })}*/}
+                    {/*/>*/}
 
 
 

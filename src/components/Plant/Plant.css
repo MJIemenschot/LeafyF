@@ -1,12 +1,12 @@
 /* Full PLANT Styles */
-.container {
-    min-height: 65%;
-    width: 100%;
-    max-width: 1060px;
-    margin: 0 auto;
-    background-color: lightgray;
+/*.container {*/
+/*    min-height: 65%;*/
+/*    width: 100%;*/
+/*    max-width: 1060px;*/
+/*    margin: 0 auto;*/
+/*    background-color: lightgray;*/
 
-}
+/*}*/
 .page-header{
     text-align: center;
     color: #00828e;
@@ -39,6 +39,9 @@
 .full-item-text p{
     margin-top: 10px;
 
+}
+.plant-field {
+    border-bottom: 2px solid lightgray;
 }
 .card-container {
     background-color: aliceblue;
@@ -137,14 +140,13 @@
         align-items: center;
     }
 
+    @media (max-width: 360px) {
+        .full-item-tools{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
-
-    @media (max-width: 755px) {
-        /*.f-tools-container{*/
-        /*    display: flex;*/
-        /*    flex-direction: column;*/
-        /*    align-content: center;*/
-        /*}*/
+        }
     }
 }
 

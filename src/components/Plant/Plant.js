@@ -46,14 +46,12 @@ useEffect(()=>{
             <div>
                 <h1 className='page-header' > {currentPlant.name}</h1>
             </div>
-
             <div className='full-item-container'>
-
                 <div className='full-item'>
                     <img className='full-item-picture' src={currentPlant.downloadUri} alt={currentPlant.name}  width="200px"/>
                     <div className='full-item-text'>
                         <h3>{currentPlant.latinName}</h3>
-                        <p>{currentPlant.description}</p>
+                        <p className='plant-field'>{currentPlant.description}</p>
                         <p>{currentPlant.care}</p>
                     </div>
                 </div>
@@ -112,7 +110,6 @@ useEffect(()=>{
                     :<></>}
             </div>
         </div>
-
     )
 }
 export default Plant

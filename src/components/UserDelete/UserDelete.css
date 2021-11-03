@@ -3,8 +3,21 @@
     align-items: center;
 
 }
+
+.icon-btn{
+    color:#FFFFFF;
+    margin-left: 3px;
+}
+
 .delete-usr-btn{
+    color: #FFFFFF;
     margin: auto;
     padding: 10px;
+    letter-spacing: 1px;
+    cursor: pointer;
     background-color: #3498db;
+    margin-top:10px;
+}
+.delete-usr-btn:hover{
+    background-color: lightblue;
 }

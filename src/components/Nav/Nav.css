@@ -21,17 +21,13 @@ nav h2 {
     justify-content: flex-end;
     flex-flow: row;
     width: 80%;
-
     list-style: none;
 }
 .nav-links{
     color: white;
     padding: 10px 20px;
     margin: 0 10px;
-
-    cursor: pointer;
-
-
+    cursor: pointer
 }
 
 .nav-links a{
@@ -41,6 +37,16 @@ nav h2 {
 }
 .mobile-menu-icon{
     display:none;
+}
+.log-out{
+    background-color: darkseagreen;
+    color: white;
+    padding: 7px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.log-out:hover{
+    background-color: #00828e;
 }
 
 @media all and (max-width: 768px) {
