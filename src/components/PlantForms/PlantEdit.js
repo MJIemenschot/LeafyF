@@ -50,9 +50,10 @@ function PlantEdit (props) {
 
         getCurrent();
     }, []);
-    
 
-
+    function refresh() {
+        window.location.reload(false);
+    }
 
     async function updateIt (formData) {
         setError('');
@@ -91,6 +92,7 @@ function PlantEdit (props) {
         // formData.append("id", data.id)
         formData.append('description', data.description)
         formData.append('care', data.care)
+        formData.append('potting', data.potting)
         formData.append('name', data.name)
         formData.append('latinName', data.latinName)
         formData.append('difficulty', data.difficulty)
@@ -126,13 +128,13 @@ function PlantEdit (props) {
                             className='add-item-field'
                             {...register('name', {
                             })}
-                    />{errors.name && <p className='errorMessage'>Het veld is niet ingevuld</p>}
+                    />{errors.name && <p className='error-message'>Het veld is niet ingevuld</p>}
                     <input  type='text'
                             className='add-item-field'
                             {...register('latinName', {
 
                             })}
-                    />{errors.latinName && <p className='errorMessage'>Het veld is niet ingevuld</p>}
+                    />{errors.latinName && <p className='error-message'>Het veld is niet ingevuld</p>}
                     <label>Beschrijving</label>
                     <textarea   type='description'
                                 className="add-item-field"
@@ -144,7 +146,7 @@ function PlantEdit (props) {
                                         message: 'Maak je beschrijving wat korter',
                                     }
                                 })}
-                    />{errors.description ? <p className='errorMessage'>{errors.description.message}</p>:null}
+                    />{errors.description ? <p className='error-message'>{errors.description.message}</p>:null}
                     <label>Verzorgingshandleiding</label>
                     <textarea   type='care'
                                 className='add-item-field'
@@ -156,17 +158,17 @@ function PlantEdit (props) {
                                     }
                                 })}
                     />
-                    {errors.description ? <p className='errorMessage'>{errors.description.message}</p>:null}
-                    {/*<textarea   type='potting'*/}
-                    {/*            className='add-item-field'*/}
-                    {/*            cols='30' rows='10'*/}
-                    {/*            placeholder='Informatie over grond en verpotten:'*/}
-                    {/*            {...register('care',{maxLength:{*/}
-                    {/*                    value: 495,*/}
-                    {/*                    message: 'Maak de tekst wat korter',*/}
-                    {/*                }*/}
-                    {/*            })}*/}
-                    {/*/>*/}
+                    {errors.care ? <p className='error-message'>{errors.care.message}</p>:null}
+                    <textarea   type='potting'
+                                className='add-item-field'
+                                cols='30' rows='10'
+                                placeholder='Informatie over grond en verpotten:'
+                                {...register('potting',{maxLength:{
+                                        value: 495,
+                                        message: 'Maak de tekst wat korter',
+                                    }
+                                })}
+                    />{errors.potting ? <p className='error-message'>{errors.potting.message}</p>:null}
                     {/*<textarea   type='flowering'*/}
                     {/*            className='add-item-field'*/}
                     {/*            cols='30' rows='10'*/}
@@ -253,8 +255,7 @@ function PlantEdit (props) {
                 {!currentPlant &&<p>Geen plant om te wijzigen...</p>}
                 {!Success && <button type='button' onClick={() => reset()} className='reset-btn'>Zet terug</button>}
                 <div>
-                    {Success ?<Link to='/'
-                    >Terug naar plantenoverzicht</Link>: <Link to='/'
+                    {Success ?<button onClick={refresh}>Terug naar je profielpagina</button>: <Link to='/'
                     >Cancel</Link>}
                 </div>
 

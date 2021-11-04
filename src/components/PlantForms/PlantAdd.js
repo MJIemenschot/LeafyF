@@ -14,9 +14,6 @@ function PlantAdd () {
     const [result, setResult] = useState('');
     const onSubmit = (data) => setResult(JSON.stringify(data));
     let history = useHistory();
-    // const token = localStorage.getItem("token")
-
-
 
     async function sendInfo (formData) {
         setError('');
@@ -36,12 +33,13 @@ function PlantAdd () {
             toggleSuccess(true);
         } catch (e) {
             console.log(console.error(e))
-            setError(`Het toevoegen is mislukt. Probeer het opnieuw (${e.message})`);
+            setError(`Deze plant bestaat al. (${e.message})`);
+            console.log('de error message?',e.message)
         }
     }
-    // function refresh() {
-    //     window.location.reload(false);
-    // }
+    function refresh() {
+        window.location.reload(false);
+    }
 
     const formData = new FormData();
 
@@ -49,7 +47,7 @@ function PlantAdd () {
 
         formData.append('description', data.description)
         formData.append('care', data.care)
-        // formData.append('care', data.potting)
+        formData.append('potting', data.potting)
         // formData.append('care', data.flowering)
         formData.append('name', data.name)
         formData.append('latinName', data.latinName)
@@ -74,12 +72,12 @@ function PlantAdd () {
                         {...register("name", {
                             required:true
                         })}
-                />{errors.address && <p className="errorMessage">Het veld is niet ingevuld</p>}
+                />{errors.address && <p className='error-message'>Het veld is niet ingevuld</p>}
             <input  type='text'
                     className='add-item-field'
                     placeholder='Voeg hier de latijnse naam toe:'
                     {...register('latinName', )}
-            />{errors.address && <p className='errorMessage'>probeer de naam in te korten</p>}
+            />{errors.address && <p className='error-message'>probeer de naam in te korten</p>}
 
             <textarea   type='description'
                         className="add-item-field"
@@ -91,8 +89,8 @@ function PlantAdd () {
                                 message: 'Maak je beschrijving wat korter',
                             }
                         })}
-            />{errors.description ? <p className='errorMessage'>{errors.description.message}</p>:null}
-            {/*{errors.address && <p className="errorMessage">Vergeet niet een beschrijving in te vullen</p>}*/}
+            />{errors.description ? <p className='error-message'>{errors.description.message}</p>:null}
+
             <textarea   type='care'
                         className='add-item-field'
                         cols='30' rows='10'
@@ -102,28 +100,18 @@ function PlantAdd () {
                                 message: 'Maak je verzorgingshandleiding wat korter',
                             }
                         })}
-            />
-            {/*<textarea   type='potting'*/}
-            {/*            className='add-item-field'*/}
-            {/*            cols='30' rows='10'*/}
-            {/*            placeholder='Informatie over grond en verpotten:'*/}
-            {/*            {...register('care',{maxLength:{*/}
-            {/*                    value: 500,*/}
-            {/*                    message: 'Maak de tekst wat korter',*/}
-            {/*                }*/}
-            {/*            })}*/}
-            {/*/>*/}
-            {/*<textarea   type='flowering'*/}
-            {/*            className='add-item-field'*/}
-            {/*            cols='30' rows='10'*/}
-            {/*            placeholder='Informatie over Bloeiwijze en stekken:'*/}
-            {/*            {...register('care',{maxLength:{*/}
-            {/*                    value: 500,*/}
-            {/*                    message: 'Maak tekst wat korter',*/}
-            {/*                }*/}
-            {/*            })}*/}
-            {/*/>*/}
-            {errors.care ? <p className='errorMessage'>{errors.care.message}</p>:null}
+            />{errors.care ? <p className='error-message'>{errors.description.care}</p>:null}
+            <textarea   type='potting'
+                        className='add-item-field'
+                        cols='30' rows='10'
+                        placeholder='Informatie over grond en verpotten:'
+                        {...register('potting',{maxLength:{
+                                value: 495,
+                                message: 'Maak de tekst wat korter',
+                            }
+                        })}
+            />{errors.potting ? <p className='error-message'>{errors.potting.message}</p>:null}
+
             <div className='selectField'>
                 <h3>Verzorging</h3>
                 <input  className='choose'
@@ -226,17 +214,20 @@ function PlantAdd () {
                     required:true
                 })} accept='image/jpeg'
                 />
-                {errors.address && <p className='errorMessage'>Selecteer en upload een afbeelding.</p>}
+                {errors.address && <p className='error-message'>Selecteer en upload een afbeelding.</p>}
                 <GrUpload/>
             </div >
             <button className='form-btn'
 
             >Voeg de plant toe</button>
-            {Success === true && <p>De plant is succesvol toegevoegd!</p> }
+            {Success === true &&
+                <>
+                    <p>De plant is succesvol toegevoegd!</p>
+                    <button onClick={refresh}>Terug naar je profielpagina</button>
+                </>
+            }
             {error && <p className='error-message'>{error}</p>}
         </form>
-                <Link to='/'>Terug naar plantenoverzicht</Link>
-
             </div>
         </div>
     )

@@ -32,7 +32,7 @@ useEffect(()=>{
             setCurrentPlant(response.data)
 
         } catch (error) {
-            console.error('Something went wrong', error)
+            console.error('Er ging iets mis', error)
         }
     }
         fetchPlant();
@@ -52,7 +52,8 @@ useEffect(()=>{
                     <div className='full-item-text'>
                         <h3>{currentPlant.latinName}</h3>
                         <p className='plant-field'>{currentPlant.description}</p>
-                        <p>{currentPlant.care}</p>
+                        <p className='plant-field'>{currentPlant.care}</p>
+                        <p>{currentPlant.potting}</p>
                     </div>
                 </div>
                 <div className='card-container'>

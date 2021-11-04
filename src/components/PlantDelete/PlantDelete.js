@@ -21,7 +21,7 @@ function PlantDelete (props) {
 
     async function deletePlantHandler () {
         // console.warn('Weet je het zeker?')
-        if(window.confirm("weet je het zeker?")){
+        if(window.confirm("weet je zeker dat je deze plant wil verwijderen?")){
             toggleLoading(true);
             try {
                 await axios.delete(`http://localhost:8080/api/v1/plants/files/${itemId}`)
@@ -30,30 +30,36 @@ function PlantDelete (props) {
 
             } catch (e) {
                 console.log('het verwijderen is niet gelukt, error: '+ e)
+                setError('het verwijderen is niet gelukt, error: '+ e)
             }
         }
+    }
+    function refresh() {
+        window.location.reload(false);
     }
 
 
 
+
     return (
-        // <BrowserRouter forceRefresh>
+
             <div >{!Success ?
             <button
                 disabled={loading}
                 className='delete-plnt'
                 type='submit'
                 onClick={deletePlantHandler}
-                // onReset={reset}
             >
                 verwijder
                 <GrTrash/>
-            </button>:<Link to={"/"}>Naar Overzicht</Link>
+            </button>:
+                // <Link to={"/"}>Naar Overzicht</Link>
+                <button type='button' onClick={refresh} className='btn btn-secondary'>Terug naar je profielpagina</button>
             }
 
                 {Success &&<p>De plant is succesvol verwijderd</p>}
             </div>
-        // </BrowserRouter>
+
     )
 }
 

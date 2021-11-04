@@ -20,10 +20,11 @@ import UsersList from "./components/UsersList";
 import UserUpdate from "./components/UserForms/UserUpdate";
 import PasswordReset from "./components/PasswordReset";
 import SearchBar from "./components/SearchBar/SearchBar";
-import SearchBr from "./components/SearchBar/SearchBr";
+
 import UserDetail from "./components/UserDetail";
 import UserEdit from "./components/UserForms/UserEdit";
 import UserDelete from "./components/UserDelete/UserDelete";
+
 
 
 
@@ -49,10 +50,10 @@ function App() {
                    setTerm={setTerm}
 
         />
-        {/*  <SearchBr term={term}*/}
-        {/*             setTerm={setTerm}*/}
+          {/*<SearchBr term={term}*/}
+          {/*           setTerm={setTerm}*/}
 
-        {/*  />*/}
+          {/*/>*/}
           <Switch>
 
           <Route exact path='/user-portal' component={UserPortal}/>
@@ -66,7 +67,6 @@ function App() {
            <Route path='/user-edit/:username' component={UserEdit}/>
           {/*<Route path='/reset-password/:username' component={PasswordReset}/>*/}
           <Route exact path='/' component={Plants}/>
-
           <Route exact path='/makkelijk' component={EasyPlants}/>
           <Route excact path='/vergeet-deze' component={DryPlants}/>
           <Route exact path='/shadow' component={ShadowPlants}/>

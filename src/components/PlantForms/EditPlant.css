@@ -1,3 +1,7 @@
+.error-message{
+    color: #f00e0e;
+}
+
 .ei-select-field{
     display:none;
 }
@@ -56,7 +60,7 @@
     background: #00828e;
     transition: all 0.4s ease-out;
 }
-fieldset.categories {
+.fieldset.categories {
     background-color: white;
     margin-top: 10px;
 }
