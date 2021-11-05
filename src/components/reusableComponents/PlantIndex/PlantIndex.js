@@ -28,7 +28,6 @@ const PlantIndex = (props) => {
             {contents.length === 0 &&<h3 className='nothing-found'>Geen Planten...</h3> }
             {/*//de inhoud op alfabetische volgord van Nederlandse naam*/}
             {contents.sort((a, b) => a.name > b.name ? 1 : -1).map(plant =>{
-
                 return (
 
                     <div key ={plant.id} className='itemInfo'>

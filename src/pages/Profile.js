@@ -48,7 +48,8 @@ const Profile = () => {
                     <p>klik <Link id="add-link" to="/plant-add">hier</Link> om een plant toe te voegen.</p>
                 <div>
                     <Link key={user.username} to={`user/${ user.username }`}   className="btn-to-user-detail">
-                        <GrEdit/>mijn gegevens
+                        {/*<GrEdit/>*/}
+                        mijn gegevens
                     </Link>
                 </div>
                 <div>{user.authorities.map(abilities=>{

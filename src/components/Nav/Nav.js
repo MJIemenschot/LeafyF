@@ -1,15 +1,13 @@
 import './Nav.css';
 import React, { useState, useContext} from 'react';
 import  {NavLink} from 'react-router-dom';
-
 import { useHistory } from "react-router-dom";
-
 import Logo from '../Logo/Logo';
 import { IoPerson, IoPersonOutline } from "react-icons/io5";
 import {FaBars, FaTimes, FaRegUser, FaUser, FaHeart, FaHome, FaSearch} from 'react-icons/fa';
 //import Searchbar from "./Searchbar";
 import {AuthContext} from "../../context/AuthContext";
-//import {ItemsContext} from "../context/ItemsContext"
+
 
 
 
@@ -27,9 +25,6 @@ const Nav = () => {
         <nav>
             {/*<div className='navbar'>*/}
             <Logo />
-
-
-
                 <ul className={isMobile ? 'nav-menu-mobile':'nav-menu'}
                 onClick={(()=>setIsMobile(false))}
                 >
@@ -64,10 +59,10 @@ const Nav = () => {
                         <NavLink exact to='/profile'>
                             <IoPerson/>
                         </NavLink>
-                        // <button type="button" onClick={logout}>Log uit</button>
                     )}
-                        {user &&(<button type='button' onClick={logout}>Log uit</button>)}
+                        {user &&(<button type='button' onClick={logout} className='log-out'>Log uit</button>)}
                     </li>
+
                 </ul>
                 <div className='mobile-menu-icon'
                 onClick={()=> setIsMobile(!isMobile)}>

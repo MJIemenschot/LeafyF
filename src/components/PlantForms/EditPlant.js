@@ -54,8 +54,9 @@ useEffect(() => {
             setCurrentImage(response.data)
             setIsSelected(true)
 
-        } catch (error) {
-            console.error('Er ging iets mis, geen afbeelding gevonden', error)
+        } catch (err) {
+            console.error('Er ging iets mis, geen afbeelding gevonden', err)
+            setError('Er ging iets mis, geen afbeelding gevonden', err)
         }
     }
     getCurrentImage();
@@ -77,9 +78,9 @@ useEffect(() => {
             );
             console.log('res in update',res)
             toggleSuccess(true);
-        } catch (e) {
-            console.log(console.error(e))
-            setError(`Het updaten is mislukt. Probeer het opnieuw (${e.message})`);
+        } catch (err) {
+            console.log(console.error(err))
+            setError(`Het updaten is mislukt. Probeer het opnieuw (${err.message})`);
         }
     }
 
@@ -117,7 +118,7 @@ useEffect(() => {
 
                     <div className='upload'>
                         <h4>Huidige afbeelding:</h4>
-                        <img src={currentPlant.downloadUri} alt={currentPlant.name} width="80px"/>
+                        <img src={currentPlant.downloadUri} alt={currentPlant.name} width='80px'/>
                         <h4>Kies een nieuwe afbeelding</h4>
 
                         <input type='file'
@@ -125,36 +126,24 @@ useEffect(() => {
                                {...register('file', {
                                })} accept='image/jpeg'
                         />
-                        {/*{errors.file && <p className="errorMessage">Er ging iets mis met uploaden. Probeer het opnieuw.</p>}*/}
+                        {errors.file && <p className='error-message'>Er ging iets mis met uploaden. Probeer het opnieuw.</p>}
                         <GrUpload/>
                     </div >
                     <button className='form-btn'>Wijzig afbeelding</button>
-                    {/*{Success === true &&*/}
-                    {/*<>*/}
-                    {/*    <p>De afbeelding is succesvol gewijzigd!</p>*/}
-                    {/*    <Link to='/'>Terug</Link>*/}
-                    {/*</>*/}
-                    {/*}*/}
+                    {/*<button type='button' onClick={refresh} className='btn btn-secondary'>Laat de nieuwe afbeelding zien</button>*/}
                     {error &&
                         <>
                             <p>De afbeelding is succesvol gewijzigd!</p>
                              {/*<p className='error-message'>{error}</p>*/}
-                            <button type='button' onClick={refresh} className='btn btn-secondary'>Laat de nieuwe afbeelding zien</button>
-
+                            {/*<button type='button' onClick={refresh} className='btn btn-secondary'>Laat de nieuwe afbeelding zien</button>*/}
+                            <button type='button' onClick={refresh} className='btn btn-secondary'>Terug naar je profielpagina</button>
                         </>
                     }
                     {/*{Success && <button type='button' onClick={refresh} className='btn btn-secondary'>Laat de nieuwe afbeelding zien</button>}*/}
                     {/*<button type='button' onClick={refresh} className='btn btn-secondary'>Laat nieuw afbeelding zien</button>*/}
-
-
                 </form>
                 }
-
-                <div><Link to='/'>Terug naar overzicht</Link></div>
-
                 {!currentPlant &&<p>Geen plant om te wijzigen...</p>}
-
-
             </div>
         </div>
     )

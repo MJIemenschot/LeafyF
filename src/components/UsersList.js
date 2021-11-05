@@ -5,17 +5,21 @@ import Logo from "./Logo/Logo";
 import {FaBars, FaHome, FaTimes } from "react-icons/fa";
 import {IoPersonOutline} from "react-icons/io5";
 import axios from "axios";
-
 import { GrNext, GrClose, GrEdit, GrTrash  } from "react-icons/gr";
 import Button from "./reusableComponents/Button";
 import UserDelete from "./UserDelete/UserDelete";
-
 import UserUpdate from "./UserForms/UserUpdate";
 
 const UsersList = () => {
+    // console.log('props in usersList',props)
     const [users, setUsers] = useState([]);
     const [abilities,setAbilities] = useState([]);
-    const [active, setActive] =useState(false)
+    const [active, setActive] =useState(false);
+    const isTokenValid = localStorage.getItem('token')
+    const {
+        user
+    } = useContext(AuthContext);
+    console.log('user in userslist',user);
 
 
     async function fetchUsers(){
@@ -49,42 +53,60 @@ const UsersList = () => {
 
             <div className='item-container'>
 
-                {users.map(user =>{
+                {users.map(member =>{
+                    const splitMember=member.username.split('@');
+                    const theMember=splitMember[0].charAt(0).toUpperCase()+splitMember[0].slice(1);
                     return (
 
-                        <div key ={user.username} className='itemInfo'>
-                            <h3> {user.username}</h3>
+                        <div key ={theMember} className='itemInfo'>
+                            <h3> {theMember}</h3>
 
-                            <p>Emailadres: {user.username}</p>
+                            <p><strong>Emailadres: </strong>{member.username}</p>
                             {/*<p>Actief: {user.enabled}</p>*/}
                             <h4>Rollen:</h4>
-                            <>{user.authorities.map(abilities=>{
+                            <>{member.authorities.map(abilities=>{
                                 return(<p>
                                     {abilities.authority ==='ROLE_ADMIN' &&<p>Administator</p>}
-                                    {abilities.authority ==='ROLE_USER' &&<p>Gebruiker</p>}
+                                    {abilities.authority ==='ROLE_USER' &&<p>Lid van de club</p>}
                                 </p>)}
                             )}
                             </>
+                            <>
+                                {
+                                    user &&
+                                    //user.username===!member.username &&
 
-                            {abilities.authority ==='ROLE_ADMIN' &&<UserDelete
-                                id ={user.username}
-                            />}
-
-
-                            {user &&
-                            <Link to={`user/${ user.username }`}   className='btn-to-post'>
-                                Gegevens
-                            </Link>
-                            }
+                                    <UserDelete id={member.username}/>
+                                }
+                            </>
+                            {/*<>*/}
+                            {/*    {user &&*/}
+                            {/*    <Link to={`/user-update/${ member.username }`}  className='user-btn'>*/}
+                            {/*        Blokkeer <GrEdit/>*/}
+                            {/*    </Link>*/}
+                            {/*        // <UserEdit id={currentUser.username}/>*/}
+                            {/*    }*/}
+                            {/*</>*/}
+                            {/*<>*/}
+                            {/*    {abilities.authority ==='ROLE_ADMIN' &&*/}
+                            {/*    <Link to={`/user-edit/${ member.username }`}  className='user-btn'>*/}
+                            {/*        Deblokkeer <GrEdit/>*/}
+                            {/*    </Link>*/}
+                            {/*        // <UserEdit id={currentUser.username}/>*/}
+                            {/*    }*/}
+                            {/*</>*/}
+                            {/*{abilities.authority ==='ROLE_ADMIN' &&<UserDelete*/}
+                            {/*    id ={user.username}*/}
+                            {/*/>}*/}
+                            {/*{user &&*/}
+                            {/*<Link to={`user/${ user.username }`}   className='btn-to-post'>*/}
+                            {/*    Gegevens*/}
+                            {/*</Link>*/}
+                            {/*}*/}
                             {/*{user  &&*/}
                             {/*    <Link to={`/reset-password/${ user.username }`} className='btn btn-primary'>*/}
                             {/*        Nieuw wachtwoord aanmaken*/}
                             {/*    </Link>}*/}
-
-
-
-
-
                                 {/*<GrEdit style={{ color:'white', cursor:'pointer'}}/>*/}
                                 {/*/!*<UserDelete id={item.id} />*!/*/}
                                 {/*/!*<button onClick={() => delete(item.id)}>Delete</button>*!/*/}
@@ -95,7 +117,6 @@ const UsersList = () => {
                                 {/*<Link  to='/item/:id}'>Details</Link>*/}
 
                             </div>
-
                     );
                 })}
 
