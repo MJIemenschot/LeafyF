@@ -1,3 +1,4 @@
+import './UsersList.css';
 import React, {useContext, useEffect, useState} from "react";
 import {Link, NavLink, useHistory} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext";
@@ -9,11 +10,12 @@ import { GrNext, GrClose, GrEdit, GrTrash  } from "react-icons/gr";
 import Button from "./reusableComponents/Button";
 import UserDelete from "./UserDelete/UserDelete";
 import UserUpdate from "./UserForms/UserUpdate";
+import UserEdit from "./UserForms/UserEdit";
 
 const UsersList = () => {
     // console.log('props in usersList',props)
     const [users, setUsers] = useState([]);
-    const [abilities,setAbilities] = useState([]);
+    const [abilities,setAbilities] = useState([null]);
     const [active, setActive] =useState(false);
     const isTokenValid = localStorage.getItem('token')
     const {
@@ -23,15 +25,17 @@ const UsersList = () => {
 
 
     async function fetchUsers(){
+        const token = localStorage.getItem("token")
         try{
-            const res = await axios.get(`http://localhost:8080/api/v1/users`);
+            const res = await axios.get(`http://localhost:8080/api/v1/users` , {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    }
+                }
+            );
             console.log('de data van users api',res.data);
-            //console.log( 'de autorities',res.data.authorities.authority)
-            console.log('enabled',res.data.enabled)
-
-            setUsers(res.data);
-            //setAbilitiesd(res.data.authorities)
-            //setActive(res.data.enabled)
+             setUsers(res.data)
 
         } catch (e) {
             console.error('Er zijn helaas geen gebruikers gevonden, error: ' + e)
@@ -42,10 +46,7 @@ const UsersList = () => {
         fetchUsers()
     },[])
 
-    // function selectItem(){
-    //     console.log("selectItem called", [items.id -1])
-    //     let post=[items.id-1];
-    // }
+
 
     return (
         <>
@@ -58,72 +59,66 @@ const UsersList = () => {
                     const theMember=splitMember[0].charAt(0).toUpperCase()+splitMember[0].slice(1);
                     return (
 
-                        <div key ={theMember} className='itemInfo'>
+                        <div key ={member.username} className='user-info'>
                             <h3> {theMember}</h3>
-
                             <p><strong>Emailadres: </strong>{member.username}</p>
-                            {/*<p>Actief: {user.enabled}</p>*/}
+
                             <h4>Rollen:</h4>
                             <>{member.authorities.map(abilities=>{
                                 return(<p>
                                     {abilities.authority ==='ROLE_ADMIN' &&<p>Administator</p>}
                                     {abilities.authority ==='ROLE_USER' &&<p>Lid van de club</p>}
+                                    {abilities.authority ===[] &&<p>Lid van de club</p>}
                                 </p>)}
                             )}
                             </>
-                            <>
+                            <div className='users-tools'>
+                                {user &&
+                                <>{member.authorities.map(roles=>{
+                                    return(<p>
+                                        {roles.authority==='ROLE_USER' &&<Link to={`/user-update/${ member.username }`}  className='user-btn'>
+                                            blokkeer
+                                        </Link>}
+                                        {roles.authority==='ROLE_ADMIN' && 'ROLE_USER' &&<></>}
+                                        {!roles.authority ==='ROLE_USER' && 'ROLE_ADMIN' &&<p>Geen lid meer van de club</p>}
+                                    </p>)}
+                                )}
+                                    {/*{user &&*/}
+                                    {/*<Link to={`/user-update/${ member.username }`}  className='user-btn'>*/}
+                                    {/*    blokkeer*/}
+                                    {/*</Link>*/}
+                                    {/*}*/}
+
+
+                                </>
+
+                                }
+
+
+                                <>
+                                    {user &&
+                                    <>
+                                        <Link id={member.username}
+                                              to={`/user-edit/${ member.username }`}  className='user-btn'>
+                                            deblokkeer
+                                        </Link>
+                                        {/*     <UserEdit id={member.username}/>*/}
+                                    </>
+                                    }
+                                </>
+                            </div>
+                            <div>
                                 {
                                     user &&
                                     //user.username===!member.username &&
-
                                     <UserDelete id={member.username}/>
                                 }
-                            </>
-                            {/*<>*/}
-                            {/*    {user &&*/}
-                            {/*    <Link to={`/user-update/${ member.username }`}  className='user-btn'>*/}
-                            {/*        Blokkeer <GrEdit/>*/}
-                            {/*    </Link>*/}
-                            {/*        // <UserEdit id={currentUser.username}/>*/}
-                            {/*    }*/}
-                            {/*</>*/}
-                            {/*<>*/}
-                            {/*    {abilities.authority ==='ROLE_ADMIN' &&*/}
-                            {/*    <Link to={`/user-edit/${ member.username }`}  className='user-btn'>*/}
-                            {/*        Deblokkeer <GrEdit/>*/}
-                            {/*    </Link>*/}
-                            {/*        // <UserEdit id={currentUser.username}/>*/}
-                            {/*    }*/}
-                            {/*</>*/}
-                            {/*{abilities.authority ==='ROLE_ADMIN' &&<UserDelete*/}
-                            {/*    id ={user.username}*/}
-                            {/*/>}*/}
-                            {/*{user &&*/}
-                            {/*<Link to={`user/${ user.username }`}   className='btn-to-post'>*/}
-                            {/*    Gegevens*/}
-                            {/*</Link>*/}
-                            {/*}*/}
-                            {/*{user  &&*/}
-                            {/*    <Link to={`/reset-password/${ user.username }`} className='btn btn-primary'>*/}
-                            {/*        Nieuw wachtwoord aanmaken*/}
-                            {/*    </Link>}*/}
-                                {/*<GrEdit style={{ color:'white', cursor:'pointer'}}/>*/}
-                                {/*/!*<UserDelete id={item.id} />*!/*/}
-                                {/*/!*<button onClick={() => delete(item.id)}>Delete</button>*!/*/}
-                                {/*<button*/}
-                                {/*     onClick={selectItem}*/}
-                                {/*>Bewerk</button>*/}
-                                {/*/!*<button onClick={()=> history.push(`/item/item.id`)}></button>*!/*/}
-                                {/*<Link  to='/item/:id}'>Details</Link>*/}
-
                             </div>
+                        </div>
                     );
                 })}
-
             </div>
         </>
-
-
     );
 };
 export default UsersList

@@ -1,0 +1,55 @@
+.user-info{
+    width:25%;
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    margin:20px;
+}
+
+.users-tools{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+/*.user-delete{*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*}*/
+
+
+.user-btn{
+    width:100px;
+    padding: 5px;
+    background-color: #3498db;
+    text-align: center;
+    letter-spacing: 1px;
+    cursor: pointer;
+    color: white;
+    margin: 10px;
+    font-size: 14px;
+    text-decoration: none;
+}
+.user-btn:hover{
+    background-color: lightblue;
+}
+@media (max-width: 789px) {
+
+    .users-tools{
+        flex-direction: column;
+    }
+    .user-info{
+        width:90%;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+
+
+}
+

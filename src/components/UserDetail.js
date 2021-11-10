@@ -21,26 +21,26 @@ const UserDetail = () => {
     const {
         user
     } = useContext(AuthContext);
-    console.log('user in Plant from authcontext' ,user);
+    console.log('user in userdetail from authcontext' ,user);
     const splitUser=username.split('@');
     const theUser=splitUser[0].charAt(0).toUpperCase()+splitUser[0].slice(1);
 
 
 
-    useEffect(()=>{
-        async function fetchUser() {
-            try {
-                const response = await axios.get(`http://localhost:8080/api/v1/users/${username}`);
-                console.log('response in fetchuser',response.data)
-
-                setCurrentUser(response.data)
-
-            } catch (error) {
-                console.error('Something went wrong', error)
-            }
-        }
-        fetchUser();
-    },[]);
+    // useEffect(()=>{
+    //     async function fetchUser() {
+    //         try {
+    //             const response = await axios.get(`http://localhost:8080/api/v1/users/${username}`);
+    //             console.log('response in fetchuser',response.data)
+    //
+    //             setCurrentUser(response.data)
+    //
+    //         } catch (error) {
+    //             console.error('Something went wrong', error)
+    //         }
+    //     }
+    //     fetchUser();
+    // },[]);
 
 
     return (
@@ -48,23 +48,21 @@ const UserDetail = () => {
 
             <h1 className='page-header' >{theUser}</h1>
             <p><strong>Gebruikersnaam: </strong>{theUser}</p>
-            <p><strong>Email: </strong>{currentUser.username}</p>
+            <p><strong>Email: </strong>{username}</p>
             <div>
 
                 <div>{user.authorities.map(abilities=>{
                     return(
                         <>
-                                {/*{abilities.authority ==='ROLE_ADMIN' &&<p>Administator</p>}*/}
-                                {/*{abilities.authority ==='ROLE_USER' &&<p>Gebruiker</p>}*/}
-                                    {abilities.authority ==='ROLE_ADMIN' ?<p><strong>Rol 2:</strong></p>:<p><strong>Rol:</strong></p>}
+                                    {abilities.authority ==='ROLE_ADMIN' ?<p><strong>Rol 2:</strong></p>:<p><strong>Rol 1:</strong></p>}
                                     {abilities.authority ==='ROLE_ADMIN' &&<p>Administator</p>}
                                     {abilities.authority ==='ROLE_USER' &&<p>Lid van de club</p>}
                             <div className='user-tools'>
-                                {currentUser.username && !abilities.authority ==='ROLE_ADMIN' &&
-                                <Link to={`/reset-password/${ currentUser.username }`}   className='user-btn'>
-                                    Pas je wachtwoord en/of mailadres aan aan <GrEdit/>
-                                </Link>
-                                }
+                                {/*{currentUser.username && !abilities.authority ==='ROLE_ADMIN' &&*/}
+                                {/*<Link to={`/reset-password/${ currentUser.username }`}   className='user-btn'>*/}
+                                {/*    Pas je wachtwoord en/of mailadres aan aan <GrEdit/>*/}
+                                {/*</Link>*/}
+                                {/*}*/}
 
                             </div>
                     </>)}

@@ -27,7 +27,10 @@ nav h2 {
     color: white;
     padding: 10px 20px;
     margin: 0 10px;
-    cursor: pointer
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .nav-links a{
@@ -35,10 +38,14 @@ nav h2 {
 
     text-decoration: none;
 }
+/*.activeLink{*/
+/*    background-color: lightblue;*/
+/*}*/
 .mobile-menu-icon{
     display:none;
 }
 .log-out{
+    width: 80px;
     background-color: darkseagreen;
     color: white;
     padding: 7px;

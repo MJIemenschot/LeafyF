@@ -1,4 +1,52 @@
-.delete-auth{
+.block{
+    margin-top: 20px;
+    font-weight: lighter;
+}
+.block span{
+    font-weight: bold;
+
+}
+.update-user{
     display: flex;
+    flex-direction: column;
     align-items: center;
 }
+.update-text{
+    margin-top: 20px;
+    text-align: center;
+}
+.cancel{
+    width:270px;
+    padding: 5px;
+    background-color: darkseagreen;
+    text-align: center;
+    letter-spacing: 1px;
+    cursor: pointer;
+    color: white;
+    margin: 10px;
+    font-size: 14px;
+    text-decoration: none;
+
+}
+cancel a:hover{
+    background-color:lightseagreen;
+
+}
+.block-btn{
+    width:270px;
+    padding: 5px;
+    background-color: #3498db;
+    letter-spacing: 1px;
+    cursor: pointer;
+    color: white;
+    margin: 10px;
+    font-size: 14px;
+    text-decoration: none;
+}
+.block-btn:hover{
+    background-color: lightblue;
+}
+@media (max-width: 754px) {
+
+}
+

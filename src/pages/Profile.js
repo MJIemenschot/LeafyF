@@ -12,6 +12,8 @@ const Profile = () => {
     const  { user } = useContext(AuthContext);
     const [content, setContent] = useState(null);
     console.log("USER STUFF IN PROFILE:", user);
+    const splitUser=user.username.split('@');
+    const theUser=splitUser[0].charAt(0).toUpperCase()+splitUser[0].slice(1);
 
     useEffect(() => {
         async function fetchPrivateStuff() {
@@ -44,7 +46,7 @@ const Profile = () => {
             <h1>Profiel</h1>
             <div className='profile' key={user.username}>
                     <h2>Gegevens</h2>
-                    <p>Hallo <strong>{user && user.username}</strong></p>
+                    <p>Hallo <strong>{user && theUser}</strong></p>
                     <p>klik <Link id="add-link" to="/plant-add">hier</Link> om een plant toe te voegen.</p>
                 <div>
                     <Link key={user.username} to={`user/${ user.username }`}   className="btn-to-user-detail">

@@ -33,7 +33,7 @@ const PlantIndex = (props) => {
                     <div key ={plant.id} className='itemInfo'>
                         <h3> {plant.name}</h3>
                         <h5>{plant.latinName}</h5>
-                        {/*//Met het onderstaande het onderstaande kan de afbeelding weergegeven worden*/}
+                        {/*//Met het onderstaande het onderstaande kan de afbeelding weergegeven worden als ik hiervoor de weergaveoptie ga inbouwen*/}
                         {/*<Image id={plant.id}/>*/}
                         <Link to={`/plant/${ plant.id }`}
                               className='btn-to-post'
@@ -72,7 +72,6 @@ const PlantIndex = (props) => {
                     </div>
                 );
             })}
-
         </div>
         )
 }

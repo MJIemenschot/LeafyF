@@ -148,7 +148,7 @@ function PlantAdd () {
                         type='radio'
                         id='sunny'
                         value='SUNNY' {...register('light')}/>
-                <label htmlFor='sunny'>Half zonnig</label>
+                <label htmlFor='sunny'>Half schaduw</label>
                 <input  className='choose'
                         type='radio'
                         id='shadow'
@@ -165,7 +165,7 @@ function PlantAdd () {
                 <input  className='choose'
                         type='radio'
                         id='twodays'
-                        value='TWODAYS' {...register('twodays')}/>
+                        value='TWODAYS' {...register('watering')}/>
                 <label htmlFor='twodays'>Om de dag</label>
                 <input
                     className='choose'
@@ -220,13 +220,14 @@ function PlantAdd () {
             <button className='form-btn'
 
             >Voeg de plant toe</button>
+
             {Success === true &&
                 <>
                     <p>De plant is succesvol toegevoegd!</p>
                     <button onClick={refresh}>Terug naar je profielpagina</button>
                 </>
-            }
-            {error && <p className='error-message'>{error}</p>}
+            } {error && <p className='error-message'>{error}</p>}
+
         </form>
             </div>
         </div>

@@ -1,125 +1,85 @@
 import React, {useEffect, useState} from 'react';
-import './Form.css';
+import './UserEdit.css';
 import {useForm} from 'react-hook-form';
 import axios from 'axios';
 import {Link, useHistory, useParams, withRouter} from 'react-router-dom';
 
 
 const UserUpdate = (props) => {
-    const {handleSubmit, formState: {errors}, register, reset} = useForm();
+    // const {handleSubmit, formState: {errors}, register, reset} = useForm();
     const [password, setPassword] = useState("");
     const history = useHistory();
     const {username} = useParams();
+    console.log('username in userEdit',username)
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState('');
     const [registerSuccess, toggleRegisterSuccess] = useState(false);
-    //  state for form
-    const [currentUser, setCurrentUser] = useState(null);
 
-    // // effect runs on component mount
 
     useEffect(() => {
-        async function getCurrent() {
+        async function updateInfo() {
+            setError('');
+            toggleLoading(true);
+            const token = localStorage.getItem("token")
 
             try {
-                const response = await axios.get(`http://localhost:8080/api/v1/users/${username}`);
-                console.log('response in updateUser getCurrentuser', response.data)
+                const result = await axios.patch(`http://localhost:8080/api/v1/users/${username}/authorities` , {
+                //         headers: {
+                //             "Content-Type": "application/json",
+                //             Authorization: `Bearer ${token}`,
+                //         }
+                //     }
+                // );
+                    //email: data.emailRegistration,
+                    // password: data.confirmPassword,
+                    //username: data.emailRegistration,
+                    // authorities:
+                    //     [
+                    //         {
+                                username: username.emailRegistration,
+                                authority: "ROLE_USER",
+                            // }
+                        // ]
+                });
+                toggleRegisterSuccess(true);
 
-                setCurrentUser(response.data)
-
-            } catch (error) {
-                console.error('Er ging iets mis, geen data gevonden', error)
+            } catch (e) {
+                console.error(e);
+                setError(`Het updaten is mislukt. Probeer het opnieuw (${e.message})`);
             }
+
+            toggleLoading(false);
         }
 
-        getCurrent();
+         updateInfo();
     }, []);
 
-    async function updateInfo(data) {
-        setError('');
-        toggleLoading(true);
 
-        console.log('dit gaat in user useredit',data);
-
-        try {
-            const result = await axios.post(`http://localhost:8080/api/v1/users/${username}/authorities`, {
-                //     , {
-                //     headers: {
-                //         "Content-Type": "application/json",
-                //         Authorization: `Bearer ${token}`,
-                //     }
-                // }
-                email: data.emailRegistration,
-                // password: data.confirmPassword,
-                username: data.emailRegistration,
-                authorities: [
-                    {
-                        username: data.emailRegistration,
-                        authority: "ROLE_USER",
-                    }
-                ]
-            });
-            toggleRegisterSuccess(true);
-            {/* hier kan ik in het history push path  doorverwijzen naar het inlogpagina als ik het registreerformulier wil laten verdwijnen*/}
-            setTimeout(() => {
-                history.push('/');
-            }, 2000);
-        } catch (e) {
-            console.error(e);
-            setError(`Het updaten is mislukt. Probeer het opnieuw (${e.message})`);
-        }
-
-        toggleLoading(false);
-    }
-    // effect runs when userstate is updated
-    // useEffect(() => {
-    //     // reset form with user data
-    //     reset(currentUser);
-    // }, [currentUser]);
-    //
-
-
-    function onSubmit(data) {
-        // display form data on submit
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(data, null, 4));
-        return false;
-    }
-
-    // const validatePassword = (value) => {
-    //     if (password !== value) return false;
-    // }
 
     return (
-        <div className='form-content-right'>
-            <form className='form' onSubmit={handleSubmit(updateInfo)}>
-                <h1>
-                    Geef gebruikersrechten terug
-                </h1>
-                <div className='form-inputs'>
-                    <label className='form-label' htmlFor='e-mail'>e-mail:
-                        <input className='form-input'
-                               type='text'
-                               placeholder='vul hier je mail adres in...'
-                               {...register('emailRegistration', {
-                                   required: true,
-                                   validate: (value) => value.includes('@'),
-                               })}
-                        />{errors.emailRegistration &&
-                        <p className='errorMessage'>Het e-mail adres is verplicht en moet een geldig zijn</p>}
-                    </label>
-                </div>
 
+        <div className='edit-container'>
 
-                <button disable={loading} type='submit' className='form-input-btn'
-                        disabled={loading}>{loading ? 'Versturen..' : 'Registreer'}</button>
-                {registerSuccess === true && <p>Registeren is gelukt! Je kan nu inloggen!</p>}
-                {/*{loading && <p>Een moment geduld aub!</p>}*/}
-
-                {error && <p className='error-message'>{error}</p>}
-
-            </form>
-
+             {registerSuccess ? <p className='edit-text'>Het is gelukt! <strong>{username} </strong> is weer lid van de club.</p>:
+                 <button className='unblock'
+                 // onclick={updateInfo()}
+                 //      disable={loading}
+                         type='submit' className='form-input-btn'
+                      // disabled={loading}
+                 >{loading ? 'Versturen..' : 'Deblokkeer'}
+                 >
+             </button>}
+             {/*{loading && <p>Een moment geduld aub!</p>}*/}
+             {error && <p className='error-message'>{error}</p>}
+            <p className='edit-text'>Terug naar de <Link to='/users'>ledenlijst</Link></p>
         </div>
+
+
+
+
+        //     </form>
+        //
+        // </div>
 
     )
 

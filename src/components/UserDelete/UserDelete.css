@@ -8,16 +8,29 @@
     color:#FFFFFF;
     margin-left: 3px;
 }
-
+/*.delete-usr-btn{*/
+/*    padding: 5px;*/
+/*    margin-top: 20px;*/
+/*    background-color: lightblue;*/
+/*    color: white;*/
+/*    margin: 10px;*/
+/*}*/
+/*.icon-btn{*/
+/*    color: white;*/
+/*}*/
+/*.delete-usr-btn:hover{*/
+/*    background-color: #3498db;*/
+/*}*/
 .delete-usr-btn{
+    width: 100px;
     color: #FFFFFF;
     margin: auto;
-    padding: 10px;
+    padding: 5px;
     letter-spacing: 1px;
     cursor: pointer;
-    background-color: #3498db;
-    margin-top:10px;
+    background-color: lightblue;
+    margin-top:20px;
 }
 .delete-usr-btn:hover{
-    background-color: lightblue;
+    background-color: #3498db;
 }

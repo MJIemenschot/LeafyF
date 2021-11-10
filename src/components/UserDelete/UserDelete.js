@@ -37,22 +37,30 @@ function UserDelete (props) {
     return (
         <div className='user-delete'>
             {/*{!user.username===itemId && */}
-            <button
-                className='delete-usr-btn'
-                type='submit'
-                onClick={deleteItemHandler}
-            >
-                verwijder
-                <span className='icon-btn'><GrTrash/></span>
+            {/*<button*/}
+            {/*    className='delete-usr-btn'*/}
+            {/*    type='submit'*/}
+            {/*    onClick={deleteItemHandler}*/}
+            {/*>*/}
+            {/*    verwijder*/}
+            {/*    <span className='icon-btn'><GrTrash/></span>*/}
 
-            </button>
+            {/*</button>*/}
             {/*}*/}
-            {succes &&
+            {succes ?
             <>
                 <p>De gebruiker is succesvol verwijderd</p>
-                <Link to={'/profile'}>Terug naar ledenlijst</Link>
+                {/*<Link to={'/profile'}>Terug naar ledenlijst</Link>*/}
 
-            </>}
+            </>:<button
+                    className='delete-usr-btn'
+                    type='submit'
+                    onClick={deleteItemHandler}
+                >
+                    verwijder
+                    <span className='icon-btn'><GrTrash/></span>
+
+                </button>}
 
         </div>
     )
