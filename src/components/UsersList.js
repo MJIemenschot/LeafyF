@@ -75,26 +75,21 @@ const UsersList = () => {
                             <div className='users-tools'>
                                 {user &&
                                 <>{member.authorities.map(roles=>{
-                                    return(<p>
+                                    return(<>
                                         {roles.authority==='ROLE_USER' &&<Link to={`/user-update/${ member.username }`}  className='user-btn'>
                                             blokkeer
                                         </Link>}
                                         {roles.authority==='ROLE_ADMIN' && 'ROLE_USER' &&<></>}
                                         {!roles.authority ==='ROLE_USER' && 'ROLE_ADMIN' &&<p>Geen lid meer van de club</p>}
-                                    </p>)}
+                                    </>)}
                                 )}
                                     {/*{user &&*/}
                                     {/*<Link to={`/user-update/${ member.username }`}  className='user-btn'>*/}
                                     {/*    blokkeer*/}
                                     {/*</Link>*/}
                                     {/*}*/}
-
-
                                 </>
-
                                 }
-
-
                                 <>
                                     {user &&
                                     <>
@@ -107,7 +102,7 @@ const UsersList = () => {
                                     }
                                 </>
                             </div>
-                            <div>
+                            <div className='user-tool'>
                                 {
                                     user &&
                                     //user.username===!member.username &&

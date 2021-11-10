@@ -8,12 +8,15 @@
 }
 
 .users-tools{
+    border-top: lightgray 2px solid;
     width:100%;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
     margin-top: 20px;
+}
+.user-tool{
+    border-top: lightgray 2px solid;
 }
 /*.user-delete{*/
 /*    display: flex;*/
@@ -36,10 +39,11 @@
 .user-btn:hover{
     background-color: lightblue;
 }
+
 @media (max-width: 789px) {
 
     .users-tools{
-        flex-direction: column;
+
     }
     .user-info{
         width:90%;
