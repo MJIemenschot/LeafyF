@@ -59,10 +59,10 @@
 /*!*    margin-top: 80px;*!*/
 /*!*    color: #fff;*!*/
 /*}*/
-.portal{
-    display: flex;
-    flex-direction: row;
-}
+/*.portal{*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*}*/
 
 .form-content-right {
     width: 35%;

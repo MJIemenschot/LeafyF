@@ -1,3 +1,5 @@
+
+import './Profile.css';
 import React, {useContext, useEffect, useState} from 'react'
 import {AuthContext} from "../context/AuthContext";
 import {Link} from "react-router-dom";
@@ -8,7 +10,7 @@ import {GrEdit} from "react-icons/gr";
 import PlantDelete from "../components/PlantDelete/PlantDelete";
 
 const Profile = () => {
-    //authState: ipv const?
+
     const  { user } = useContext(AuthContext);
     const [content, setContent] = useState(null);
     console.log("USER STUFF IN PROFILE:", user);
@@ -36,18 +38,19 @@ const Profile = () => {
                 console.log("Helaas het is niet gelukt ", e)
             }
         }
-
         fetchPrivateStuff();
     }, []);
 
     console.log("WHAT IS CONTENT??", content);
     return (
-        <div className='container'>
-            <h1>Profiel</h1>
+        <div className='p-container'>
             <div className='profile' key={user.username}>
-                    <h2>Gegevens</h2>
-                    <p>Hallo <strong>{user && theUser}</strong></p>
-                    <p>klik <Link id="add-link" to="/plant-add">hier</Link> om een plant toe te voegen.</p>
+                <div className='greeting'>
+                    <p>Hallo {user && theUser}</p>
+                </div>
+                <div>
+                    <p><Link id="add-link" to="/plant-add">Voeg een plant toe</Link></p>
+                </div>
                 <div>
                     <Link key={user.username} to={`user/${ user.username }`}   className="btn-to-user-detail">
                         {/*<GrEdit/>*/}

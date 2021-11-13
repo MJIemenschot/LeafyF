@@ -1,0 +1,22 @@
+.page-header{
+    text-align: center;
+    color: #00828e;
+    margin-bottom: 40px;
+}
+.page-text{
+    text-align: center;
+    width: 50%;
+}
+/* Container */
+
+.container {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    min-height: 65%;
+    width: 100%;
+    /*max-width: 1060px;*/
+    /*margin: 0 auto;*/
+    background-color: lightgray;
+}

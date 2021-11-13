@@ -1,23 +1,23 @@
-import './SearchBar.css';
+// import './SearchBar.css';
 import {useHistory, useParams, withRouter} from "react-router-dom";
 import {FaSearch} from "react-icons/fa";
-import PlantIndex from "../PlantIndex/PlantIndex";
-import SearchResults from '../SearchResults/SearchResults';
+import TopBar from "../TopBar";
+
 
 
 import {useEffect} from "react";
 
-const SearchBar = ({term, setTerm}) => {
-    console.log('term in searchbar', term);
+const SearchBr = ({term, setTerm}) => {
+    // console.log('term in searchbr', term);
 
     const history = useHistory();
     const submit= e => {
         console.log('submitted');
         e.preventDefault()
     };
-    // const changeUrl = () => {
-    //     history.push('/search-results');
-    // }
+    const changeUrl = () => {
+        history.push('/search-res/');
+    }
 
     return(
         <>
@@ -37,21 +37,14 @@ const SearchBar = ({term, setTerm}) => {
                         id='header-search'
                         placeholder='Zoek een plant'
                         name='query'
-
                     />
-                    <button type='submit' className='search-btn'><FaSearch/></button>
+                    <button
+                        // type='submit'
+                        onClick={changeUrl} className='search-btn'><FaSearch/></button>
                 </form>
             </div>
-            <div>
-                <SearchResults sTxt={term}/>
-                {/*<PlantIndex sTxt={term}/>*/}
-            </div>
+
         </>
-
-
-
-
     );
 }
-
-export default SearchBar;
+export default SearchBr;

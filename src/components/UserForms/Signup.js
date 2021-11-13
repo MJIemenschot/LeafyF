@@ -33,11 +33,11 @@ const Signup = () => {
                 ]
             });
             toggleRegisterSuccess(true);
-            {/* hier kan ik in het history push path automatisch doorverwijzen naar het inlogpagina als ik het registreerformulier wil laten verdwijnen*/}
+            {/* hier kan ik ook in het history push path automatisch doorverwijzen naar het inlogpagina als ik het registreerformulier wil laten verdwijnen*/}
             // setTimeout(() => {
             //     history.push('/');
             // }, 2000);
-            <Link to='/'>Terug naar plantenoverzicht</Link>
+
         } catch (e) {
             console.error(e);
             setError(`Het registeren is mislukt. Probeer het opnieuw (${e.message})`);
@@ -103,6 +103,7 @@ const Signup = () => {
                 {error && <p className='error-message'>{error}</p>}
 
             </form>
+            <Link to='/'>Terug naar plantenoverzicht</Link>
             {/*<p>Heb je al een account? Je kunt je <Link to="/">hier</Link> inloggen.</p>*/}
         </div>
 

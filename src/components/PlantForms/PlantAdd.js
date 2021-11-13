@@ -29,7 +29,6 @@ function PlantAdd () {
                 }
             }
             );
-
             toggleSuccess(true);
         } catch (e) {
             console.log(console.error(e))
@@ -57,10 +56,8 @@ function PlantAdd () {
         formData.append('watering', data.watering)
         formData.append('file', data.file[0])
 
-
         sendInfo(formData)
     }
-
     return (
         <div className='add-item-container'>
             <div className='add-items'>
@@ -78,7 +75,6 @@ function PlantAdd () {
                     placeholder='Voeg hier de latijnse naam toe:'
                     {...register('latinName', )}
             />{errors.address && <p className='error-message'>probeer de naam in te korten</p>}
-
             <textarea   type='description'
                         className="add-item-field"
                         cols="30" rows="10"
@@ -111,7 +107,6 @@ function PlantAdd () {
                             }
                         })}
             />{errors.potting ? <p className='error-message'>{errors.potting.message}</p>:null}
-
             <div className='selectField'>
                 <h3>Verzorging</h3>
                 <input  className='choose'
@@ -130,8 +125,6 @@ function PlantAdd () {
                         value='HARD' {...register('difficulty')}/>
                 <label htmlFor='hard'>Moeilijk</label>
             </div>
-
-
             <div className='selectField'>
                 <h3>Standplaats</h3>
                 <input  className='choose'
@@ -208,7 +201,6 @@ function PlantAdd () {
                 <label htmlFor='never_special'>Nooit/speciaal</label>
             </div>
             <p>{result}</p>
-
             <div className='upload'>
                 <input type='file' {...register('file', {
                     required:true
@@ -216,21 +208,21 @@ function PlantAdd () {
                 />
                 {errors.address && <p className='error-message'>Selecteer en upload een afbeelding.</p>}
                 <GrUpload/>
-            </div >
+            </div>
             <button className='form-btn'
-
             >Voeg de plant toe</button>
 
             {Success === true &&
                 <>
                     <p>De plant is succesvol toegevoegd!</p>
-                    <button onClick={refresh}>Terug naar je profielpagina</button>
+                    <button onClick={refresh}>Naar plantoverzicht</button>
                 </>
-            } {error && <p className='error-message'>{error}</p>}
+            }
+            {/*{error && <p className='error-message'>{error}</p>}*/}
+            {!Success && <p className='error-message'>{error}</p>}
         </form>
             </div>
         </div>
     )
 }
-
 export default PlantAdd;

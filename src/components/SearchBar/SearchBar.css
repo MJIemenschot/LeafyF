@@ -1,5 +1,7 @@
 .search-bar{
-    background-color: #00828e;
+    /*background-color: #00828e;*/
+    background-color: #dadada;
+
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

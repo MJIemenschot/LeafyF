@@ -4,7 +4,7 @@
  import { render, unmountComponentAtNode } from "react-dom";
  import { act } from "react-dom/test-utils";
 
- import PlantIndex from "../components/reusableComponents/PlantIndex/PlantIndex";
+ import PlantIndex from "../components/PlantIndex/PlantIndex";
 
  let container = null;
  beforeEach(() => {

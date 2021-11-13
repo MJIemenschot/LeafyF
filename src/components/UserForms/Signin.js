@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import './Form.css';
 import {AuthContext} from '../../context/AuthContext';
 import axios from 'axios';
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
 
 
@@ -13,6 +13,10 @@ const Signin = () => {
     const {handleSubmit, register, formState: {errors}} = useForm();
     const {login} = useContext(AuthContext);
     const [loading, toggleLoading] = useState(false);
+    const history = useHistory();
+    ///
+    const [success, toggleSucces] = useState(false);
+    ///
     const [error, setError] = useState('');
 
     async function sendInfo(data) {
@@ -21,6 +25,10 @@ const Signin = () => {
             const result = await axios.post('http://localhost:8080/api/v1/authenticate', data);
             console.log('result in signin formulier', result)
             login(result.data.jwt)
+            toggleSucces(true)
+             setTimeout(() => {
+                 history.push('/');
+             }, 2000);
         } catch (e) {
 
             setError('Onjuist mailadres of wachtwoord',e)
@@ -45,7 +53,7 @@ const Signin = () => {
                         />
                         {errors.emailRegistration &&
                          <p className='errorMessage'>Dit e-mail adres is hier niet bekend</p>}
-                        {/*{error && <p className='error-message'>{error}</p>}*/}
+                        {error && <p className='error-message'>{error}</p>}
 
                     </label>
                 </div>
@@ -56,8 +64,8 @@ const Signin = () => {
                                placeholder='Je wachtwoord...'
                                {...register('password')}
                         />
-                        {/*{errors.emailRegistration &&*/}
-                        {/*<p className='errorMessage'>Dit wachtwoord is niet geldig</p>}*/}
+                        {errors.emailRegistration &&
+                        <p className='errorMessage'>Dit wachtwoord is niet geldig</p>}
                         {error && <p className='error-message'>{error}</p>}
 
                     </label>

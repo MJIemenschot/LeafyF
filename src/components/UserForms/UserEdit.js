@@ -45,7 +45,7 @@ const UserUpdate = (props) => {
 
             } catch (e) {
                 console.error(e);
-                setError(`Het updaten is mislukt. Probeer het opnieuw (${e.message})`);
+                setError(`Het deblokkeren is mislukt omdat de gebruiker niet geblokkeerd is. (${e.message})`);
             }
 
             toggleLoading(false);

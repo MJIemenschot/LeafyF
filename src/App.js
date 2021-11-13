@@ -20,12 +20,13 @@ import UsersList from "./components/UsersList";
 import UserUpdate from "./components/UserForms/UserUpdate";
 import PasswordReset from "./components/PasswordReset";
 import SearchBar from "./components/SearchBar/SearchBar";
-
 import UserDetail from "./components/UserDetail";
 import UserEdit from "./components/UserForms/UserEdit";
 import UserDelete from "./components/UserDelete/UserDelete";
-
-
+import TopBar from "./components/TopBar";
+import SearchResults from "./components/SearchResults/SearchResults";
+import SearchRes from "./components/SearchResults/SearchRes";
+import Hero from "./components/Hero";
 
 
 function App() {
@@ -33,8 +34,6 @@ function App() {
     console.log("wat zijn de authData", authData);
     const [terms, setTerms] = useState('');
     const[term,setTerm] = useState('')
-
-
     function addTerm(term) {
       let newTerms = new Set([term, ...terms]);
       setTerms(Array.from(newTerms));
@@ -43,35 +42,28 @@ function App() {
   return (
        <DataProvider>
       <>
-
+          <TopBar/>
         <Nav />
-
-        <SearchBar term={term}
-                   setTerm={setTerm}
-
-        />
-          {/*<SearchBr term={term}*/}
-          {/*           setTerm={setTerm}*/}
-
-          {/*/>*/}
+          {authData.user ?<Profile />:<></>}
+        {/*<SearchBar term={term}*/}
+        {/*           setTerm={setTerm}*/}
+        {/*/>*/}
           <Switch>
-
           <Route exact path='/user-portal' component={UserPortal}/>
-          <Route exact path='/profile' component={Profile}/>
-
-
           <Route path='/plant-add' component={PlantAdd}/>
           <Route exact path='/users' component={UsersList}/>
           <Route path='/user/:username' component={UserDetail}/>
           <Route path='/user-update/:username' component={UserUpdate}/>
            <Route path='/user-edit/:username' component={UserEdit}/>
           {/*<Route path='/reset-password/:username' component={PasswordReset}/>*/}
-          <Route exact path='/' component={Plants}/>
+          {/*<Route exact path='/' component={Plants}/>*/}
+          {/*<Route exact path={`/search-res/:?query=${term}`} component={SearchRes}/>*/}
+          <Route exact path='/search-res' component={SearchRes}/>
+           <Route exact path='/' component={Plants}/>
           <Route exact path='/makkelijk' component={EasyPlants}/>
           <Route excact path='/vergeet-deze' component={DryPlants}/>
           <Route exact path='/shadow' component={ShadowPlants}/>
           <Route exact path='/plant/:id' component={Plant}/>
-
           <Route exact path='/edit-plant/:id' component={EditPlant}/>
           <Route exact path='/plant-edit/:id' component={PlantEdit}/>
           <Route exact path='/over-leafy' component={About}/>

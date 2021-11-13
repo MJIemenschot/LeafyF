@@ -1,0 +1,11 @@
+.portal{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+@media all and (max-width: 768px) {
+    .portal{
+        flex-direction: column-reverse;
+    }
+
+}
