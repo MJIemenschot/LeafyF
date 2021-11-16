@@ -29,8 +29,6 @@ const SearchRes = (match) => {
     const [error, setError] = useState('');
     const [contents,setContents] = useState([]);
     let history = useHistory();
-
-
     const [appState, setAppState] = useState( '');
 
     useEffect(()=>{
@@ -44,13 +42,13 @@ const SearchRes = (match) => {
                 console.log('de data van search easy api',res);
                 const data = res.data;
                 setContents(res.data);
-                 toggleSuccess(true);
+                toggleSuccess(true);
 
 
 
             } catch (e) {
-                console.error('Er zijn helaas geen planten gevonden met die naam, error: ' + e)
-                setError(`Er zijn helaas geen planten gevonden met die naam, error: (${e.message})`);
+                // console.error('Er zijn helaas geen planten gevonden met die naam, error: ' + e)
+                 setError(`Er zijn helaas geen planten gevonden met die naam, error: (${e.message})`);
             }
         }
         searchPlants(contents);
@@ -71,9 +69,16 @@ const SearchRes = (match) => {
     // function refresh() {
     //     window.location.reload(false);
     // }
+    // function noPlants(){
+    //     setError(`Er zijn helaas geen planten gevonden met die naam`)
+    // }
+
     function closeResult(){
         setContents('')
     }
+
+
+
     // function closeAndRefresh(){
     //     closeResult()
     //     relocate()

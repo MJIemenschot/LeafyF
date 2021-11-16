@@ -137,7 +137,7 @@ function PlantEdit (props) {
                     <label>Beschrijving</label>
                     <textarea   type='description'
                                 className="add-item-field"
-                                cols="30" rows="10"
+                                cols="30" rows="5"
                                 placeholder='Voeg hier een beschrijving van jouw plant toe:'
                                 {...register('description',{
                                     maxLength:{
@@ -149,7 +149,7 @@ function PlantEdit (props) {
                     <label>Verzorgingshandleiding</label>
                     <textarea   type='care'
                                 className='add-item-field'
-                                cols='30' rows='10'
+                                cols='30' rows='5'
                                 placeholder='Voeg hier een  verzorgingshandleiding van jouw plant toe:'
                                 {...register('care',{maxLength:{
                                         value: 495,
@@ -160,7 +160,7 @@ function PlantEdit (props) {
                     {errors.care ? <p className='error-message'>{errors.care.message}</p>:null}
                     <textarea   type='potting'
                                 className='add-item-field'
-                                cols='30' rows='10'
+                                cols='30' rows='5'
                                 placeholder='Informatie over grond en verpotten:'
                                 {...register('potting',{maxLength:{
                                         value: 495,

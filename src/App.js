@@ -56,10 +56,9 @@ function App() {
           <Route path='/user-update/:username' component={UserUpdate}/>
            <Route path='/user-edit/:username' component={UserEdit}/>
           {/*<Route path='/reset-password/:username' component={PasswordReset}/>*/}
-          {/*<Route exact path='/' component={Plants}/>*/}
           {/*<Route exact path={`/search-res/:?query=${term}`} component={SearchRes}/>*/}
           <Route exact path='/search-res' component={SearchRes}/>
-           <Route exact path='/' component={Plants}/>
+          <Route exact path='/' component={Plants}/>
           <Route exact path='/makkelijk' component={EasyPlants}/>
           <Route excact path='/vergeet-deze' component={DryPlants}/>
           <Route exact path='/shadow' component={ShadowPlants}/>

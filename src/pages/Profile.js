@@ -54,14 +54,14 @@ const Profile = () => {
                 <div>
                     <Link key={user.username} to={`user/${ user.username }`}   className="btn-to-user-detail">
                         {/*<GrEdit/>*/}
-                        mijn gegevens
+                        Mijn gegevens
                     </Link>
                 </div>
                 <div>{user.authorities.map(abilities=>{
                     return(<>
                         {abilities.authority ==='ROLE_ADMIN' &&
                         <Link to={`/users`}   className="btn-to-users">
-                            Gebruikerslijst</Link>}
+                            Ledenlijst</Link>}
                     </>)}
                 )}
                 </div>

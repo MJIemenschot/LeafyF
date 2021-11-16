@@ -15,6 +15,7 @@ function PlantAdd () {
     const onSubmit = (data) => setResult(JSON.stringify(data));
     let history = useHistory();
 
+
     async function sendInfo (formData) {
         setError('');
         toggleLoading(true);
@@ -38,6 +39,13 @@ function PlantAdd () {
     }
     function refresh() {
         window.location.reload(false);
+    }
+    let changeUrl = () => {
+        history.push(`/`);
+    }
+    let changeRefr=()=>{
+        changeUrl()
+        refresh()
     }
 
     const formData = new FormData();
@@ -77,7 +85,7 @@ function PlantAdd () {
             />{errors.address && <p className='error-message'>probeer de naam in te korten</p>}
             <textarea   type='description'
                         className="add-item-field"
-                        cols="30" rows="10"
+                        cols="30" rows="5"
                         placeholder='Voeg hier een beschrijving van jouw plant toe:'
                         {...register('description',{
                             maxLength:{
@@ -89,7 +97,7 @@ function PlantAdd () {
 
             <textarea   type='care'
                         className='add-item-field'
-                        cols='30' rows='10'
+                        cols='30' rows='5'
                         placeholder='Voeg hier een  verzorgingshandleiding van jouw plant toe:'
                         {...register('care',{maxLength:{
                                 value: 495,
@@ -99,7 +107,7 @@ function PlantAdd () {
             />{errors.care ? <p className='error-message'>{errors.description.care}</p>:null}
             <textarea   type='potting'
                         className='add-item-field'
-                        cols='30' rows='10'
+                        cols='30' rows='5'
                         placeholder='Informatie over grond en verpotten:'
                         {...register('potting',{maxLength:{
                                 value: 495,
@@ -131,7 +139,7 @@ function PlantAdd () {
                         type='radio'
                         id='directsun'
                         value='DIRECTSUN' {...register('light')}/>
-                <label htmlFor='directsun'>Direct Zonlicht</label>
+                <label htmlFor='directsun'>Direct zonlicht</label>
                 <input  className='choose'
                         type='radio'
                         id='halfsunny'
@@ -211,11 +219,10 @@ function PlantAdd () {
             </div>
             <button className='form-btn'
             >Voeg de plant toe</button>
-
             {Success === true &&
                 <>
                     <p>De plant is succesvol toegevoegd!</p>
-                    <button onClick={refresh}>Naar plantoverzicht</button>
+                    <button onClick={changeRefr}>Naar plantoverzicht</button>
                 </>
             }
             {/*{error && <p className='error-message'>{error}</p>}*/}

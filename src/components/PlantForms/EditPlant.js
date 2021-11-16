@@ -136,8 +136,8 @@ useEffect(() => {
                             <p>De afbeelding is succesvol gewijzigd!</p>
                             {/*<button onClick={changeUrl}>Bekijk de plant</button>*/}
                              {/*<p className='error-message'>{error}</p>*/}
-                            {/*<button type='button' onClick={refresh} className='btn btn-secondary'>Laat de nieuwe afbeelding zien</button>*/}
-                            <button type='button' onClick={changeUrl} className='btn btn-secondary'>Bekijk de plant</button>
+                            <button type='button' onClick={refresh} className='btn btn-secondary'>Laat de nieuwe afbeelding zien</button>
+
                         </>:Success &&<Link to='/'>Cancel</Link>
                     }
 
@@ -146,6 +146,7 @@ useEffect(() => {
                 </form>
                 }
                 {!currentPlant &&<p>Geen plant om te wijzigen...</p>}
+                <button type='button' onClick={changeUrl} className='btn btn-secondary'>Bekijk de plant</button>
             </div>
         </div>
     )
