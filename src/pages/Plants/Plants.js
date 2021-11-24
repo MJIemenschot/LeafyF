@@ -1,9 +1,9 @@
 import './Plants.css';
 import React, {useContext, useState, useEffect} from 'react';
-import {DataContext} from "../context/DataContext";
+import {DataContext} from "../../context/DataContext";
 import {Link} from 'react-router-dom';
-import {AuthContext} from "../context/AuthContext";
-import PlantIndex from "./PlantIndex/PlantIndex";
+import {AuthContext} from "../../context/AuthContext";
+import PlantIndex from "../../components/PlantIndex/PlantIndex";
 
 
 

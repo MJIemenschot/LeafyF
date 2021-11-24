@@ -3,10 +3,13 @@ import {useHistory, withRouter, useLocation, useParams, Link} from 'react-router
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import './PlantAdd.css';
-
 import {GrUpload} from 'react-icons/gr';
+import {AuthContext} from "../../context/AuthContext";
 
 function PlantAdd () {
+    const  { user } = useContext(AuthContext);
+    console.log('zit hierin een user?',user);
+    const person = user.username;
     const { handleSubmit, formState: { errors }, register, reset } = useForm();
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState('');
@@ -19,7 +22,7 @@ function PlantAdd () {
     async function sendInfo (formData) {
         setError('');
         toggleLoading(true);
-        const token = localStorage.getItem("token")
+        const token = localStorage.getItem('token')
 
         try {
             await axios.post('http://localhost:8080/api/v1/plants', formData ,
@@ -33,7 +36,7 @@ function PlantAdd () {
             toggleSuccess(true);
         } catch (e) {
             console.log(console.error(e))
-            setError(`Deze plant bestaat al. (${e.message})`);
+            setError(`Er gaat iets mis:  (${e.message})`);
             console.log('de error message?',e.message)
         }
     }
@@ -51,11 +54,10 @@ function PlantAdd () {
     const formData = new FormData();
 
     const formSubmit = (data) => {
-
+        formData.append('uploadedByUsername', data.uploadedByUsername)
         formData.append('description', data.description)
         formData.append('care', data.care)
         formData.append('potting', data.potting)
-        // formData.append('care', data.flowering)
         formData.append('name', data.name)
         formData.append('latinName', data.latinName)
         formData.append('difficulty', data.difficulty)
@@ -71,10 +73,17 @@ function PlantAdd () {
             <div className='add-items'>
             <h1>Voeg een plant toe</h1>
         <form onSubmit={handleSubmit(formSubmit)} onReset={reset} className='add-item'>
+            <input
+                type='text'
+                className='user-id'
+                defaultValue={user.username}
+                {...register('uploadedByUsername', {
+                })}>
+            </input>
                 <input  type='text'
                         className='add-item-field'
                         placeholder='Voeg hier de plantnaam toe:'
-                        {...register("name", {
+                        {...register('name', {
                             required:true
                         })}
                 />{errors.address && <p className='error-message'>Het veld is niet ingevuld</p>}

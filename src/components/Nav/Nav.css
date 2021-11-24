@@ -49,8 +49,8 @@ nav h2 {
 
 
 .activeLink{
-    height:100%;
-   background-color: #8ABBC3;
+   height:100%;
+   /*background-color: #8ABBC3;*/
 }
 .mobile-menu-icon{
     display:none;

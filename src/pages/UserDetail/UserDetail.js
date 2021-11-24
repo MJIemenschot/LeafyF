@@ -1,19 +1,20 @@
 import './UserDetail.css';
 import {Link, useHistory, useParams} from 'react-router-dom';
-import {AuthContext} from '../context/AuthContext';
+import {AuthContext} from '../../context/AuthContext';
 import axios from 'axios';
 import React, {useContext, useEffect, useState} from 'react';
-import EditImageBtn from "./EditImageBtn/EditImageBtn";
-import PlantDelete from "./PlantDelete/PlantDelete";
-import EditButton from "./EditButton/EditButton";
-import UserDelete from './UserDelete/UserDelete';
-import UserUpdate from "./UserForms/UserUpdate";
-import UserEdit from "./UserForms/UserEdit";
+import EditImageBtn from "../../components/EditImageBtn/EditImageBtn";
+import PlantDelete from "../../components/PlantDelete/PlantDelete";
+import EditButton from "../../components/EditButton/EditButton";
+import UserDelete from '../../components/UserDelete/UserDelete';
+import UserUpdate from "../../components/UserForms/UserUpdate";
+import UserEdit from "../../components/UserForms/UserEdit";
 import {GrEdit} from 'react-icons/gr';
+import PlntByUser from "../../components/PlntByUser";
 
 
 const UserDetail = () => {
-    const [currentUser, setCurrentUser] = useState([]);
+    //const [currentUser, setCurrentUser] = useState([]);
     //const [Picture, setPicture] = useState();
     const { username } = useParams();
     const history = useHistory();
@@ -28,7 +29,7 @@ const UserDetail = () => {
 
 
     // useEffect(()=>{
-    //     async function fetchUser() {
+    //     async function fetchCurrentUser() {
     //         try {
     //             const response = await axios.get(`http://localhost:8080/api/v1/users/${username}`);
     //             console.log('response in fetchuser',response.data)
@@ -36,10 +37,10 @@ const UserDetail = () => {
     //             setCurrentUser(response.data)
     //
     //         } catch (error) {
-    //             console.error('Something went wrong', error)
+    //             console.error('Er ging iets mis', error)
     //         }
     //     }
-    //     fetchUser();
+    //     fetchCurrentUser();
     // },[]);
 
 
@@ -54,17 +55,18 @@ const UserDetail = () => {
                 <div>{user.authorities.map(abilities=>{
                     return(
                         <>
-                                    {abilities.authority ==='ROLE_ADMIN' ?<p><strong>Rol 2:</strong></p>:<p><strong>Rol 1:</strong></p>}
+                                    {abilities.authority ==='ROLE_ADMIN' ?<p><strong>Extra Rol:</strong></p>:<p><strong>Rol:</strong></p>}
                                     {abilities.authority ==='ROLE_ADMIN' &&<p>Administator</p>}
                                     {abilities.authority ==='ROLE_USER' &&<p>Lid van de club</p>}
-                            <div className='user-tools'>
+                            {/*<PlntByUser usrId={username}/>*/}
+
+                            {/*<div className='user-tools'>*/}
                                 {/*{currentUser.username && !abilities.authority ==='ROLE_ADMIN' &&*/}
                                 {/*<Link to={`/reset-password/${ currentUser.username }`}   className='user-btn'>*/}
                                 {/*    Pas je wachtwoord en/of mailadres aan aan <GrEdit/>*/}
                                 {/*</Link>*/}
                                 {/*}*/}
-
-                            </div>
+                            {/*</div>*/}
                     </>)}
                 )}
                 </div>

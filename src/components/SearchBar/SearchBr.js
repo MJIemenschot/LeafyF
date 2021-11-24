@@ -1,7 +1,7 @@
-// import './SearchBar.css';
+ import './SearchBar.css';
 import {useHistory, useParams, withRouter} from "react-router-dom";
 import {FaSearch} from "react-icons/fa";
-import TopBar from "../TopBar";
+import TopBar from "../Topbar/TopBar";
 
 
 

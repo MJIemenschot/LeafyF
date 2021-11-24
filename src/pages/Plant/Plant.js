@@ -4,9 +4,9 @@ import React, {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {CgDrop, CgSun, GiWateringCan} from "react-icons/all";
 import {GrCafeteria, GrEdit, GrTrash} from "react-icons/gr";
-import PlantDelete from "../PlantDelete/PlantDelete";
-import EditButton from "../EditButton/EditButton";
-import EditImageBtn from "../EditImageBtn/EditImageBtn";
+import PlantDelete from "../../components/PlantDelete/PlantDelete";
+import EditButton from "../../components/EditButton/EditButton";
+import EditImageBtn from "../../components/EditImageBtn/EditImageBtn";
 import {AuthContext} from "../../context/AuthContext";
 
 

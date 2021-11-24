@@ -1,5 +1,5 @@
 
- import Plant from "../components/Plant/Plant";
+ import Plant from "../pages/Plant/Plant";
  import React from "react";
  import { render, unmountComponentAtNode } from "react-dom";
  import { act } from "react-dom/test-utils";

@@ -1,7 +1,9 @@
 .error-message{
     color: #f00e0e;
 }
-
+.user-id{
+    display:none;
+}
 .add-item-container{
     width:100%;
 

@@ -1,8 +1,8 @@
 import './Plants.css';
 import React, {useContext, useEffect, useState} from "react";
-import {DataContext} from "../context/DataContext";
+import {DataContext} from "../../context/DataContext";
 
-import PlantIndex from "./PlantIndex/PlantIndex";
+import PlantIndex from "../../components/PlantIndex/PlantIndex";
 
 const DryPlants = () => {
     const {dry, error} = useContext(DataContext);

@@ -69,7 +69,7 @@ const Signup = () => {
                                })}
                         />{errors.emailRegistration &&
                         <p className='errorMessage'>Het e-mail adres is verplicht en moet een geldig zijn</p>}
-                        {/*todo error from backend user already exists*/}
+
                     </label>
                 </div>
                 <div className='form-inputs'>

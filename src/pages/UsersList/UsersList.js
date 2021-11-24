@@ -1,16 +1,16 @@
 import './UsersList.css';
 import React, {useContext, useEffect, useState} from "react";
 import {Link, NavLink, useHistory} from "react-router-dom";
-import {AuthContext} from "../context/AuthContext";
-import Logo from "./Logo/Logo";
+import {AuthContext} from "../../context/AuthContext";
+import Logo from "../../components/Logo/Logo";
 import {FaBars, FaHome, FaTimes } from "react-icons/fa";
 import {IoPersonOutline} from "react-icons/io5";
 import axios from "axios";
 import { GrNext, GrClose, GrEdit, GrTrash  } from "react-icons/gr";
-import Button from "./reusableComponents/Button";
-import UserDelete from "./UserDelete/UserDelete";
-import UserUpdate from "./UserForms/UserUpdate";
-import UserEdit from "./UserForms/UserEdit";
+import Button from "../../components/reusableComponents/Button";
+import UserDelete from "../../components/UserDelete/UserDelete";
+import UserUpdate from "../../components/UserForms/UserUpdate";
+import UserEdit from "../../components/UserForms/UserEdit";
 
 const UsersList = () => {
     // console.log('props in usersList',props)
@@ -21,7 +21,7 @@ const UsersList = () => {
     const {
         user
     } = useContext(AuthContext);
-    console.log('user in userslist',user);
+    console.log('users in userslist',user);
 
 
     async function fetchUsers(){
@@ -51,17 +51,16 @@ const UsersList = () => {
     return (
         <>
             <h1 className='page-header'>Ledenlijst</h1>
-
             <div className='item-container'>
-
                 {users.map(member =>{
                     const splitMember=member.username.split('@');
                     const theMember=splitMember[0].charAt(0).toUpperCase()+splitMember[0].slice(1);
                     return (
 
                         <div key ={member.username} className='user-info'>
-                            <h3> {theMember}</h3>
+                            <h3>{theMember}</h3>
                             <p><strong>Emailadres: </strong>{member.username}</p>
+
 
                             <h4>Rollen:</h4>
                             <>{member.authorities.map(abilities=>{
@@ -72,6 +71,17 @@ const UsersList = () => {
                                 </p>)}
                             )}
                             </>
+                            <div className='dropdown'>
+                                <h4>Lijst van toegevoegde planten</h4>
+                                <div className='dropdown-content'>
+                                    <>{member.plants.map(usrPlants=>{
+                                        return(<p>
+                                            {usrPlants.name}
+                                        </p>)}
+                                    )}
+                                    </>
+                                </div>
+                            </div>
                             <div className='users-tools'>
                                 {user &&
                                 <>{member.authorities.map(roles=>{

@@ -6,16 +6,16 @@ import {GrNext, GrClose, GrEdit, GrTrash, GrRestaurant, GrCafeteria} from 'react
 
 import {useHistory, withRouter, useLocation, useParams, Link} from 'react-router-dom';
 import {AuthContext} from '../../context/AuthContext';
-import Button from "../reusableComponents/Button";
+import Button from "../../components/reusableComponents/Button";
 import {CgDrop, CgSun, GiWateringCan} from 'react-icons/all';
-import PlantDelete from '../PlantDelete/PlantDelete';
-import Image from '../Image/Image';
+import PlantDelete from '../../components/PlantDelete/PlantDelete';
+import Image from '../../components/Image/Image';
 import axios from 'axios';
 import {FaSearch} from "react-icons/fa";
 
 import * as queryString from "querystring";
-import EditButton from "../EditButton/EditButton";
-import EditImageBtn from "../EditImageBtn/EditImageBtn";
+import EditButton from "../../components/EditButton/EditButton";
+import EditImageBtn from "../../components/EditImageBtn/EditImageBtn";
 
 
 const SearchRes = (match) => {
