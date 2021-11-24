@@ -4,7 +4,7 @@ nav {
     width: 100%;
     min-height: 10vh;
     /*margin-bottom: 30px;*/
-    padding: 16px 0;
+    /*padding: 16px 0;*/
     background: cadetblue;
     display: flex;
     justify-content: space-around;
@@ -18,27 +18,45 @@ nav h2 {
 
 .nav-menu {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     flex-flow: row;
+    height: 100%;
     width: 80%;
     list-style: none;
 }
 .nav-links{
     color: white;
-    padding: 10px 20px;
+    padding: 23px 20px;
     margin: 0 10px;
-    cursor: pointer
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .nav-links a{
     color: #fff;
-
     text-decoration: none;
+}
+.nav-links a:hover{
+    color:#00828e;
+    /*background-color: #8ABBC3;*/
+}
+.nav-links a:active{
+    color:#00828e;
+    /*background-color: #8ABBC3;*/
+}
+
+
+.activeLink{
+   height:100%;
+   /*background-color: #8ABBC3;*/
 }
 .mobile-menu-icon{
     display:none;
 }
 .log-out{
+    width: 80px;
     background-color: darkseagreen;
     color: white;
     padding: 7px;
@@ -54,7 +72,7 @@ nav h2 {
         display: block;
         color: white;
         position: absolute;
-        top: 10px;
+        top: 100px;
         right:10px;
     }
     .nav-menu-mobile{

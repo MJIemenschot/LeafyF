@@ -9,8 +9,6 @@ import {FaBars, FaTimes, FaRegUser, FaUser, FaHeart, FaHome, FaSearch} from 'rea
 import {AuthContext} from "../../context/AuthContext";
 
 
-
-
 const Nav = () => {
     const [isMobile, setIsMobile] =useState(false);
     const history = useHistory();
@@ -18,7 +16,7 @@ const Nav = () => {
         logout,
          user ,
     } = useContext(AuthContext);
-    const [searchQuery, setSearchQuery] = useState( '');
+    // const [searchQuery, setSearchQuery] = useState( '');
 
 
     return (
@@ -55,23 +53,22 @@ const Nav = () => {
                     </li>
                     <li className='nav-links'>{!user ? (<NavLink exact to='/user-portal'>
                         <IoPersonOutline/>
-                    </NavLink>):(
-                        <NavLink exact to='/profile'>
-                            <IoPerson/>
-                        </NavLink>
-                    )}
-                        {user &&(<button type='button' onClick={logout} className='log-out'>Log uit</button>)}
+                    </NavLink>):(<button type='button' onClick={logout} className='log-out'>Log uit</button>)
+                    //     :(
+                    //     <NavLink exact to='/profile'>
+                    //         <IoPerson/>
+                    //     </NavLink>
+                    // )
+                    }
+                        {/*{user &&(<button type='button' onClick={logout} className='log-out'>Log uit</button>)}*/}
                     </li>
-
                 </ul>
                 <div className='mobile-menu-icon'
                 onClick={()=> setIsMobile(!isMobile)}>
                     {isMobile ? <FaTimes/>:
                         <FaBars />}
-
                 </div>
             {/*</div>*/}
-
         </nav>
     )
 }

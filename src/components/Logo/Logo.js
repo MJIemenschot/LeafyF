@@ -1,14 +1,20 @@
 import './Logo.css';
 import {Link} from 'react-router-dom';
 import {GrGrow} from "react-icons/gr";
+import Leafy from '../../assets/Leafybeeldmerk.png';
+
 
 const Logo = () => {
 
     return (
-        <Link to='/' className='logo'>
-            Leafy<span className='logo-icon'>.<GrGrow /></span>
+        <div className='icon-link'>
 
-        </Link>
+            <Link to='/' className='logo'>
+                 Leafy<span ><img src={Leafy} alt='leafy' className='logo-icon'/></span>
+            </Link>
+
+        </div>
+
     )
 }
 export default Logo

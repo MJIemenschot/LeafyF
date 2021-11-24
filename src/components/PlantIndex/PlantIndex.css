@@ -1,0 +1,93 @@
+.item-container{
+    width:100%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.btn-to-post {
+    display: inline-block;
+    /*border-radius: 4px;*/
+    background-color: darkseagreen;
+    border: none;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 2px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    /*margin: 5px;*/
+}
+
+.btn-to-post span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.btn-to-post span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.btn-to-post:hover span {
+    padding-right: 10px;
+}
+
+.btn-to-post:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+.itemInfo{
+    width: 250px;
+    background-color: white;
+    margin: 10px;
+    padding:10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.water-care{
+    background-color: lightblue;
+    padding: 5px;
+    display: flex;
+
+}
+.care-icon {
+    margin: 5px 10px;
+}
+
+
+.care {
+    background-color: paleturquoise;
+    padding: 5px;
+    display: flex;
+
+}
+.light-care {
+    background-color: #D8E898;
+    /*background-color: lemonchiffon;*/
+    padding: 5px;
+    display: flex;
+
+}
+.food-care {
+    background-color: #f6d0f6;
+    padding: 5px;
+    display: flex;
+}
+.tools{
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 755px) and (max-width: 1110px) {
+    .item {
+        max-width: 48%;
+    }
+}

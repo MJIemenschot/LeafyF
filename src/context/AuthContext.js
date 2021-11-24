@@ -33,7 +33,7 @@ function AuthContextProvider({ children }) {
                 user: null,
                 status: 'done'
             })
-            //history.push("/");
+            // history.push("/");
         }
     }, []);
 
@@ -62,7 +62,7 @@ function AuthContextProvider({ children }) {
                 status: 'done',
             });
 
-            history.push('/profile');
+             // history.push('/');
         } catch(e) {
             console.error(e);
         }
@@ -72,7 +72,7 @@ function AuthContextProvider({ children }) {
         console.log('logout!');
         localStorage.removeItem('token');
         setAuthState({ user: null, status: 'done' });
-        history.push('/');
+        // history.push('/');
     }
 
     const data = {

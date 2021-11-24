@@ -59,15 +59,15 @@
 /*!*    margin-top: 80px;*!*/
 /*!*    color: #fff;*!*/
 /*}*/
-.portal{
-    display: flex;
-    flex-direction: row;
-}
+/*.portal{*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*}*/
 
 .form-content-right {
     width: 35%;
     margin: 30px;
-    background-color: #eeeeee;
+    background-color: #E7E7E7;
     padding: 20px;
 /*   border-radius: 0 10px 10px 0;*/
 /*!*    position: relative;*!*/

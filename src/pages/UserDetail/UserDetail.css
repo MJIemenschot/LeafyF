@@ -1,0 +1,38 @@
+/*.user-tools{*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    align-content: center;*/
+/*}*/
+/*.user-btn{*/
+/*    margin: 20px;*/
+/*    padding: 10px;*/
+/*    background-color: #3498db;*/
+/*    color: white;*/
+/*    text-decoration: none;*/
+/*}*/
+
+.user-detail{
+    width:300px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+}
+.dropdown{
+    color:lightseagreen;
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}

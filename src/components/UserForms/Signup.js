@@ -3,6 +3,7 @@ import './Form.css';
 import {useForm} from 'react-hook-form';
 import axios from 'axios';
 import {Link, useHistory} from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link'
 
 
 const Signup = () => {
@@ -33,11 +34,11 @@ const Signup = () => {
                 ]
             });
             toggleRegisterSuccess(true);
-            {/* hier kan ik in het history push path automatisch doorverwijzen naar het inlogpagina als ik het registreerformulier wil laten verdwijnen*/}
+            {/* hier kan ik ook in het history push path automatisch doorverwijzen naar het inlogpagina als ik het registreerformulier wil laten verdwijnen*/}
             // setTimeout(() => {
             //     history.push('/');
             // }, 2000);
-            <Link to='/'>Terug naar plantenoverzicht</Link>
+
         } catch (e) {
             console.error(e);
             setError(`Het registeren is mislukt. Probeer het opnieuw (${e.message})`);
@@ -68,7 +69,7 @@ const Signup = () => {
                                })}
                         />{errors.emailRegistration &&
                         <p className='errorMessage'>Het e-mail adres is verplicht en moet een geldig zijn</p>}
-                        {/*todo error from backend user already exists*/}
+
                     </label>
                 </div>
                 <div className='form-inputs'>
@@ -97,12 +98,14 @@ const Signup = () => {
 
                 <button disable={loading} type='submit' className='form-input-btn'
                         disabled={loading}>{loading ? 'Versturen..' : 'Registreer'}</button>
-                {registerSuccess === true && <p>Registeren is gelukt! Je kan nu inloggen!</p>}
+                {registerSuccess === true && <p>Registeren is gelukt! Je kan nu <HashLink to='/user-portal/#signin'> inloggen! </HashLink> </p>}
+
                 {/*{loading && <p>Een moment geduld aub!</p>}*/}
 
                 {error && <p className='error-message'>{error}</p>}
 
             </form>
+            {/*<Link to='/'>Terug naar plantenoverzicht</Link>*/}
             {/*<p>Heb je al een account? Je kunt je <Link to="/">hier</Link> inloggen.</p>*/}
         </div>
 

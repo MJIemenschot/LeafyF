@@ -2,10 +2,7 @@ import './EditPlant.css';
 import React, {useContext, useEffect, useState} from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-
-
 import {GrEdit, GrUpload} from "react-icons/gr";
-
 import {Link, useHistory, useParams} from 'react-router-dom';
 
 
@@ -23,6 +20,9 @@ function EditPlant (props) {
     const [Success, toggleSuccess] = useState(false);
     const [result, setResult] = useState('currenPlant');
     const onSubmit = (data) => setResult(JSON.stringify(data));
+    let changeUrl = () => {
+        history.push(`/plant/${id}`);
+    }
 
     // effect runs on component mount
 
@@ -131,19 +131,22 @@ useEffect(() => {
                     </div >
                     <button className='form-btn'>Wijzig afbeelding</button>
                     {/*<button type='button' onClick={refresh} className='btn btn-secondary'>Laat de nieuwe afbeelding zien</button>*/}
-                    {error &&
+                    {error ?
                         <>
                             <p>De afbeelding is succesvol gewijzigd!</p>
+                            {/*<button onClick={changeUrl}>Bekijk de plant</button>*/}
                              {/*<p className='error-message'>{error}</p>*/}
-                            {/*<button type='button' onClick={refresh} className='btn btn-secondary'>Laat de nieuwe afbeelding zien</button>*/}
-                            <button type='button' onClick={refresh} className='btn btn-secondary'>Terug naar je profielpagina</button>
-                        </>
+                            <button type='button' onClick={refresh} className='btn btn-secondary'>Laat de nieuwe afbeelding zien</button>
+
+                        </>:Success &&<Link to='/'>Cancel</Link>
                     }
+
                     {/*{Success && <button type='button' onClick={refresh} className='btn btn-secondary'>Laat de nieuwe afbeelding zien</button>}*/}
                     {/*<button type='button' onClick={refresh} className='btn btn-secondary'>Laat nieuw afbeelding zien</button>*/}
                 </form>
                 }
                 {!currentPlant &&<p>Geen plant om te wijzigen...</p>}
+                <button type='button' onClick={changeUrl} className='btn btn-secondary'>Bekijk de plant</button>
             </div>
         </div>
     )

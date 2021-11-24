@@ -30,7 +30,10 @@ function PlantEdit (props) {
     const [Success, toggleSuccess] = useState(false);
     const [result, setResult] = useState('currenPlant');
     const onSubmit = (data) => setResult(JSON.stringify(data));
-    const [submitting, setSubmitting] = useState(false)
+    const [submitting, setSubmitting] = useState(false);
+    let changeUrl = () => {
+        history.push(`/plant/${id}`);
+    }
 
     // effect runs on component mount
 
@@ -119,11 +122,7 @@ function PlantEdit (props) {
 
                       onReset={reset}
                       className='add-item'>
-                    {/*<input  type="hidden"*/}
-                    {/*        className="add-item-field"*/}
-                    {/*        {...register("id", {*/}
-                    {/*        })}*/}
-                    {/*/>*/}
+
                     <input  type='text'
                             className='add-item-field'
                             {...register('name', {
@@ -138,7 +137,7 @@ function PlantEdit (props) {
                     <label>Beschrijving</label>
                     <textarea   type='description'
                                 className="add-item-field"
-                                cols="30" rows="10"
+                                cols="30" rows="5"
                                 placeholder='Voeg hier een beschrijving van jouw plant toe:'
                                 {...register('description',{
                                     maxLength:{
@@ -150,7 +149,7 @@ function PlantEdit (props) {
                     <label>Verzorgingshandleiding</label>
                     <textarea   type='care'
                                 className='add-item-field'
-                                cols='30' rows='10'
+                                cols='30' rows='5'
                                 placeholder='Voeg hier een  verzorgingshandleiding van jouw plant toe:'
                                 {...register('care',{maxLength:{
                                         value: 495,
@@ -161,7 +160,7 @@ function PlantEdit (props) {
                     {errors.care ? <p className='error-message'>{errors.care.message}</p>:null}
                     <textarea   type='potting'
                                 className='add-item-field'
-                                cols='30' rows='10'
+                                cols='30' rows='5'
                                 placeholder='Informatie over grond en verpotten:'
                                 {...register('potting',{maxLength:{
                                         value: 495,
@@ -169,18 +168,6 @@ function PlantEdit (props) {
                                     }
                                 })}
                     />{errors.potting ? <p className='error-message'>{errors.potting.message}</p>:null}
-                    {/*<textarea   type='flowering'*/}
-                    {/*            className='add-item-field'*/}
-                    {/*            cols='30' rows='10'*/}
-                    {/*            placeholder='Informatie over Bloeiwijze en stekken:'*/}
-                    {/*            {...register('care',{maxLength:{*/}
-                    {/*                    value: 495,*/}
-                    {/*                    message: 'Maak tekst wat korter',*/}
-                    {/*                }*/}
-                    {/*            })}*/}
-                    {/*/>*/}
-
-
 
                     <div className='select-field'>
 
@@ -229,14 +216,6 @@ function PlantEdit (props) {
                     {/*<div className="upload">*/}
                     {/*    <img src={currentPlant.downloadUri} alt={currentPlant.name} width="80px"/>*/}
 
-                    {/*    <input type="file"*/}
-                    {/*           defaultValue={currentImage}*/}
-                    {/*           {...register("file", {*/}
-                    {/*           })} accept="image/jpeg"*/}
-                    {/*    />*/}
-                    {/*    /!*{errors.file && <p className="errorMessage">Er ging iets mis met uploaden. Probeer het opnieuw.</p>}*!/*/}
-                    {/*    <GrUpload/>*/}
-                    {/*</div >*/}
                     <button className='form-btn'>Wijzig de plant</button>
                     {Success === true &&
                         <>
@@ -253,9 +232,11 @@ function PlantEdit (props) {
                 </form>
                 }
                 {!currentPlant &&<p>Geen plant om te wijzigen...</p>}
-                {!Success && <button type='button' onClick={() => reset()} className='reset-btn'>Zet terug</button>}
+                {!Success &&
+                <button type='button' onClick={() => reset()} className='reset-btn'>Zet terug</button>
+                }
                 <div>
-                    {Success ?<button onClick={refresh}>Terug naar je profielpagina</button>: <Link to='/'
+                    {Success ?<button onClick={changeUrl}>Bekijk de plant</button>: <Link to='/'
                     >Cancel</Link>}
                 </div>
 

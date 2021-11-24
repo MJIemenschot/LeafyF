@@ -2,7 +2,7 @@ import './PlantDelete.css';
 import React, {useContext, useEffect, useState} from 'react';
 import { useForm } from 'react-hook-form';
 import axios from "axios";
-import {BrowserRouter, Link} from "react-router-dom";
+import {BrowserRouter, Link, useHistory} from "react-router-dom";
 
 
 import {GrTrash} from "react-icons/gr";
@@ -17,6 +17,10 @@ function PlantDelete (props) {
    // console.log("props in itemDelete", props.id)
     // const { handleSubmit, formState: { errors }, register } = useForm();
     const itemId = props.id;
+    const history = useHistory();
+    let changeUrl = () => {
+        history.push(`/`);
+    }
 
 
     async function deletePlantHandler () {
@@ -37,6 +41,10 @@ function PlantDelete (props) {
     function refresh() {
         window.location.reload(false);
     }
+    function refreshUrl() {
+        changeUrl()
+        refresh()
+    }
 
 
 
@@ -54,7 +62,7 @@ function PlantDelete (props) {
                 <GrTrash/>
             </button>:
                 // <Link to={"/"}>Naar Overzicht</Link>
-                <button type='button' onClick={refresh} className='btn btn-secondary'>Terug naar je profielpagina</button>
+                 <button type='button' onClick={refreshUrl} className='btn btn-secondary'>Terug naar overzicht</button>
             }
 
                 {Success &&<p>De plant is succesvol verwijderd</p>}

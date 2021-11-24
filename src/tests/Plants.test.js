@@ -1,6 +1,6 @@
 
  import {getAllByTestId, render} from "@testing-library/react";
- import Plant from "../components/Plant/Plant";
+ import Plant from "../pages/Plant/Plant";
  import {jest} from '@jest/globals';
 
  jest.useFakeTimers();

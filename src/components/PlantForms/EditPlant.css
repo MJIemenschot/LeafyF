@@ -17,7 +17,10 @@
 .add-items{
     width:60%;
     text-align: center;
-    background-color: #eeeeee;
+    /*background-color: #eeeeee;*/
+    background-color: #E7E7E7;
+
+
 }
 
 .add-item{
@@ -50,6 +53,7 @@
 
 }
 .form-btn{
+    color: white;
     width:80%;
     height:50px;
     margin: 20px 0;
