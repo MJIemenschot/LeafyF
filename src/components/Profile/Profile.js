@@ -49,9 +49,17 @@ const Profile = () => {
                 <div className='greeting'>
                     <p>Hallo {user && theUser}</p>
                 </div>
-                <div>
-                    <p><Link id='add-link' to='/plant-add' >Voeg een plant toe</Link></p>
+                <div>{user.authorities.map(abilities=>{
+                    return(<>
+                        {abilities.authority ==='ROLE_USER' &&
+                        <Link  id ='add-link' to={`/plant-add`}  >
+                            Voeg een plant toe</Link>}
+                    </>)}
+                )}
                 </div>
+                {/*<div>*/}
+                {/*    <p><Link id='add-link' to='/plant-add' >Voeg een plant toe</Link></p>*/}
+                {/*</div>*/}
                 <div>
                     <Link key={user.username} to={`user/${ user.username }`}   className="btn-to-user-detail">
                         {/*<GrEdit/>*/}

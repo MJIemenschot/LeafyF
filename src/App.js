@@ -18,7 +18,7 @@ import PlantAdd from "./components/PlantForms/PlantAdd";
 import {EditPlant} from "./components/PlantForms/EditPlant";
 import UsersList from "./pages/UsersList/UsersList";
 import UserUpdate from "./components/UserForms/UserUpdate";
-import PasswordReset from "./components/PasswordReset";
+
 import SearchBar from "./components/SearchBar/SearchBar";
 import UserDetail from "./pages/UserDetail/UserDetail";
 import UserEdit from "./components/UserForms/UserEdit";
@@ -26,7 +26,7 @@ import UserDelete from "./components/UserDelete/UserDelete";
 import TopBar from "./components/Topbar/TopBar";
 import SearchResults from "./pages/SearchResults/SearchResults";
 import SearchRes from "./pages/SearchResults/SearchRes";
-import Hero from "./components/Hero";
+
 
 
 function App() {
@@ -54,8 +54,7 @@ function App() {
           <Route exact path='/users' component={UsersList}/>
           <Route path='/user/:username' component={UserDetail}/>
           <Route path='/user-update/:username' component={UserUpdate}/>
-           <Route path='/user-edit/:username' component={UserEdit}/>
-          {/*<Route path='/reset-password/:username' component={PasswordReset}/>*/}
+          <Route path='/user-edit/:username' component={UserEdit}/>
           {/*<Route exact path={`/search-res/:?query=${term}`} component={SearchRes}/>*/}
           <Route exact path='/search-res' component={SearchRes}/>
           <Route exact path='/' component={Plants}/>

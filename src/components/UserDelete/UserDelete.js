@@ -22,7 +22,7 @@ function UserDelete (props) {
 
     async function deleteItemHandler () {
 
-        if(window.confirm("weet je zeker dat je deze gebruiker wil verwijderen?")){
+        if(window.confirm("weet je zeker dat je dit account wil verwijderen?")){
             try{
                 await axios.delete(`http://localhost:8080/api/v1/users/${itemId}`)
                 // const newUserList = (props.filter((user)=>user.id !==itemId));
@@ -31,7 +31,6 @@ function UserDelete (props) {
                 console.log("het is niet gelukt, error: " + e)
             }
         }
-
     }
 
     return (
@@ -47,9 +46,10 @@ function UserDelete (props) {
 
             {/*</button>*/}
             {/*}*/}
+            {!succes && <p>Verwijder dit account</p>}
             {succes ?
             <>
-                <p>De gebruiker is succesvol verwijderd</p>
+                <p>Het account is succesvol verwijderd</p>
                 {/*<Link to={'/profile'}>Terug naar ledenlijst</Link>*/}
 
             </>:<button

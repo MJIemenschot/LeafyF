@@ -41,7 +41,7 @@ const Signup = () => {
 
         } catch (e) {
             console.error(e);
-            setError(`Het registeren is mislukt. Probeer het opnieuw (${e.message})`);
+            setError(`Het registeren is mislukt. Dit mailadres staat al in het systeem. (${e.message})`);
         }
 
         toggleLoading(false);

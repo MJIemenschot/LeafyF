@@ -136,7 +136,7 @@ useEffect(() => {
                             <p>De afbeelding is succesvol gewijzigd!</p>
                             {/*<button onClick={changeUrl}>Bekijk de plant</button>*/}
                              {/*<p className='error-message'>{error}</p>*/}
-                            <button type='button' onClick={refresh} className='btn btn-secondary'>Laat de nieuwe afbeelding zien</button>
+                            <button type='button' onClick={refresh} className='btn btn-secondary'>Laat een previeuw van de nieuwe afbeelding zien</button>
 
                         </>:Success &&<Link to='/'>Cancel</Link>
                     }

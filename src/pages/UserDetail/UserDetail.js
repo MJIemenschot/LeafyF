@@ -17,6 +17,7 @@ const UserDetail = () => {
     //const [currentUser, setCurrentUser] = useState([]);
     //const [Picture, setPicture] = useState();
     const { username } = useParams();
+    console.log('username uit useParams',username)
     const history = useHistory();
     const isTokenValid = localStorage.getItem('token')
     const {
@@ -60,13 +61,14 @@ const UserDetail = () => {
                                     {abilities.authority ==='ROLE_USER' &&<p>Lid van de club</p>}
                             {/*<PlntByUser usrId={username}/>*/}
 
-                            {/*<div className='user-tools'>*/}
-                                {/*{currentUser.username && !abilities.authority ==='ROLE_ADMIN' &&*/}
-                                {/*<Link to={`/reset-password/${ currentUser.username }`}   className='user-btn'>*/}
-                                {/*    Pas je wachtwoord en/of mailadres aan aan <GrEdit/>*/}
-                                {/*</Link>*/}
-                                {/*}*/}
-                            {/*</div>*/}
+                            <div className='user-tools'>
+                                <p>Wil je geen lid meer zijn?</p>
+
+                                {user.username === username &&
+                                <UserDelete id={user.username}/>
+                                }
+                                <p>Je kan altijd weer opnieuw lid worden.</p>
+                            </div>
                     </>)}
                 )}
                 </div>

@@ -94,7 +94,13 @@ useEffect(()=>{
                 </div>
                 {user ?
                     <div className='full-item-tools'>
-                        {user && <EditButton id={currentPlant.id}/>}
+                        <>{user.authorities.map(abilities=>{
+                            return(<>
+                                {abilities.authority ==='ROLE_USER' &&<EditButton id={currentPlant.id}/>}
+                            </>)}
+                        )}
+                        </>
+                        {/*{user && <EditButton id={currentPlant.id}/>}*/}
                         <>{user.authorities.map(abilities=>{
                             return(<>
                                 {abilities.authority ==='ROLE_ADMIN' &&<EditImageBtn id={currentPlant.id}/>}

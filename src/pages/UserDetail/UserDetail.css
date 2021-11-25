@@ -1,8 +1,11 @@
-/*.user-tools{*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    align-content: center;*/
-/*}*/
+.user-tools{
+    padding-top: 30px;
+    border-top: 1px solid darkgrey;
+    display: flex;
+    align-items: flex-start;
+    align-content: center;
+    flex-direction: column;
+}
 /*.user-btn{*/
 /*    margin: 20px;*/
 /*    padding: 10px;*/
