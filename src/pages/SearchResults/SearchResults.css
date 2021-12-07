@@ -1,3 +1,4 @@
+
 .found{
     background-color: lightgray;
     display: flex;
@@ -5,9 +6,11 @@
     align-content: center;
     justify-content: center;
     padding: 20px;
-
     /*padding-bottom: 20px;*/
-
+}
+.not-found{
+    width: 30%;
+    margin: auto;
 }
 .found-tools{
     display: flex;

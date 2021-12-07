@@ -30,10 +30,12 @@ const SearchRes = (match) => {
     const [contents,setContents] = useState([]);
     let history = useHistory();
     const [appState, setAppState] = useState( '');
+     // const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
         async function searchPlants(){
-            setError('')
+            setError('');
+                // setLoading(true)
 
             setAppState('zoeken ...');
 
@@ -43,20 +45,21 @@ const SearchRes = (match) => {
                 const data = res.data;
                 setContents(res.data);
                 toggleSuccess(true);
-
-
-
             } catch (e) {
                 // console.error('Er zijn helaas geen planten gevonden met die naam, error: ' + e)
-                 setError(`Er zijn helaas geen planten gevonden met die naam, error: (${e.message})`);
+                 setError(`Geen data, error: (${e.message})`);
+                 setAppState('');
+                 // setLoading(false)
             }
         }
-        searchPlants(contents);
+        // setTimeout(() => {
+        //     (async() =>await searchPlants(contents))();
+        // }, 2000);
+
+          searchPlants(contents);
 
     },[]);
-    // if (appState === "zoeken ...") {
-    //     return <h1>Zoeken..</h1>;
-    // }
+
     //
     // function relocate() {
     //     history.push('/')
@@ -84,8 +87,10 @@ const SearchRes = (match) => {
     //     relocate()
     // }
 
+
     return  (
         <>
+            {/*{loading &&<p>Zoeken...</p>}*/}
             {contents &&
             <div className='found'>
                 {contents.map(plant =>{
@@ -135,7 +140,9 @@ const SearchRes = (match) => {
                     );
                 })}
             </div>
+
             }
+            {contents.length===0 &&<div className='not-found'><p >Er zijn helaas geen planten gevonden met die naam</p></div>}
             {error && <p className='error-message'>{error}</p>}
         </>
     )

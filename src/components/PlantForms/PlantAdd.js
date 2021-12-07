@@ -35,9 +35,12 @@ function PlantAdd () {
             );
             toggleSuccess(true);
         } catch (e) {
-            console.log(console.error(e))
-            setError(`Er gaat iets mis:  (${e.message})`);
-            console.log('de error message?',e.message)
+            console.log(console.error('e?',e.response))
+            setError(`
+            Er gaat iets mis: 
+            
+             (${e.response})`);
+            console.log('de error message?',e.response)
         }
     }
     function refresh() {
@@ -86,7 +89,7 @@ function PlantAdd () {
                         {...register('name', {
                             required:true
                         })}
-                />{errors.address && <p className='error-message'>Het veld is niet ingevuld</p>}
+                />{errors.address && <p className='error-message'>Dit veld is verplicht</p>}
             <input  type='text'
                     className='add-item-field'
                     placeholder='Voeg hier de latijnse naam toe:'
@@ -99,7 +102,7 @@ function PlantAdd () {
                         {...register('description',{
                             maxLength:{
                                 value: 495,
-                                message: 'Maak je beschrijving wat korter',
+                                message: 'Maak je beschrijving wat korter, de tekst moet binnen dit veld passen.',
                             }
                         })}
             />{errors.description ? <p className='error-message'>{errors.description.message}</p>:null}
@@ -110,7 +113,7 @@ function PlantAdd () {
                         placeholder='Voeg hier een  verzorgingshandleiding van jouw plant toe:'
                         {...register('care',{maxLength:{
                                 value: 495,
-                                message: 'Maak je verzorgingshandleiding wat korter',
+                                message: 'Maak je verzorgingshandleiding wat korter, de tekst moet binnen dit veld passen.',
                             }
                         })}
             />{errors.care ? <p className='error-message'>{errors.description.care}</p>:null}
@@ -120,7 +123,7 @@ function PlantAdd () {
                         placeholder='Informatie over grond en verpotten:'
                         {...register('potting',{maxLength:{
                                 value: 495,
-                                message: 'Maak de tekst wat korter',
+                                message: 'Maak de tekst wat korter, de tekst moet binnen dit veld passen.',
                             }
                         })}
             />{errors.potting ? <p className='error-message'>{errors.potting.message}</p>:null}
@@ -228,14 +231,17 @@ function PlantAdd () {
             </div>
             <button className='form-btn'
             >Voeg de plant toe</button>
-            {Success === true &&
-                <>
-                    <p>De plant is succesvol toegevoegd!</p>
-                    <button onClick={changeRefr}>Naar plantoverzicht</button>
-                </>
-            }
+            {Success ?<><p>De plant is succesvol toegevoegd!</p><button onClick={changeRefr}>Naar plantoverzicht</button></>: <Link to='/'
+            >Cancel</Link>}
+            {/*{Success === true &&*/}
+            {/*    <>*/}
+            {/*        <p>De plant is succesvol toegevoegd!</p>*/}
+            {/*        <button onClick={changeRefr}>Naar plantoverzicht</button>*/}
+            {/*    </>*/}
+            {/*}*/}
             {/*{error && <p className='error-message'>{error}</p>}*/}
             {!Success && <p className='error-message'>{error}</p>}
+
         </form>
             </div>
         </div>
