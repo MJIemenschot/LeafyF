@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-// import './TopBar.css';
-import Logo from "../Logo/Logo";
-import SearchBar from "../SearchBar/SearchBar";
+
+
 import SearchBr from "../SearchBar/SearchBr";
 
 const TopBar = () => {

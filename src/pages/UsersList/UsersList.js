@@ -46,8 +46,6 @@ const UsersList = () => {
         fetchUsers()
     },[])
 
-
-
     return (
         <>
             <h1 className='page-header'>Ledenlijst</h1>
@@ -67,7 +65,7 @@ const UsersList = () => {
                                 return(<p>
                                     {abilities.authority ==='ROLE_ADMIN' &&<p>Administator</p>}
                                     {abilities.authority ==='ROLE_USER' &&<p>Lid van de club</p>}
-                                    {abilities.authority ===[] &&<p>Lid van de club</p>}
+                                    {abilities.authority ===[0] &&<p>Geblokkeerd</p>}
                                 </p>)}
                             )}
                             </>
@@ -89,34 +87,26 @@ const UsersList = () => {
                                         {roles.authority==='ROLE_USER' &&<Link to={`/user-update/${ member.username }`}  className='user-btn'>
                                             blokkeer
                                         </Link>}
-                                        {roles.authority==='ROLE_ADMIN' && 'ROLE_USER' &&<></>}
-                                        {!roles.authority ==='ROLE_USER' && 'ROLE_ADMIN' &&<p>Geen lid meer van de club</p>}
+                                        {/*{roles.authority==='ROLE_ADMIN' && 'ROLE_USER' &&<></>}*/}
+                                        {member.authorities.length===0 &&<p>Geen lid meer van de club</p>}
                                     </>)}
                                 )}
-                                    {/*{user &&*/}
-                                    {/*<Link to={`/user-update/${ member.username }`}  className='user-btn'>*/}
-                                    {/*    blokkeer*/}
-                                    {/*</Link>*/}
-                                    {/*}*/}
+
                                 </>
                                 }
                                 <>
                                     {user &&
-                                    <>
+                                        member.authorities.length ===0?
                                         <Link id={member.username}
                                               to={`/user-edit/${ member.username }`}  className='user-btn'>
                                             deblokkeer
-                                        </Link>
-                                        {/*     <UserEdit id={member.username}/>*/}
-                                    </>
+                                        </Link>: <></>
                                     }
                                 </>
                             </div>
                             <div className='user-tool'>
-                                {
-                                    user &&
-                                    //user.username===!member.username &&
-                                    <UserDelete id={member.username}/>
+                                {user &&
+                                    member.authorities.length ===1 || member.authorities.length ===0?<UserDelete id={member.username}/> :<></>
                                 }
                             </div>
                         </div>

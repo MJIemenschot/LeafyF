@@ -18,8 +18,6 @@ import PlantAdd from "./components/PlantForms/PlantAdd";
 import {EditPlant} from "./components/PlantForms/EditPlant";
 import UsersList from "./pages/UsersList/UsersList";
 import UserUpdate from "./components/UserForms/UserUpdate";
-
-import SearchBar from "./components/SearchBar/SearchBar";
 import UserDetail from "./pages/UserDetail/UserDetail";
 import UserEdit from "./components/UserForms/UserEdit";
 import UserDelete from "./components/UserDelete/UserDelete";

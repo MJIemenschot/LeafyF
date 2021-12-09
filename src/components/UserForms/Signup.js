@@ -34,14 +34,10 @@ const Signup = () => {
                 ]
             });
             toggleRegisterSuccess(true);
-            {/* hier kan ik ook in het history push path automatisch doorverwijzen naar het inlogpagina als ik het registreerformulier wil laten verdwijnen*/}
-            // setTimeout(() => {
-            //     history.push('/');
-            // }, 2000);
 
         } catch (e) {
             console.error(e);
-            setError(`Het registeren is mislukt. Dit mailadres staat al in het systeem. (${e.message})`);
+            setError(`Het registeren is mislukt. Dit mailadres staat al in het systeem. (${e.response.data.message})`);
         }
 
         toggleLoading(false);

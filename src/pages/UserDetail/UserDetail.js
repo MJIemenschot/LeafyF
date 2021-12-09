@@ -62,12 +62,16 @@ const UserDetail = () => {
                             {/*<PlntByUser usrId={username}/>*/}
 
                             <div className='user-tools'>
-                                <p>Wil je geen lid meer zijn?</p>
+                                {user.authorities.length ===2 ?<></>:
+                                    <><p><strong>Jij bent:{user.username}</strong></p>
+                                        <p>Wil je geen lid meer zijn?</p>
+                                        {user.username === username &&
+                                        <UserDelete id={user.username}/>
+                                        }
+                                        <p>Je kan altijd weer opnieuw lid worden.</p>
+                                    </>
+                                    }
 
-                                {user.username === username &&
-                                <UserDelete id={user.username}/>
-                                }
-                                <p>Je kan altijd weer opnieuw lid worden.</p>
                             </div>
                     </>)}
                 )}

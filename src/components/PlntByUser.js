@@ -43,11 +43,7 @@ const PlntByUser = ({usrId}) => {
                 </div>
             </div>
 
-
            </>
-
-
-
     )
 }
 export default PlntByUser

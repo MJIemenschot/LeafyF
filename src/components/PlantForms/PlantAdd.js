@@ -35,12 +35,12 @@ function PlantAdd () {
             );
             toggleSuccess(true);
         } catch (e) {
-            console.log(console.error('e?',e.response))
+            console.log(console.error('e?',e.response.data.message))
             setError(`
             Er gaat iets mis: 
             
-             (${e.response})`);
-            console.log('de error message?',e.response)
+             (${e.response.data.message})`);
+            console.log('de error message?',e.response.data.message)
         }
     }
     function refresh() {

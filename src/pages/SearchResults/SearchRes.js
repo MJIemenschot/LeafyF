@@ -34,7 +34,7 @@ const SearchRes = (match) => {
 
     useEffect(()=>{
         async function searchPlants(){
-            setError('');
+            //setError('');
                 // setLoading(true)
 
             setAppState('zoeken ...');
@@ -47,14 +47,15 @@ const SearchRes = (match) => {
                 toggleSuccess(true);
             } catch (e) {
                 // console.error('Er zijn helaas geen planten gevonden met die naam, error: ' + e)
-                 setError(`Geen data, error: (${e.message})`);
+                console.log('search error', e.res.data.message)
+                 setError(`Geen data, error: (${e.res.data.message})`);
                  setAppState('');
                  // setLoading(false)
             }
         }
-        // setTimeout(() => {
-        //     (async() =>await searchPlants(contents))();
-        // }, 2000);
+        setTimeout(() => {
+            (async() =>await searchPlants(contents))();
+        }, 2000);
 
           searchPlants(contents);
 
@@ -140,9 +141,8 @@ const SearchRes = (match) => {
                     );
                 })}
             </div>
-
             }
-            {contents.length===0 &&<div className='not-found'><p >Er zijn helaas geen planten gevonden met die naam</p></div>}
+            {contents.length===0 &&<div className='not-found'><p >Er zijn helaas geen planten gevonden met die naam {error}</p></div>}
             {error && <p className='error-message'>{error}</p>}
         </>
     )
